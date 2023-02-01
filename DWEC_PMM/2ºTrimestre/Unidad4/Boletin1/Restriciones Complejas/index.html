@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <body>
     <div id="formulario0001">
         <form  class="contenedor" action="index.html" name="formulario" id="formulario" method="POST">
@@ -16,15 +17,19 @@
             <label for="email">Email <span class="requerido">*</span>:</label><br>
             <input type="email" placeholder="nombre@ejemplo.com" id="email" name="email"><br>
             <label for="pass">Password  <span class="requerido">*</span>:</label><br>
-            <input type="text" pattern=".*\d.*" id="pass" name="pass" title="Debe incluir al menos un número"><br>
+            <input type="text"  id="pass" name="pass" title="Debe incluir al menos un número"><br>
             <label class="aclaracion" for="pass">El password debe contener al menos un número</label><br>
+            <label for="confirmPass">Confirm Password  <span class="requerido">*</span>:</label><br>
+            <input type="text"  id="confirmPass" name="pass" title="Debe incluir al menos un número"><br>
+            <label class="aclaracion" for="confirmPass">El password debe contener al menos un número</label><br>
             <label for="nombre">Nombre:</label><br>
             <input type="text" id="nombre" name="nombre"><br>
             <label for="edad">Edad:</label><br>
             <input type="number" id="edad" name="edad"><br>  
             <label class="aclaracion" for="pass">Introduce un número entre 18 y 100</label><br>
 
-            <fieldset>
+
+            <fieldset> 
                 <legend>Género:</legend>
                 <input class = "radio" type="radio" id="hombre" name="genero" value="hombre">
                 <label for="hombre">Hombre</label>
