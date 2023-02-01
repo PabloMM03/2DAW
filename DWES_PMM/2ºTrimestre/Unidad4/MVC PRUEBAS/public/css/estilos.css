@@ -1,0 +1,141 @@
+body{
+    background-color: white;
+    background-size: cover;
+    
+}
+h1{
+    text-align: center;
+    margin: 10px;
+    color: darkgoldenrod;
+}
+table{
+    text-align: center;
+    margin: auto;
+    width: 55%;
+    border-collapse: collapse;
+    font-family:'lobster',cursive;
+    font-size: 1.2rem;
+    color: black;
+    box-shadow:7px 13px 37px #000 ;
+    margin-bottom: 70px;
+}
+th,td{
+    padding: 10px;
+}
+table:hover{
+    background-color:beige;
+}
+th{
+    background-color: #1f53c5;
+    border-bottom: solid 5px cornflowerblue;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #ddd;
+}
+tr:hover td{
+    background-color: cornflowerblue;
+    color: white;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.botons{
+    width: 100%;
+    background:#1f53c5;
+    border: none;
+    color: white;
+    margin: 16px 0;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 10px 5px 5px  black;
+    border-radius: 15px;
+}
+.botons2{
+    width: 20%;
+    background:#961fc5;
+    border: none;
+    color: white;
+    margin: 16px 0;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 40%;
+    box-shadow: 10px 5px 5px  black;
+    border-radius: 15px;
+}
+
+#cuadro{
+    border:1px solid black;
+    box-shadow: 10px 5px 5px  black;
+    border-radius: 15px;
+    width: 25%;
+    padding: 20 20;
+    margin:auto;
+    margin-top: 25px;
+    background-color:aliceblue;
+}
+#espacios{
+    margin: 20px;
+}
+h2{
+    text-align: center;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+    
+}
+
+input:focus { 
+    padding: 5px;
+    outline: none !important;
+    border-color: orange;
+    box-shadow: 0 0 10px orange;
+ }
+ input{
+    height: 100%;
+    font-size: 14px;
+    border-radius: 15px;
+    padding: 5px;
+    
+ }
+ .in2{
+    height: 100%;
+    font-size: 14px;
+    border-radius: 15px;
+    padding: 5px;
+    border-color: red;
+    box-shadow: 0 0 10px red;
+ }
+ #tipos{
+    padding: 5px;
+    outline: none !important;
+    border-color: red;
+ }
+ .check{
+    
+    
+ }
+
+ .texto{
+    margin: 5px;
+    padding: 3px;
+    
+ }
+
+ .imgPokemon{
+    width: 20%;
+    margin-left: 40%;
+ }
+ 
+ fieldset{
+    text-align: center;
+    border: none;
+    padding: auto;
+ }
+ 

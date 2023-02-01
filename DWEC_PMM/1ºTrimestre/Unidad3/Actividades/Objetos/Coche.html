@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script>
+/*
+a) Creación inicial de clase e instancias.
+    a.1) Crea una clase Coche con los atributos fabricante, modelo, marchas y marchaActual y con el
+    método cambiarMarcha para cambiar la marchaActual. Ten en cuenta:
+    • Para instanciar un objecto Coche sólo es necesario indicar el fabricante y el modelo.
+    • Las marchas pueden ser P (Parado), 1, 2, 3, 4, 5, 6 y R (marcha atrás).
+    • Al inicializar el objeto la marcha actual será parado.
+    • En el método cambiarMarcha, si la marcha a la que se pretende cambiar no existe se debe
+    lanzar una excepción.
+
+*/
+function excepcionCoche(message){
+    this.message = message;
+}
+
+/*
+    d) Herencia.
+        d.1) Crea una clase padre Vehículo con un único atributo pasajeros. Añade un método get y set para
+        el atributo.
+*/
+
+class Vehiculo{
+
+    #pasajeros;
+    constructor(pasajeros){
+        this.#pasajeros = pasajeros;
+    }
+    get pasajeros(){
+        return this.#pasajeros;
+    }
+    set pasajeros(pasajeros){
+        this.#pasajeros = pasajeros;
+    }
+}
+
+class Coche extends Vehiculo{ /*d.2) Haz que Coche herede de Vehículo. */
+
+#fabricante;
+#modelo; 
+#marchas;
+#marchaActual;
+
+constructor(fabricante,modelo,pasajeros){
+    super(pasajeros);
+    this.#fabricante = fabricante;
+    this.#modelo = modelo;
+    this.#marchas = ["P",1,2,3,4,5,6,"R"];
+    this.#marchaActual = "P";
+
+}
+cambiarMarcha(marchaCorrecta){
+
+    if(this.#marchas.includes(marchaCorrecta)){
+        this.#marchaActual = marchaCorrecta;
+        return marchaCorrecta;	
+    }else{
+        throw new excepcionCoche('Marcha incorrecta');
+    }
+    //this.#marchas.includes(marchaCorrecta) ? this.#marchaActual = marchaCorrecta :  console.log("Su coche no tiene esta marcha");
+
+    
+}
+/*
+b) Métodos get y set.
+Añade métodos get y set a la clase para cada uno de sus atributos.
+*/
+
+get fabricante(){
+    return this.#fabricante;
+}
+set fabricante(fabriante){
+    this.#fabricante = fabriante;
+}
+get modelo(){
+    return this.#modelo;
+}
+set modelo(modelo){
+    this.#modelo = modelo;
+}
+get marchaActual(){
+    return this.#marchaActual;
+}
+set marchaActual(marchaActual){
+    this.#marchaActual = marchaActual;
+}
+get marchas(){
+    return this.#marchas;
+}
+set marchas(marchas){
+    this.#marchas = marchas;
+}
+/*
+c) Métodos estáticos.
+Añade un método estático a la clase Coche para determinar si dos coches son iguales. Dos coches se
+consideran iguales si tienen el mismo fabricante y modelo.
+*/
+static iguales(Tesla,Mazda){
+    if((Tesla.#fabricante === Mazda.#fabricante) && (Tesla.#modelo === Mazda.#modelo)){
+        console.log("Los coches son iguales");
+    }else{
+        console.error("Los coches no son iguales");
+    }
+}
+/*
+    f) Representación textual de objetos.
+    Redefine el método toString para obtener una cadena con el siguiente formato al imprimir un objeto
+    Coche: fabricante :::: modelo :::: pasajeros
+*/
+    toString(){
+        let res = super.toString();
+        res = `Fabricante: ${this.#fabricante}, Modelo: ${this.#modelo}, Pasajeros: ${this.pasajeros}`;
+        return res;
+    }
+
+}
+
+/*
+    a.2) Crea dos instancias de la clase Coche: un Tesla ModelS y un Mazda 3i. Cambia la marcha del
+    Tesla a primera y la del Mazda a marcha atrás.
+
+*/
+        const Tesla = new Coche("Tesla","ModelS");
+    	const Mazda = new Coche("Mazda","3i");
+      	Tesla.cambiarMarcha(1);
+      	Mazda.cambiarMarcha("R");
+    	/*
+    	d.3) Crea un nuevo Coche, añádele 3 pasajeros y muestra el número de pasajeros por consola.
+    	*/
+        const Ferrari = new Coche("Ferrari", "A3",3);
+        console.log(Ferrari.fabricante,Ferrari.modelo,Ferrari.pasajeros);
+        console.log(Ferrari.toString());
+	/*
+	a.3) Muestra por consola el fabricante, el modelo y la marcha en la que se encuentran ambos
+	coches
+	*/
+     	 
+	console.log(Tesla.fabricante + " " + Tesla.modelo + " " + Tesla.marchaActual);
+	console.log(Mazda.fabricante + " " + Mazda.modelo + " " + Mazda.marchaActual);
+
+    Coche.iguales(Tesla,Mazda);
+    Coche.iguales(Tesla,Tesla);
+</script>
+
+</body>
+</html>

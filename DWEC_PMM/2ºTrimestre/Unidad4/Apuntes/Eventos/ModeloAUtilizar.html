@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilizar</title>
+</head>
+<body>
+
+    <p id="parrafo1">Ejmplo Eventos</p>
+    <p id="parrafo2">Parrafo 2</p>
+    <p id="parrafo3">Parrafo3</p>
+    <p id="parrafo4">Parrafo4</p>
+    <a id="enlace" href="https://www.google.com">Vamos a Google</a>
+    
+    <script type="text/javascript">
+
+        //Añadir un escuchador de eventos a un evento,nombre,nombre funcion y true o false
+
+        document.getElementById("parrafo1").addEventListener("click",callback,false);
+        document.getElementById("parrafo1").addEventListener("click",callback2,false);
+        document.getElementById("parrafo1").addEventListener("mouseover",callback3,false);
+        document.getElementById("parrafo1").addEventListener("mouseout",callback4,false);
+            //Cuando se haga click en el parrafo se generaran los x eventos añadidos
+            function callback(){
+                alert("Que mira bobo");
+                this.removeEventListener("click",callback);
+            }
+            function callback2(){
+                this.style.color ="green";
+            }
+            function callback3(){
+                this.style.background ="pink";
+            }
+            function callback4(){
+                this.style.background = "white";
+            }
+            //Con funcion anonima
+            document.getElementById("enlace").addEventListener("click",function(e){
+                e.preventDefault(); //Hace que no obedezca al click
+                alert("Hola");
+                this.innerText ="No nos vamos a google";
+            },false);
+
+            ////////////////////////////////////////////////////////////////////////////////////
+
+            document.getElementById("parrafo3").addEventListener("mouseover",manejador,false);
+            document.getElementById("parrafo3").addEventListener("mouseout",manejador,false);
+
+            function manejador(e){
+                switch(e.type){
+                    case "mouseover":
+                        this.style.background ="red";
+                        break;
+                     case "mouseout":
+                        this.style.background ="white";
+                        break;
+                }
+            }   
+            ////////////////////////////////////////////////////////////////////////////////////
+
+            document.getElementById("parrafo3").addEventListener("mouseover",manejador2,false);
+            document.getElementById("parrafo4").addEventListener("mouseout",manejador2,false);
+
+            function manejador2(e){
+                if(e.target.id === "parrafo3"){
+                    e.target.innerText = "Cambiando el parrafo3";
+
+                }else if(e.target.id === "parrafo4"){
+                    e.target.innerText = "Cambiando el parrafo4";
+
+                }
+            }
+    </script>
+    
+</body>
+</html>

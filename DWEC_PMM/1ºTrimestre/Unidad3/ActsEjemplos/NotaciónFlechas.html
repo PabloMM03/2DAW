@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+
+        Actividad 1. Transforma a funciones flecha.
+    Reescribe estas funciones anónimas utilizando la notación flecha:
+
+    a) const obtenerSaludo = function() {
+    return “¡Hola!”;
+    }
+        */
+    const obtenerSaludo = () =>"¡Hola Mundo!";
+    console.log(obtenerSaludo());
+
+    /*
+    b) const obtenerSaludoConNombre = function(nombre) {
+    return `Hola ${nombre}`;
+    }
+    */
+    nombre = "pablo";
+    const obtenerSaludoConNombre = (nombre) => `Hola ${nombre}`;
+    console.log(obtenerSaludoConNombre(nombre));
+    
+    /*
+    ) const sumar = function(a, b) {
+    return a + b;
+    }
+    */
+    a = 8;
+    b = 5;
+    const sumar = (a,b) => a + b;
+    console.log(sumar(a,b));
+    </script>
+    
+</body>
+</html>

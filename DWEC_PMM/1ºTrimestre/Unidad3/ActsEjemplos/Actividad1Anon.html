@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//Tranaforma a funciones anónimas
+
+/*
+a) function obtenerSaludo() {
+return “¡Hola!”;
+}
+*/
+const hola = function(){
+        console.log("¡Hola!");
+    }
+    hola();
+
+/*
+b) function obtenerSaludoConNombre(nombre) {
+return `Hola ${nombre}`;
+}
+*/
+
+const saludo = function(nombre){
+    nombre = "pablo";
+    console.log(`Hola ${nombre}`);
+}
+    saludo();
+
+/*
+c) function sumar(a, b) {
+return a + b;
+}
+*/
+const suma = function(a,b){
+    a = 8;
+    b = 6;
+    let total = a+b;
+        console.log(total);
+   
+}
+suma();
+
+
+
+    </script>
+</body>
+</html>
+

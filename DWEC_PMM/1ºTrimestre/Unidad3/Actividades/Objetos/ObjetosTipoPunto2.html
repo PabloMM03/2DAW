@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObjetosNoMejorado</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+        a) Que tenga dos propiedades x e y que servirán para representar las coordenadas del punto. Al
+        instanciar un punto se le pasarán dos números, si lo que recibe en alguna coordenada no es un
+        número la coordenada se colocará a 0
+        */
+
+
+        class punto{
+            #x;
+            #y;
+
+            constructor(x,y){
+                this.#x = x;
+                this.#y = y;
+            }
+            cambiar(x,y){
+
+                if(isNaN(this.#x) || isNaN(this.#y)){
+                     this.#x = 0;
+                     this.#y = 0;
+                    console.log("(" + this.#x +"," +  this.#y + ")");
+
+                }else{
+                    console.log("(" + x +"," +  y + ")");
+                }
+                
+                
+            }
+            copia(){
+               let res =  super.toString();
+               res = `Coordenada X: ${this.#x} - Coordenada Y: ${this.#y}`;
+               return res; 
+            }
+            static iguales(q,p){
+
+                if((q.#x === p.#x) && (q.#y === p.#y)){
+                    console.log("Los puntos son iguales!");
+                }else{
+                    console.error("Los puntos no son iguales!");
+                }
+            }
+            static suma(q,p){
+                let punto1 = q.#x + q.#y;
+                let punto2 = p.#x + p.#y;
+                let resultado = punto1 + punto2;
+                console.log(resultado);
+                return resultado;
+            
+            }
+            obtenerDistancia(){
+
+            }
+            toString(){
+                let res = super.toString();
+                console.log(res = `X: ${this.#x} - Y: ${this.#y}`);
+                return res;
+            }
+    
+
+        }
+
+        const p = new punto(-5,2);
+        const q = new punto(6,-3);
+
+        p.cambiar(4,5);
+        q.cambiar(2,4);
+
+        console.log(p.copia());
+        console.log(q.copia());
+
+        punto.iguales(p,q);
+        punto.iguales(p,p);
+
+        punto.suma(q,p);
+        p.toString();
+
+    </script>
+
+    
+</body>
+</html>

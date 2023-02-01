@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Every</title>
+</head>
+<body>
+
+<script>
+    const ar = [1,2,3,4,5];
+
+function  every(ar, callback){
+
+    let ret = true
+     for(let i =0; i<ar.length && ret; i++){
+        ret = callback(ar[i]);
+     }
+
+    return ret;
+}
+    function callback(elem, index, array){
+    return elem > 18;
+}
+
+console.log();
+
+
+</script>
+    
+</body>
+</html>

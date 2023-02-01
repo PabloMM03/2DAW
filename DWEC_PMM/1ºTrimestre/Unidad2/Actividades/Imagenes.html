@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagenes</title>
+</head>
+<body>
+    
+<h1>JS - Ejercicio Imagenes</h1>
+
+<button type="button" onclick="cargarImagen()" value="Cargar Imagen">Cargar Imagen</button>
+
+<script>
+    
+    function cargarImagen(){
+        let imagenes = [
+        {
+            src: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.xataka.com%2Flegislacion-y-derechos%2Fdall-e-funciona-imagenes-creadores-que-no-reciben-nada-a-cambio-que-dice-copyright-ia&psig=AOvVaw2m2D3Govnzksa3v69rYZbF&ust=1668357020733000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOjfqa2IqfsCFQAAAAAdAAAAABAE",
+            widht: "320",
+            height: "320"
+        },
+        {
+            src: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tooltyp.com%2F8-beneficios-de-usar-imagenes-en-nuestros-sitios-web%2F&psig=AOvVaw2m2D3Govnzksa3v69rYZbF&ust=1668357020733000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOjfqa2IqfsCFQAAAAAdAAAAABAJ",
+            widht: "360",
+            height: "360"
+        },
+        {
+            src: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fes-es%2Fbuscar%2Fsol%2520de%2520la%2520ma%25C3%25B1ana%2F&psig=AOvVaw2m2D3Govnzksa3v69rYZbF&ust=1668357020733000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCOjfqa2IqfsCFQAAAAAdAAAAABAX",
+            widht: "420",
+            height: "420"
+        }
+
+        ];
+
+        let bufferImagenes =[];
+        for(const e of imagenes){
+            let imagen = new Image();
+            imagen.src = e.src;
+            imagen.width = e.widht;
+            imagen.height = e.height;
+
+            bufferImagenes.push(imagen);
+        }
+
+        let indiceImagenAleatoria = generarNumeroAleatorio(imagenes.length);
+        let imagenAleatoria = bufferImagenes[indiceImagenAleatoria];
+
+        let nuevoElementoImagen = document.body.appendChild(imagenAleatoria);
+    }
+
+function generarNumeroAleatorio(cantidadImagenes){
+    return Math.floor(Math.random()* cantidadImagenes);
+}
+
+</script>
+
+</body>
+</html>

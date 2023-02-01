@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechas</title>
+</head>
+<body>
+
+    <script>
+ function restaFechas(f1,f2){
+    let aFecha1 = f1.split('/');
+    let aFecha2 = f2.split('/');
+    let fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
+    let fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+    let dif = fFecha2 - fFecha1;
+    let dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+
+    return dias;
+}
+   
+    let f1 = '14/11/2022';
+    let f2= '20/11/2022';
+    document.write("Faltan : " + restaFechas(f1,f2) + " dias para el mundial de Qatar");
+
+    
+
+    const d = new Date("July 21, 2022 01:15:00");
+    let year = d.getFullYear();
+    let dia = d.getDay();
+    let mes = d.getMonth();
+    let fecha = console.log(year) +  console.log(mes) + console.log(dia);
+    
+    </script>
+    
+    
+</body>
+</html>

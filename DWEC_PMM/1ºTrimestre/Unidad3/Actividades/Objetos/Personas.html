@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personas</title>
+</head>
+<body>
+
+    <script>
+
+        class Persona{
+            #nombre;
+            #apellido1;
+            #apellido2;
+            #edad;
+            #nif;
+
+            constructor(nombre,apellido1,edad){
+                this.#nombre = nombre;
+                this.#apellido1 = apellido1;
+                this.#apellido2 = "Montero";
+                this.#edad = edad;
+                this.#nif = "23879118N";
+            }
+
+            cumpleAnios(){
+                let cumplir = this.#edad + 1;
+                return cumplir;
+            }
+            imprimeDatos(){
+                let res = super.toString();
+                res = `Nombre: ${this.#nombre} , Apellido1: ${this.#apellido1}, Edad: ${this.#edad}`;
+                return res;
+            }
+
+            get nombre(){
+                return this.#nombre;
+            }
+            set nombre(nombre){
+                return this.#nombre = nombre;
+            }
+            get apellido1(){
+                return this.#apellido1;
+            }
+            set apellido1(apellido1){
+                return this.#apellido1 = apellido1;
+            }
+            get apellido2(){
+                return this.#apellido2;
+            }
+            set apellido2(apellido2){
+                return this.#apellido2 = apellido2;
+            }
+            get edad(){
+                return this.#edad;
+            }
+            set edad(edad){
+                return this.#edad = edad;
+            }
+            get nif(){
+                return this.#nif;
+            }
+            set nif(nif){
+                return this.#nif = nif;
+            }
+        }
+
+        class Empleado extends Persona{
+            #numAfilSS;
+            #sueldoBruto;
+            #turno;
+            #centroEducativo;
+            #fechaInicio;
+
+            constructor(nombre,apellido1,numAfilSS,sueldoBruto,turno,centroEducativo,fechaInicio){
+                super(nombre,apellido1);
+                this.#numAfilSS = numAfilSS;
+                this.#sueldoBruto = sueldoBruto;
+                this.#turno = turno;
+                this.#centroEducativo = centroEducativo;
+                this.#fechaInicio = fechaInicio;
+               
+            }
+            calcularSueldoNeto(sueldoBruto){
+                if(sueldoBruto < 12450){
+                    sueldoBruto = 10084;
+                }else if(sueldoBruto>=12450 && sueldoBruto<20200){
+                    sueldoBruto = 15352;
+                }else if(sueldoBruto>=20200 && sueldoBruto<35200){
+                    sueldoBruto = 24640;
+                }else if(sueldoBruto>=35200 && sueldoBruto<60000){
+                    sueldoBruto =37800;
+                }else if(sueldoBruto >= 60000 && sueldoBruto<300000){
+                    sueldoBruto = 165000; 
+                }else{
+                    sueldoBruto = (47*sueldoBruto)/(100);
+                }
+                return sueldoBruto;
+            }
+            imprimeDatos(){
+                let este = super.toString();
+                este = ` NumAfilSS: ${this.#numAfilSS}, SueldoBruto: ${this.#sueldoBruto}, Turno: ${this.#turno}, Centro: ${this.#centroEducativo}, FechaInicio: ${this.#fechaInicio} `;
+                let res = super.imprimeDatos();
+                let total  = res + este;
+                return total;
+            }
+            get numAfilSS(){
+                return this.#numAfilSS;
+            }
+            set numAfilSS(numAfilSS){
+                return this.#numAfilSS = numAfilSS;
+            }get sueldoBruto(){
+                return this.#sueldoBruto;
+            }
+            set sueldoBruto(sueldoBruto){
+                return this.#sueldoBruto = sueldoBruto;
+            }get turno(){
+                return this.#turno;
+            }
+            set turno(turno){
+                return this.#turno = turno;
+            }get centroEducativo(){
+                return this.#centroEducativo;
+            }
+            set centroEducativo(centroEducativo){
+                return this.#centroEducativo = centroEducativo;
+            }get fechaInicio(){
+                return this.#fechaInicio;
+            }
+            set fechaInicio(fechaInicio){
+                return this.#fechaInicio = fechaInicio;
+            }
+            
+        }
+        class Docente extends Empleado{
+            #departamento;
+            #categoria;
+            #puesto;
+           
+            constructor(departamento,categoria,puesto,fechaInicio){
+                super(fechaInicio);
+                this.#departamento = ["Informatica","Matematicas"];
+                this.#categoria = ["PES","PTFP"];
+                this.#puesto = ["func_carrera", "func_interino", "func_practicas"];
+                
+            }
+            getTiempoServicio(fechaInicio){
+                let fechaIn = new Date(this.fechaInicio).getTime;
+                let fechaFin = new Date('2022-12-11').getTime();
+
+                let diff = fechaFin - fechaIn;
+                let diferencia =  console.log(diff/(1000*60*60*24));
+                 return diferencia;
+            }
+            imprimeDatos(){
+                let res = super.toString();
+                res = `Departamento: ${this.#departamento}, Catergoria: ${this.#categoria}, Puesto: ${this.#puesto}, FechaInicio: ${this.fechaInicio}`;
+                return res;
+            }
+            get departamento(){
+                return this.#departamento;
+            }
+            set departamento(departamento){
+                return this.#departamento = departamento;
+            }
+            get categoria(){
+                return this.#categoria;
+            }
+            set categoria(categoria){
+                return this.#categoria = categoria;
+            }
+            get puesto(){
+                return this.#puesto;
+            }
+            set puesto(puesto){
+                return this.#puesto = puesto;
+            }
+
+        }
+        class Administrativo extends Empleado{
+            #dependencia;
+            #tipoContrato;
+            #puesto;
+            constructor(Nombre,Apellido1,turno,centroEducativo,dependencia,tipoContrato,puesto){
+                super(Nombre,Apellido1,turno,centroEducativo);
+                this.#dependencia = dependencia;
+                this.#tipoContrato = tipoContrato;
+                this.#puesto = puesto;
+                this.centroEducativo = centroEducativo;
+                this.turno = turno;
+            }
+            imprimeHojaTrabajo(){
+                let imprimir = console.log(`Turno: ${this.turno}, Centro Educativo: ${this.centroEducativo}, Dependencia: ${this.#dependencia}`);
+                return imprimir;
+            }
+            imprimeDatos(){
+                let res = super.toString();
+                res = `Dependencia: ${this.#dependencia}, Contrato: ${this.#tipoContrato}, Puesto: ${this.#puesto}`;
+                let este = super.imprimeDatos();
+                let total = este + res;
+                return total;
+            }
+            get dependencia(){
+                return this.#dependencia;
+            }
+            set dependencia(dependencia){
+                return this.#dependencia = dependencia;
+            }get tipoContrato(){
+                return this.#tipoContrato;
+            }
+            set tipoContrato(tipoContrato){
+                return this.#tipoContrato = tipoContrato;
+            }get puesto(){
+                return this.#puesto;
+            }
+            set puesto(puesto){
+                return this.#puesto = puesto;
+            }
+        }
+
+        const Pablo = new Persona("Pablo","Millán",19);
+        console.log(Pablo.imprimeDatos());
+        console.log(Pablo.cumpleAnios());
+        console.log(Pablo.nombre,Pablo.apellido1,Pablo.apellido2,Pablo.edad);
+
+        const Alvaro = new Empleado("Alvaro","Martín",12,12450,"Mañana","Monroy","2022-12-10");
+        console.log(Alvaro.imprimeDatos());
+        console.log("Se le ha quedado el sueldo en: " + Alvaro.calcularSueldoNeto(12450) + " € netos");
+
+        const Daniel = new Docente("Informatica","PES","func_Carrera","2022-12-10");
+        console.log(Daniel.toString());
+        console.log(Daniel.getTiempoServicio("2022-12-10"));
+        
+        const Marta = new Administrativo("Marta","Gonzales","Tarde","Blas Infante","IDK","fijo","Tecnico Superior");
+        console.log(Marta.imprimeDatos());
+        console.log(Marta.imprimeHojaTrabajo());
+
+
+    
+    </script>
+    
+</body>
+</html>

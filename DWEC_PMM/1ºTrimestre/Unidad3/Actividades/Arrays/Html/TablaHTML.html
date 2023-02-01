@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="datos" border="1"></table>
+
+<script>
+
+    /*
+    Actividad 2. Dibuja una tabla HTML.
+    Crea una función que permita dibujar una tabla HTML. La función recibirá como parámetros el
+    número de filas y columnas de la tabla. Por defecto la función creará una tabla de 10 filas y 4
+    columnas
+    */
+        const NUMEROPORDEFECTO = 0;
+        let numFIlas = parseInt(prompt("Introduzca el numero de filas",NUMEROPORDEFECTO));
+        let numColumnas = parseInt(prompt("Introduzca el numero de columnas",NUMEROPORDEFECTO));
+
+    function tabla(numFIlas,numColumnas){
+
+        if(numFIlas == 0 && numColumnas == 0){
+            for(let i=0; i<10; i++){
+            let fila = document.getElementById('datos').insertRow(i);
+
+            for(let j=0; j<4; j++){
+                let celda = fila.insertCell(j);
+                celda.innerHTML = `Fila :${i} - Columna:${j}`;
+
+            }
+        }
+
+        }else{
+            for(let i=0; i<numFIlas; i++){
+            let fila = document.getElementById('datos').insertRow(i);
+
+            for(let j=0; j<numColumnas; j++){
+                let celda = fila.insertCell(j);
+                celda.innerHTML = `Fila :${i} - Columna:${j}`;
+
+            }
+        }
+
+        }
+
+    }
+
+    tabla(numFIlas,numColumnas);
+
+
+</script>
+
+    
+</body>
+</html>

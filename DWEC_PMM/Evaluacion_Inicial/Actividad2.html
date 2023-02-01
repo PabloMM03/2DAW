@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head >
+        <meta charset="UTF-8">
+        <title>Actividad 2</title>
+    </head>
+    <body>
+        <h1>Actividad 2</h1>
+        <script>
+
+            const DIAS_SEMANA= ["lunes", "martes", "miercoles", "jueves", "viernes","sabado", "domingo"];
+
+            main();
+            function main(){
+                for(let i=0; i<10000; i++){
+                    let weekDay = getRamdomWeekDay();
+                    console.log(weekDay);
+                    if(!DIAS_SEMANA.includes(weekDay)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function getRamdomWeekDay(){
+                let numeroAleatorio = getRamdomBetween(0,6);
+                return DIAS_SEMANA[numeroAleatorio];
+            }
+            function getRamdomBetween (min,max){
+                return Math.floor((Math.random()*(max - min + 1))) + min
+            }
+
+        </script>
+    </body>
+</html>

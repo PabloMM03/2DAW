@@ -1,0 +1,9 @@
+table {
+  display: inline-block;
+}
+
+td {
+  width: 15px;
+  height: 30px;
+  text-align: center;
+}

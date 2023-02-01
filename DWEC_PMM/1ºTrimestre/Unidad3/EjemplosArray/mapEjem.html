@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+</head>
+<body>
+    
+<script>
+
+//Ejemplo utilizando  MAP pero no de la forma correcta
+    function func_callback(elem,index,array){
+
+        const value = elem*2;
+        return value;
+
+    }
+
+    const a  = [1,2,3,4];
+    console.log(a.map(func_callback));
+
+    
+
+//Ejemplo utilizando  MAP pero de la forma correcta
+
+    const personas = [
+       p1 = {
+        nombre :"Pablo",
+        edad : "19"
+       } ,
+       p2 = {
+        nombre :"Alvaro",
+        edad : "20"
+       } ,
+       p3 = {
+        nombre :"Maria",
+        edad : "15"
+       } ,
+       p4 = {
+        nombre :"Ale",
+        edad : "25"
+       } 
+
+];
+
+function callback(elem){
+
+return personas.elem > 18;
+}
+
+const arrayPerf = callback(personas, callback);
+console.log(arrayPerf);
+
+
+</script>
+
+</body>
+</html>

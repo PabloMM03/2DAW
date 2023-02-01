@@ -1,0 +1,196 @@
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0px;
+    
+}
+
+body{
+  color: #121867;
+  font-family: "Lato", sans-serif;
+  font-weight: bolder;
+}
+
+nav,.container,footer{
+  max-width: 1100px;
+  min-width: 600px;
+  margin: 0px auto;
+}
+
+nav{
+  background-color: #121867;
+  color: rgb(243, 55, 132);
+  font-size:1.4;
+  padding: 10px;
+  position: -webkit-sticky;
+  position: sticky;
+  overflow-y: auto;
+  top: 0px;
+  z-index: 100;
+}
+
+nav div{
+  float: left;
+  margin-left: 20px;
+  padding: 5px;
+}
+
+header{
+  position: relative;
+  text-align: center;
+}
+
+header img{
+  opacity: 0.7;
+  width: 100%;
+}
+
+aside{
+  background-color: #121867;
+  border-radius: 20px;
+  color: rgb(243, 55, 132);
+  padding: 10px;
+  position: absolute;
+  right: 15%;
+  text-align: center;
+  top: 30%;
+  width: 20%;
+}
+
+aside a{
+  background-color: rgb(243, 55, 132);
+  border-radius: 10px;
+  color: white;
+  margin-top: 40px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+aside h3{
+  margin: 20px 0px;
+}
+
+main{
+  margin: 0 auto;
+  width: 80%;
+}
+
+main h1{
+  text-align: center;
+}
+
+main h1::after,main::after{
+  background-color: rgb(243, 55, 132);
+  display: block;
+  height: 3px;
+  content: " ";
+  width: 25%;
+  margin: 0px auto;
+  margin-top: 35px;
+}
+
+.cards{
+  overflow-y:auto ;
+}
+
+.cards .card{
+  float: left;
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+
+.cards .card img{
+  width: 60%;
+
+}
+
+/* Sección con la botella y los tres párrafos descriptivos */
+.bottle {
+  margin: 30px auto;
+  overflow-y: auto;
+  width: 70%;;
+ 
+}
+
+.bottle img {
+  float: left;
+  margin-left: 10%;
+  width: 30%;
+}
+  
+
+.bottle div {
+  float: left;
+  margin-top: 20px;
+  text-align: justify;
+  width: 50%;
+}
+
+/* Mostrarmos la primera letra con un borde diferente */
+.bottle div::first-letter {
+  color: rgb(243, 55, 132);
+  font-size: 40px;
+  padding: 5px;
+  margin: 5px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+
+/* Estilos para la galería de imágenes */
+.gallery {
+  margin: 20px auto;
+  overflow-y: auto;
+  width: 70%;
+  
+   
+}
+.gallery img {
+  float: left;
+  width: 20%;
+}
+
+
+/* Estilos para el pie de página */
+footer {
+  background-color: #121867;
+  color: rgb(243, 55, 132);
+  font-weight: bolder;
+  font-size: 0.7;
+  margin-top: 25px;
+  padding: 25px;
+  overflow-y: auto;
+}
+
+footer address {
+  float: left;
+  width: 30%;
+}
+
+footer div {
+  float: left;
+  text-align: center;
+  width: 50%;
+}
+
+footer section {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+footer img {
+  width: 15%;
+}

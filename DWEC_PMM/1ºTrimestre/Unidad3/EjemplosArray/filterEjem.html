@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+</head>
+<body>
+    
+</body>
+</html>
+<h1>Arrays</h1>
+
+<script>
+    
+function filter(array,func_callback){
+
+const res= [];
+
+for(let i= 0; i<array.length; i++){
+    const elemento=array[i];
+    if(func_callback(elemento)){
+        res.push(elemento);
+    }
+}
+return res;
+
+}
+
+function func_callback(elemento){
+    return elemento % 2 == 0;
+}
+
+const array = [4,8,13,6,12,22];
+console.log(filter(array,func_callback));
+
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <!--Primera manera de forma en linea-->
+    <p id="parrafo1" onclick="this.innerHTML='Ha cambiado'" onmouseover="this.style.background='red'" 
+    onmouseout="this.style.background='white'">Ejemplo Eventos</p>
+
+    <p id="parrafo2" onclick="callback(this)">Parrafo 2</p>
+    <p id="parrafo3">Parrafo3</p>
+
+    <!--Tratando eventos, abajo funcion informar de forma en linea-->
+    <a href="https://www.debian.org" onclick=" return informar();">Link debian</a>
+
+    <script src="script.js"></script>
+    <!--Segunda manera con funcion de forma en linea-->
+
+    <script type="text/javascript">
+        //Funcion ejemplo parrafo 2
+        function callback(elem){
+            elem.innerHTML = "Cambio el segundo parrafo";
+        }
+        //Funcion ejemplo a href
+        function informar(){
+           return confirm("¿Quieres ir a debian?");
+        }
+        //Forma tradicional funcion parrafo 3   
+        document.getElementById("parrafo3").onclick = cambiarEstilo;
+        
+        function cambiarEstilo(){
+            alert("Se lanza el evento");
+            this.innerHTML ="Cambiando el contenido";
+            document.getElementById("parrafo3").style.color = "green";
+            this.onclick = null; //Para que no se siga ejecuntando
+        }
+
+        //Se podria hacer con window.onload = function(){y aqui dentro la forma tradicional junto 
+        //la funcion}
+    </script>
+</body>
+</html>

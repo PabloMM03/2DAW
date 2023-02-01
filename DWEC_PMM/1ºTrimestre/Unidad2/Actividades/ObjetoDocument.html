@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Elementos</title>
+</head>
+<body>
+    
+<div id="parent-id">
+
+    <p class="p">Parrafo 1</p>
+    <p class="p" >Parrafo 2</p>
+    <p class="p" >Parrafo 3</p>
+    <p class="p">Parrafo 4</p>
+
+</div>
+    
+    <script>
+       // Actividad 1. Recuperar elementos HTML.
+        console.log(document.getElementById("p"));//No sale
+        console.log(document.getElementsByClassName("p")[1]);
+        console.log(document.getElementsByTagName("p")[1]);
+        console.log(document.querySelector("div#parent-id > p"));
+        console.log(document.querySelectorAll("div#parent-id > p")[1]);
+
+        //Actividad 2. Cambiar Contenido
+        console.log(document.getElementsByClassName("p")[1].innerHTML= "Este es el nuevo contenido del segundo parrafo");
+        console.log(document.getElementsByClassName("p")['2'].textContent=" Este es el nuevo contenido del <strong>tercer parrafo</strong>");
+
+        //Actividad 3. Añadir y eliminar Elementos
+        // console.log(document.removeChild("p")[3]);
+        console.log(document.createElement('p'));
+        console.log(document.createElement("p")[2]);
+
+        //Actividad 4. Otras Propiedades y metodos.
+
+        //a)Cambia el contenido de un párrafo por el contenido del título del documento.
+
+        document.getElementsByClassName("p")[0].innerHTML = "Recuperar Elementos";
+
+        //b) Añade una imagen a un documento y cámbiala desde JavaScript.
+        //En imagenes.html document.getElementById['foto1'].src="ruta imagen";
+
+        //d) Utiliza el método write para escribir el contenido “Nuevo contenido escrito con write”. 
+        document.write("Nuevo contenido escrito con write");
+
+
+        /*
+        e) Realiza las siguientes operaciones sobre un párrafo:
+            ◦ Cambia a rojo el color del texto.
+            ◦ Añádele un fondo amarillo.
+            ◦ Cambia el tamaño del texto a 40 píxeles.
+            ◦ Ocúltalo.
+        */
+         let p = document.getElementsByClassName("p")[2];
+       //Cambiar color parrafo
+        p.style.color ="red";
+        document.getElementById(p).style.backgroundColor = 'amarillo';
+        //Tamaño p.style.height ="40px";
+        //Ocultar 
+        p.style.visibility ="hidden";
+        
+       
+
+    </script>
+</body>
+</html>

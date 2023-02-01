@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+        Actividad 3. Objetos de tipo Ordenador y Portátil.
+    Queremos crear objetos que representen ordenadores, sus atributos son:
+        • Marca, un texto.
+        • Modelo, un texto.
+        • Memoria RAM, un número que indica los Gb de capacidad.
+        • Capacidad de disco duro, un número que indica los Gb de capacidad.
+        • Pulgadas de pantalla, un número que indica las pulgadas de la pantalla.
+        Se necesitan los siguientes métodos:
+        • toString, para obtener una representación textual de los ordenadores.
+        Se debe tener en cuenta que por defecto se tomarán los valores 17 pulgadas, 512Gb de disco duro y
+        4Gb de RAM.
+            Crea otro tipo de objeto que represente ordenadores portátiles que tendrán todos los atributos y
+            métodos de los ordenadores y añaden un atributo autonomía, un número que indica el número de
+            horas. Por defecto la autonomía será de 4 horas, 12 pulgadas y 256Gb de disco duro.
+        */
+
+        class Ordenador{
+
+            constructor(Marca,Modelo){
+                this.Marca = Marca;
+                this.Modelo = Modelo;
+                this.Ram = 4;
+                this.DiscoDuro = 512;
+                this.Pulgadas = 17;
+            }
+
+            toString(){
+                let res = Ordenador.toString();
+                res = `Autonomia: ${this.Autonomia} - Marca: ${this.Marca} - Modelo: ${this.Modelo} - Ram: ${this.Ram } - Disco Duro: ${this.DiscoDuro} - Pulgadas: ${this.Pulgadas} `;
+                return res;
+            }
+
+            cambiar(Marca,Modelo,Ram,DiscoDuro,Pulgadas){
+
+                console.log(Marca + " " + Modelo + " " + Ram + " " + DiscoDuro + " " + Pulgadas);
+               
+            }
+
+
+        }
+    
+        class Portatil extends Ordenador{
+
+            constructor(Autonomia,Marca,Modelo,Ram,DiscoDuro,Pulgadas){
+                super(Marca,Modelo,Ram,DiscoDuro,Pulgadas);
+                this.Autonomia = 4;
+                this.DiscoDuro = 256;
+                this.Pulgadas = 12;
+            }
+        }
+
+        const PC1 = new Ordenador("Lenovo","AQE");
+        const PC2 = new Ordenador("ASUS","RGTQS");
+        console.log(PC1.toString());
+        
+
+       PC1.cambiar("asd","ADec",16,1000,24);
+        
+
+        const PORT1 = new Portatil(16,"Pedrito","AQUA");
+        console.log(PORT1.toString());
+       
+
+    
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+
+    //1. Obtén el resultado de multiplicar el número PI por el número E. 
+
+    console.log(Math.PI * Math.E);
+    //2. Obtén el valor absoluto de -9,87.
+
+    console.log(Math.abs(-9.87));
+     
+    //3. Redondea 1,2 al entero más alto
+
+    console.log(Math.ceil(1.2));
+    //4. Redondea 1,8 al entero más bajo.
+
+    console.log(Math.floor(1.8));
+
+    //5. Redondea 2.51 al entero más próximo.
+
+    console.log(Math.round(2.51));
+
+    //6. Obtén el mayor número de los siguientes 6, 7, 4, 10, 10.1
+
+    console.log(Math.max(6,7,4,10,10.1));
+
+    //7. Obtén el menor número de los siguientes 6, 7, 4, 3.9, 10
+
+    console.log(Math.min(6,7,4,3.9,10));
+
+    //8. Obtén un valor aleatorio entre 100 y 200 
+
+    function getRandomInt(min, max) {
+    min = Math.ceil(100);
+    max = Math.floor(200);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+    console.log(getRandomInt());
+
+    //9. Obtén el valor de 2 elevado a 16.
+
+    console.log(Math.pow(2,16));
+
+    //10. Obtén el valor de la raíz cuadrada de 16.
+
+    console.log(Math.sqrt(16));
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <!--Primera manera -->
+    <p id="parrafo1" onclick="this.innerHTML='Ha cambiado'" onmouseover="this.style.background='red'" 
+    onmouseout="this.style.background='white'">Ejemplo Eventos</p>
+
+    <p id="parrafo2" onclick="callback(this)">Parrafo 2</p>
+
+    <!--Tratando eventos, abajo funcion informar-->
+    <a href="https://www.debian.org" onclick=" return informar();">Link debian</a>
+
+    <script src="script.js"></script>
+    <!--Segunda manera con funcion-->
+
+    <script type="text/javascript">
+        function callback(elem){
+            elem.innerHTML = "Cambio el segundo parrafo";
+        }
+        function informar(){
+           return confirm("¿Quieres ir a debian?");
+        }
+
+
+    </script>
+</body>
+</html>

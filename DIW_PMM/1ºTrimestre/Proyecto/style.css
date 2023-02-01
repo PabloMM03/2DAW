@@ -1,0 +1,107 @@
+body{
+    background-image: url(./imagenes/fondo.png);
+    background-size: cover;
+    
+}
+.nav-bar{
+    width: 80%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 110px;
+}
+.nav-bar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+
+}
+.nav-enlace:hover{
+    background-color: rosybrown;
+}
+.nav-bar ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-family:'lobster',cursive;
+    font-size: 1.2rem;
+}
+
+.left-panel{
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family:'lobster',cursive;
+    font-size: 1.2rem;
+    margin: 30px;
+}
+.left-panel ul li{
+    list-style: none;
+    margin: 5px;
+}
+.left-panel ul li a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-family:'lobster';
+    font-size: 1.2rem;
+    padding: 5px;
+}
+table{
+    text-align: center;
+    margin: auto;
+    width: 55%;
+    border-collapse: collapse;
+    font-family:'lobster',cursive;
+    font-size: 1.2rem;
+    color: black;
+    box-shadow:7px 13px 37px #000 ;
+}
+th,td{
+    padding: 10px;
+}
+table:hover{
+    background-color: rosybrown;
+}
+th{
+    background-color: #1f53c5;
+    border-bottom: solid 5px cornflowerblue;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #ddd;
+}
+tr:hover td{
+    background-color: cornflowerblue;
+    color: white;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.control{
+    width: 100%;
+    background:#24303c;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #1f53c5;
+    font-family:'lobster';
+    font-size: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+
+

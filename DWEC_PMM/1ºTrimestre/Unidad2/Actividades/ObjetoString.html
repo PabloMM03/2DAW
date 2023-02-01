@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades Y Metodos</title>
+</head>
+<body>
+    
+<script>
+
+const sCadena = `  I have become comfortably brilliant  `;
+console.log(`Cadena: ${sCadena}`);
+
+// 1. Indica el número total de caracteres incluyendo los espacios en blanco (length)
+console.log(`Total de caracteres: ${sCadena}`);
+console.log(`${sCadena}`.length);
+// 2. Obtén el carácter que ocupa la octava posición (charAt)
+console.log(`Caracter que ocupa la octava posición: ${sCadena}`);
+console.log(`${sCadena}`.charAt(8));
+
+// 3. Obtén el código Unicode del primer carácter (charCodeAt)
+
+console.log(`Código Unicode del primer caracter: ${sCadena}`);
+console.log(`${sCadena}`.charCodeAt(1));
+
+// 4. Convierte el valor Unicode 65 a su carácter equivalente (fromCharCode)
+
+console.log(`Caracter del código Unicode 65: ${sCadena}`);
+
+
+// 5. Concatena la cadena con la cadena “ and exciting”. ¿Se modifica la primera cadena? (concat)
+
+console.log(`Cadena concatenada con " and exciting": ${sCadena}`);
+console.log(`${sCadena}`.concat("and exciting"));
+
+// 6. Comprueba si la cadena comienza con los caracteres “I have” (startsWith)
+
+console.log(`¿Comienza la cadena con "I have"?: ${sCadena}`);
+console.log(`${sCadena}`.startsWith("I have"));
+
+// 7. Comprueba si la cadena termina con los caracteres “brillian” (endsWith)
+
+console.log(`¿La cadena termina con "brillian"?: ${sCadena}`);
+console.log(`${sCadena}`.endsWith("brillian"));
+
+// 8. Comprueba si la cadena contiene los caracteres “comfortably” (includes)
+
+console.log(`¿La cadena incluye "comfortably"?: ${sCadena}`);
+console.log(`${sCadena}`.includes("comfortably"));
+
+// 9. Indica la posición que ocupa el primer carácter “a” de la cadena. (indexOf)
+
+console.log(`Posición del primer caracter "a": ${sCadena}`);
+console.log(`${sCadena}`.indexOf("a"));
+
+// 10. Indica la posición que ocupa el último carácter “a” de la cadena (lastIndexOf)
+
+console.log(`Posición del último caracter "a": ${sCadena}`);
+console.log(`${sCadena}`.lastIndexOf("a"));
+
+// 11. Compara la cadena con la cadena “You have become comfortably brilliant”. ¿Cuál iría en primer lugar? (localeCompare)
+
+console.log(`Comparada con "You have become comfortably brilliant"¿Cuál va primero?: ${sCadena}`);
+console.log(`${sCadena}`.localeCompare("You have become comfortably brilliant"));
+
+// 12. Obtén todas las coincidencias de la cadena con la expresión regular “/com/g” (match)
+
+console.log(`Ocurrencias de la cadena "com": ${sCadena}`);
+console.log(`${sCadena}`.match(/com/g));
+
+// 13. Obtén una nueva cadena con 3 repeticiones de la cadena actual (repeat)
+
+console.log(`Tres repeticiones de la cadena: ${sCadena}`);
+console.log(`${sCadena}`.repeat(3));
+
+// 14. Reemplaza los caracteres “brilliant” por “exciting” (replace)
+
+console.log(`Cadena reemplazando "brilliant" por "exciting": ${sCadena}`);
+console.log(`${sCadena}`.replace("brilliant","exciting"));
+
+// 15. Busca los caracteres “bril” en la cadena (search)
+
+console.log(`Posición de la cadena "bril": ${sCadena}`);
+console.log(`${sCadena}`.search("bril"));
+
+// 16.  Obtén de la cadena los caracteres del primero al quinto (slice)
+
+console.log(`Extracción del primer al quinto caracter: ${sCadena}`);
+console.log(`${sCadena}`.slice(1,5));
+
+// 17. Obtén un array con todas las palabras de la cadena (split)
+
+console.log(`Array de palabras: ${sCadena}`);
+console.log(`${sCadena}`.split());
+
+// 18. Obtén siete caracteres de la cadena a partir del segundo carácter (substr)
+
+console.log(`Siete caracteres a partir del segundo: ${sCadena}`);
+console.log(`${sCadena}`.substr(2, 7));
+
+// 19. Obtén todos los caracteres de la cadena a partir del cuarto carácter (substring)
+
+console.log(`Todos los caracteres a partir del cuarto: ${sCadena}`);
+console.log(`${sCadena}`.substring(4));
+
+// 20. Convierte todos los caracteres de la cadena a mayúsculas (toUpperCase)
+
+console.log(`Cadena en mayúsculas: ${sCadena}`);
+console.log(`${sCadena}`.toLocaleUpperCase());
+
+// 21. Convierte todos los caracteres de la cadena a minúsculas (toLowerCase)
+
+console.log(`Cadena en minúsculas: ${sCadena}`);
+console.log(`${sCadena}`.toLocaleLowerCase());
+
+// 22. Quita los espacios en blanco de delante y detrás de la cadena (trim)
+
+console.log(`Cadena sin espacios delante ni detrás: ${sCadena}`);
+console.log(`${sCadena}`.trim());
+
+
+</script>
+
+
+</body>
+</html>

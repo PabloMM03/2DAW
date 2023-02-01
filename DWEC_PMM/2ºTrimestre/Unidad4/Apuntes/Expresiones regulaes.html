@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGEXP</title>
+</head>
+<body>
+
+    EXCPRESIONES REGULARES
+
+    <!--^  Al inicio de una cadena  /^Esto/  Coincidencia en "Esto es...".-->
+    <!--$ 	Al final de la cadena 	/final$/ 	Coincidencia en "Esto es el final".-->
+    <!--* 	Coincide 0 o más veces 	/se*/ 	Que la "e" aparezca 0 o más veces: "seeee" y también "se".-->
+    <!--? 	Coincide 0 o 1 vez 	/ap? 	Que la p aparezca 0 o 1 vez: "apple" y "and". -->
+    <!--+ 	Coincide 1 o más veces 	/ap+/ 	Que la "p" aparezca 1 o más veces: "apple" pero no "and". -->
+    <!--{n} 	Coincide exactamente n veces 	/ap{2}/ 	Que la "p" aparezca exactamente 2 veces: "apple" pero no "apabullante". -->
+    <!--{n,} 	Coincide n o más veces 	/ap{2,}/ 	Que la "p" aparezca 2 o más veces: "apple" y "appple" pero no en "apabullante". -->
+    <!--{n,m} 	Coincide al menos n, y máximo m veces 	/ap{2,4}/ 	Que la "p" aparezca al menos 2 veces y como máximo 4 veces: "apppppple" (encontrará 4 "p"). -->
+    <!--. 	Cualquier carácter excepto nueva línea 	/a.e/ 	Que aparezca cualquier carácter, excepto nueva línea entre la a y la e: "ape" y "axe". -->
+    <!--[...] 	Cualquier carácter entre corchetes 	/a[px]e/ 	Que aparezca alguno de los caracteres "p" o "x" entre la a y la e: "ape", "axe", pero no "ale". -->
+    <!--[^...] 	Cualquier carácter excepto los que están entre corchetes 	/a[^px]/ 	Que aparezca cualquier carácter excepto la "p" o la "x" después de la letra a: "ale", pero no "axe" o "ape". -->
+    <!--\b 	Indica el límite de una palabra. 	/\bla\b/ 	En "Voy a la casa de Melania para ayudar con la tala" sí coincide con las palabras "la", pero no con las contenidas en "Melania" y "tala" -->
+    <!--\B 	Indica que no se trata del límite de una palabra 	/\Bla\B/ 	En "Voy a la casa de Melania para ayudar con la tala" sí coincide con "la" contenido en "Melania" y "tala", pero no con las palabras "la" -->
+    <!--\d 	Dígitos del 0 al 9 	/\d{3}/ 	Que aparezcan exactamente 3 dígitos: "Ahora en 456". -->
+    <!--\D 	Cualquier carácter que no sea un dígito 	/\D{2,4}/ 	Que aparezcan mínimo 2 y máximo 4 caracteres que no sean dígitos: encontrará la cadena "Ahor" en "Ahora en 456". -->
+    <!--\w 	Coincide con caracteres del tipo (letras, dígitos, subrayados) 	/\w/ 	Que aparezca un carácter (letra, dígito o subrayado): "J" en "JavaScript". -->
+    <!--\W 	Coincide con caracteres que no sean (letras, dígitos, subrayados) 	/\W/ 	Que aparezca un carácter (que no sea letra, dígito o subrayado): "%" en "100%". -->
+    <!--\n 	Coincide con una nueva línea -->
+    <!--\s 	Coincide con un espacio en blanco, tabulador o nueva línea -->
+    <!--\S 	Coincide con un carácter que no es un espacio en blanco, tabulador o nueva línea-->
+    <!--\t 	Un tabulador -->
+    <!--\r 	Un retorno de carro -->
+    <!--?=n 	Cualquier cadena que está seguida por la cadena n indicada después del igual. 	/la(?= mundo) 	Hola mundo mundial. -->
+    <!--(x) en APUNTES es muy largo-->
+
+    <!--
+        Replace
+        Match
+        exec
+        test = regex.text(str); regex resia la expresion regular y str un string
+    -->
+    
+</body>
+</html>

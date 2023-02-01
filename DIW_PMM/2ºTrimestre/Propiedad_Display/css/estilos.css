@@ -1,0 +1,53 @@
+* {
+ box-sizing: border-box;
+}
+
+img {
+  width: 100px;
+}
+
+span#mg {
+  background-color: green;
+  margin: 20px;
+  padding: 10px;
+}
+
+div.inline {
+  border: 1px solid black;
+}
+
+div.inline p {
+  border: 1px solid black;
+  background-color: yellow;
+  display: inline-block;
+  height: 200px;
+  width:100px;
+}
+p {
+  height: 120px;
+  border: 1px solid black;
+  
+  
+}
+
+p:nth-of-type(1) {
+  background-color: red;
+}
+
+p:nth-of-type(2) {
+  background-color: blue;
+  width: 40em;
+}
+
+.table {
+  display: table;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+  border: 1px solid black;
+}
