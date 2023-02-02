@@ -8,8 +8,8 @@
         ?>
     <thead>
         <!-- <th>ID</th> -->
-        <th>Imagen</th>
-        <th>Shiny</th>     
+        <th>NORMAL</th>
+        <th>SHINY</th>     
         <th>NOMBRE</th>
         <th>TIPO</th>
         <th>Añadir a BBDD</th>
@@ -48,7 +48,7 @@
     ?>
     <thead>
         <!-- <th>ID</th> -->
-        <th>Imagen</th>   
+        <th>NORMAL</th>   
         <th>NOMBRE</th>
         <th>TIPO</th>
     </thead>

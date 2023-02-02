@@ -117,39 +117,58 @@ class ControladorPokemon{
     }
 
     public function addPokemonToBD($params){
+      $mensajes_usuario = $this->mensajes_usuario;
       
       $id = $params['id'];
 
-      $modelo = new ModeloPokemon();
-      if(!isset($_POST['añadirABD'])){
-       //Aquí entra la primera vez, o cuando no hay datos en $_POST['add_pokemon']
-       if(is_file("./app/vistas/pokemon/pagina_principal.tpl.php")){
-        $datos = array();
-      
-        $datos['tipos'] = $modelo->getAllTipos();
-        
-        
-        require_once('./app/vistas/pokemon/pagina_principal.tpl.php');
-       
+      //Tenemos que asegurar que $id es un entero. En cualquier otro caso podría haber problemas de seguridad
+      if(ctype_digit($id)){
+         if(is_file(RUTA_APP.'/modelos/modelo_pokemon.php')){
+          $modelo_pokemon = new ModeloPokemon();
+          $datos = $modelo_pokemon->alimentarBBDD($id);
+         }else{
+          throw new Exception("Error modelo no encontrado");
+         }
+
+        if(is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")){
+          require_once('./app/vistas/pokemon/listado_pokemons.tpl.php');
+          $_SESSION['mensajes_usuario'];
+          header('Location: ./?controlador=pokemon&source=api&metodo=listar');
         }else{
           throw new Exception('Vista no disponible');
         }
       }else{
-        //Aquí entra si el usuario ha pulsado el botón add_pokemon del formulario
-        $params = $_POST;
-        $params['tipo'] = reset(array_keys($params['tipo']));
-        if($modelo->alimentarBBDD($params,$id)){
-          $_SESSION['mensajes_usuario'] = 'Pokemon insertado adecuadamente';
-          $this->mensajes_usuario = $_SESSION['mensajes_usuario'];
-          header('Location: ./?controlador=pokemon&source=api&metodo=listar');
-        }else{
-          $_SESSION['mensajes_usuario'] = 'Se ha petao';
-          $this->mensajes_usuario = $_SESSION['mensajes_usuario'];
-          header('Location: ./?controlador=pokemon&source=api&metodo=addPokemonToBD');
-        }; 
+        throw new Exception('El parámetro no es adecuado');
       }
 
-    }
+      
 
-    
+      // $id = $params['id'];
+
+      //   if(ctype_digit($id)){
+      //     $modelo_pokemon = new ModeloPokemon();
+      //     if($modelo_pokemon->alimentarBBDD($id)){
+      //       //Aquí entra solo si se ha borrado un pokemon
+      //       //Mostramos un mensaje de pokemon borrado satisfactoriamente
+      //       $this->mensajes_usuario = "Pokemon bien insertado";
+      //       header('Location: ./?controlador=pokemon&source=api&metodo=listar');
+      //     }else{
+      //       //Aquí entra si no se ha borrado ningún pokemon porque no se encontró el id
+      //       $this->mensajes_usuario = "No se a encontrado el id del pokemon";
+      //       header('Location: ./?controlador=pokemon&source=api&metodo=listar');
+      //     }
+      //     $_SESSION['mensajes_usuario'] = $this->mensajes_usuario;
+      //   }
+      //   header('Location ./?controlador=pokemon&source=api&metodo=listar');
+
+     
+  }
+
+
 }
+
+
+
+
+
+   

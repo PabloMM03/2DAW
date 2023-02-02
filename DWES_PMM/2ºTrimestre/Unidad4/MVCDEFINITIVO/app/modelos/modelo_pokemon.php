@@ -191,9 +191,9 @@ class ModeloPokemon{
         ));
     }
 
-public function alimentarBBDD($params,$id){
+public function alimentarBBDD($id){
 
-    if(isset($_POST['añadirABD'])&& !empty($_POST['añadirABD']) && (isset($_POST['añadirABD']) && $_POST['añadirABD'] == "Añadir")){
+    if(isset($_POST['añadirABD']) && $_POST['añadirABD'] == "Añadir"){
 
     $ch = curl_init("https://pokeapi.co/api/v2/pokemon/".$id); //Url de la API
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //opciones de la url
@@ -212,18 +212,35 @@ public function alimentarBBDD($params,$id){
         
         
 
-    $query = $this->manejador_conexion->prepare('INSERT INTO pokemons(nombre,tipo,url_imagen,descripcion) 
-    VALUES \''.($infoPokemon['nombre']. $infoPokemon['tipo']. $infoPokemon['url_imagen']. $infoPokemon['descripcion']).'\'');
+        $query = $this->manejador_conexion->prepare('INSERT INTO pokemons(id_pokemon,nombre,tipo,url_imagen,descripcion) 
+        VALUES (:poke_id, :poke_nombre, :poke_tipo, :poke_img, :poke_desc)');
 
 
   
 
 return $query->execute(array(
 
-    $infoPokemon['nombre'] =>$params['nombre'],
-    $infoPokemon['tipo'] =>$params['tipo'],
-    $infoPokemon['url_imagen'] =>$params['url_imagen'],
-    $infoPokemon['descripcion'] =>$params['descripcion'],
+    //Opcion3
+    
+    'poke_id' =>$infoPokemon['id_pokemon'],
+    'poke_nombre' =>$infoPokemon['nombre'],
+    'poke_tipo' =>$infoPokemon['tipo'],
+    'poke_img' =>$infoPokemon['descripcion'],
+    'poke_desc' =>$infoPokemon['url_imagen'],
+
+    //Opcion2
+
+    // 'poke_nombre' =>$params[$infoPokemon['nombre']],
+    // 'poke_tipo' =>$params[$infoPokemon['tipo']],
+    // 'poke_img' =>$params[$infoPokemon['descripcion']],
+    // 'poke_desc' =>$params[$infoPokemon['url_imagen']],
+
+    //Opcion1
+
+    // $infoPokemon['nombre'] =>$params['nombre'],
+    // $infoPokemon['tipo'] =>$params['tipo'],
+    // $infoPokemon['url_imagen'] =>$params['url_imagen'],
+    // $infoPokemon['descripcion'] =>$params['descripcion'],
 
 
 

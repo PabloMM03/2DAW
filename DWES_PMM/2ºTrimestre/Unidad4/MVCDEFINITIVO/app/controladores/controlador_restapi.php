@@ -9,8 +9,6 @@ class ControladorRestApi{
     }
 
     public function procesar($params){
-
-        $path;
         
         $path = $params['path'];
 
