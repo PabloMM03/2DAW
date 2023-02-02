@@ -3,7 +3,7 @@
 Class Core{
   
     protected $controladorActual = 'controlador_pokemon';
-    protected $metodoActual = 'listar';
+    protected $metodoActual = 'primeraPagina';
     protected $parametros = [];
 
     //constructor

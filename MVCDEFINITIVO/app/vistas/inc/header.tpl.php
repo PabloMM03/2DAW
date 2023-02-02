@@ -6,4 +6,5 @@
     <title>Gestor de pokemos BETA</title>
 </head>
 <body>
-    <div class="system_messages"><?php echo $mensajes_usuario; ?></div>
+
+<div class="system_messages"><?php echo $_SESSION['mensajes_usuario']; ?></div>
