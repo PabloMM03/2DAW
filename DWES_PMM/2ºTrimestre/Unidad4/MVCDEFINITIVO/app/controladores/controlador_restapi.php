@@ -2,7 +2,7 @@
 
 class ControladorRestApi{
 
-    //COnstructor
+    //Constructor
     public function __contructor(){
 
 
@@ -13,10 +13,10 @@ class ControladorRestApi{
 
     public function procesar($params){
 
-        $params = "path";
 
         $path = $params['path'];
-        // $ruta = "hola, adios, donPepito"
+        
+        // $path = "path"
         $parameters = explode("/", $path);
         print_r($parameters);
 
