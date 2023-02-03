@@ -12,15 +12,15 @@ function crearListeners() {
 
     document.getElementById("pass").addEventListener("blur", validarPassEvento, false);
     document.getElementById("confirmPass").addEventListener("blur", validarPass2Evento, false);
-    document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
+    // document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
 
     document.getElementById("pass").addEventListener("invalid", notificarErrorPassEvento, false);
     document.getElementById("confirmPass").addEventListener("invalid", notificarErrorPass2Evento, false);
-    document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
+    // document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
 
     document.getElementById("pass").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("confirmPass").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("genero").addEventListener("input", revisarErroresEvento, false);
+    // document.getElementById("genero").addEventListener("input", revisarErroresEvento, false);
 
     
 
@@ -42,13 +42,13 @@ function validarPass2Evento(e) {
     validarCampo(confirmPass);
 }
 //GENERO
-function validarGeneroEvento(e) {
+// function validarGeneroEvento(e) {
    
-    const genero = e.target;
-    actualizarErroresGenero(genero);
+//     const genero = e.target;
+//     actualizarErroresGenero(genero);
 
-    validarCampo(genero);
-}
+//     validarCampo(genero);
+// }
 //PASS
 function actualizarErroresPass(pass,confirmPass) {
     const contenido = pass.value;
@@ -78,17 +78,17 @@ function actualizarErroresPass2(confirmPass,pass) {
     
 }
 //GENERO
-function actualizarErroresGenero(genero) {
-    const genero = genero.value;
+// function actualizarErroresGenero(genero) {
+//     const genero = genero.value;
 
-    let mensaje = "";
+//     let mensaje = "";
 
-    if(genero === false){
-        mensaje = `El campo genero no puede estar vacío`;
-    }
-    genero.setCustomValidity(mensaje);
+//     if(genero === false){
+//         mensaje = `El campo genero no puede estar vacío`;
+//     }
+//     genero.setCustomValidity(mensaje);
     
-}
+// }
 
 function validarCampoEvento(e) {
     return validarCampo(e.target);
@@ -129,16 +129,16 @@ function notificarErrorPass2Evento(e) {
     mostrarMensajesErrorEn(mensajes, confirmPass);
 }
 //GENERO
-function notificarErrorGeneroEvento(e) {
-    const genero = e.target;
+// function notificarErrorGeneroEvento(e) {
+//     const genero = e.target;
     
-    let mensajes = [];
-    if(genero.validity.customError) {
-        mensajes.push(genero.validationMessage);
-    }
+//     let mensajes = [];
+//     if(genero.validity.customError) {
+//         mensajes.push(genero.validationMessage);
+//     }
     
-    mostrarMensajesErrorEn(mensajes, genero);
-}
+//     mostrarMensajesErrorEn(mensajes, genero);
+// }
 function hayErrorEnCampo(campo) {
     return campo.classList.contains(CLASE_ERROR_CAMPO);
 }
