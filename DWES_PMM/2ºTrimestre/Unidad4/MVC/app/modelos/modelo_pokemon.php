@@ -130,12 +130,13 @@ class ModeloPokemon
         pokemons.descripcion AS pok_descrip,
         tipos.nombre AS tipo_nombre,
         pokemons.url_imagen AS pok_imagen,
-        pokemons.id_pokemon AS pok_id FROM pokemons, tipos WHERE pokemons.tipo = tipos.id_tipo')->fetchAll();
-
-        return $resultadoConsulta[$id];
+        pokemons.id_pokemon AS pok_id FROM pokemons, tipos WHERE pokemons.tipo = tipos.id_tipo')->fetchAll(PDO::FETCH_ASSOC);
+        return $resultadoConsulta;
     }
 
-    /* Delete note by id */
+    /**
+     * Eliminar pokemons de la base de datos
+     */
     public function deletePokemon($id)
     {
         return $this->conection->query('DELETE from pokemons WHERE pokemons.id_pokemon = ' . $id);

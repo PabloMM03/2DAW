@@ -2,23 +2,29 @@
 
 class ControladorRestApi{
 
+    //COnstructor
     public function __contructor(){
 
 
 
     }
 
-    public function procesar($params){
-        
-        $path = $params['path'];
+    //Funcion principal
 
+    public function procesar($params){
+
+        $params = "path";
+
+        $path = $params['path'];
+        // $ruta = "hola, adios, donPepito"
         $parameters = explode("/", $path);
+        print_r($parameters);
 
         $methodPath = $_SERVER['REQUEST_METHOD'];
 
         switch($methodPath){
             case 'GET':
-                if($parameters[0]== "pokemon"){
+                if($parameters[0] == "pokemon"){
                     $this->getPokemon($parameters[1]);
                 }
                 if($parameters[0] == "pokemons"){
@@ -29,7 +35,7 @@ class ControladorRestApi{
             case 'POST':
                 break;
             
-            case 'UPDATE':
+            case 'PUT':
                 break;
 
             case 'DELETE':
@@ -40,7 +46,7 @@ class ControladorRestApi{
         }
     }
 
-
+//Funcion que obtiene el json de un solo pokemon
     private function getPokemon($id){
 
         $modeloPokemon = new ModeloPokemon();
@@ -58,6 +64,8 @@ class ControladorRestApi{
 
         echo $encode;
     }
+
+    //Funcion qur obtiene el json de todos los pokemons 
 
 private function getAllPokemons(){
 
