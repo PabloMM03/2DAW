@@ -18,23 +18,14 @@ class ControladorRestApi{
         
         // $path = "path"
         $parameters = explode("/", $path);
-       
+        print_r($parameters);
 
         $methodPath = $_SERVER['REQUEST_METHOD'];
 
         switch($methodPath){
             case 'GET':
-                if($parameters[0] == "pokemon" && isset($parameters[1]) && is_numeric($parameters[1])){
-                   
-                       $modeloPokemon = new ModeloPokemon();
-                       $imp = $modeloPokemon->getPokemonID($params,intval($parameters[1]));
-                    
-
-                      header('Content-Type: application/json; charset=utf-8');
-                      $encode = json_encode($imp);
-                    
-                      echo $encode;
-                   
+                if($parameters[0] == "pokemon"){
+                    $this->getPokemon($parameters[1]);
                 }
                 if($parameters[0] == "pokemons"){
                     $this->getAllPokemons();
@@ -43,34 +34,51 @@ class ControladorRestApi{
 
             case 'POST':
                 break;
+            
+            case 'PUT':
+                break;
+
+            case 'DELETE':
+                break;
 
             default:
             break;
-            
         }
     }
 
-    
 //Funcion que obtiene el json de un solo pokemon
     private function getPokemon($id){
 
         $modeloPokemon = new ModeloPokemon();
         $sourceDB['source'] = "DB";
 
-         $modeloPokemon->getPokemonID($sourceDB, $id);
+        $pokemon = $modeloPokemon->getPokemonID($sourceDB, $id);
 
-        $encode = json_encode($modeloPokemon);
-        
+        $encode = json_encode($pokemon);
 
         header('Content-Type: application/json; charset=utf-8');
 
-        //  echo "<pre>";
-        //  print_r($pokemon);
-        //  echo "</pre>";
+        // echo "<pre>";
+        // print_r($pokemon);
+        // echo "</pre>";
 
-        return $encode;
+        echo $encode;
     }
 
     //Funcion qur obtiene el json de todos los pokemons 
+
+private function getAllPokemons(){
+
+    $modeloPokemon = new ModeloPokemon();
+    $sourceDB['source'] = "db";
+
+    $pokemon = $modeloPokemon->getAllPokemons($sourceDB);
+    
+    $encode = json_encode($pokemon);
+
+    header('Content-Type: application/json; charset=utf-8');
+
+    echo $encode;
+}
 
 }
