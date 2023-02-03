@@ -85,3 +85,8 @@ input.error {
     margin: 0px;
     color: rgb(210, 4, 4);
 }
+
+p{
+    color: rgb(210, 4, 4);
+    font-size: 15px;
+}

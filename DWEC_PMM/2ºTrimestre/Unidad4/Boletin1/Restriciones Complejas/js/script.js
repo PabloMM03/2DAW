@@ -11,42 +11,84 @@ function crearListeners() {
     document.getElementById("formulario").setAttribute("novalidate",true);
 
     document.getElementById("pass").addEventListener("blur", validarPassEvento, false);
-    document.getElementById("confirmPass").addEventListener("blur", validarPassEvento, false);
+    document.getElementById("confirmPass").addEventListener("blur", validarPass2Evento, false);
+    document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
 
     document.getElementById("pass").addEventListener("invalid", notificarErrorPassEvento, false);
-    document.getElementById("confirmPass").addEventListener("invalid", notificarErrorPassEvento, false);
+    document.getElementById("confirmPass").addEventListener("invalid", notificarErrorPass2Evento, false);
+    document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
 
     document.getElementById("pass").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("confirmPass").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("genero").addEventListener("input", revisarErroresEvento, false);
 
     
 
 }
+//PASS
 
 function validarPassEvento(e) {
     const pass = e.target;
-    const confirmPass = e.target;
     actualizarErroresPass(pass,confirmPass);
 
     validarCampo(pass);
 }
+//CONFIRM PASS
+function validarPass2Evento(e) {
+   
+    const confirmPass = e.target;
+    actualizarErroresPass2(confirmPass,pass);
 
-function actualizarErroresPass(pass) {
+    validarCampo(confirmPass);
+}
+//GENERO
+function validarGeneroEvento(e) {
+   
+    const genero = e.target;
+    actualizarErroresGenero(genero);
+
+    validarCampo(genero);
+}
+//PASS
+function actualizarErroresPass(pass,confirmPass) {
     const contenido = pass.value;
     const contenido2 = confirmPass.value;
     let mensaje = "";
 
     if(contenido === "") {
         mensaje = `El campo ${pass.name} no puede estar vacío`;
-    }if(contenido2 === ""){
-        mensaje = `El campo ${confirmPass.name} no puede estar vacío`;
     }if(contenido !== contenido2) {
         mensaje = `El campo ${pass.name} no puede ser diferente a confirmPass`;
     }
     pass.setCustomValidity(mensaje);
     
 }
+//CONFIRM PASS
+function actualizarErroresPass2(confirmPass,pass) {
+    const contenido2 = confirmPass.value;
+    const contenido = pass.value;
+    let mensaje = "";
 
+    if(contenido2 === ""){
+        mensaje = `El campo confirmPass no puede estar vacío`;
+    }if(contenido2 !== contenido) {
+        mensaje = `El campo confirmPass no puede ser diferente a ${pass.name}`;
+    }
+    confirmPass.setCustomValidity(mensaje);
+    
+}
+//GENERO
+function actualizarErroresGenero(genero) {
+    const genero = genero.value;
+
+    let mensaje = "";
+
+    if(genero === false){
+        mensaje = `El campo genero no puede estar vacío`;
+    }
+    genero.setCustomValidity(mensaje);
+    
+}
 
 function validarCampoEvento(e) {
     return validarCampo(e.target);
@@ -64,7 +106,7 @@ function revisarErroresEvento(e) {
         eliminarErrores(campo);
     }
 }
-
+//PASS
 function notificarErrorPassEvento(e) {
     const pass = e.target;
     
@@ -75,7 +117,28 @@ function notificarErrorPassEvento(e) {
     
     mostrarMensajesErrorEn(mensajes, pass);
 }
-
+//CONFIRM PASS
+function notificarErrorPass2Evento(e) {
+    const confirmPass = e.target;
+    
+    let mensajes = [];
+    if(confirmPass.validity.customError) {
+        mensajes.push(confirmPass.validationMessage);
+    }
+    
+    mostrarMensajesErrorEn(mensajes, confirmPass);
+}
+//GENERO
+function notificarErrorGeneroEvento(e) {
+    const genero = e.target;
+    
+    let mensajes = [];
+    if(genero.validity.customError) {
+        mensajes.push(genero.validationMessage);
+    }
+    
+    mostrarMensajesErrorEn(mensajes, genero);
+}
 function hayErrorEnCampo(campo) {
     return campo.classList.contains(CLASE_ERROR_CAMPO);
 }
