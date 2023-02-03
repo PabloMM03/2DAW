@@ -18,14 +18,14 @@ class ControladorRestApi{
         
         // $path = "path"
         $parameters = explode("/", $path);
-        print_r($parameters);
+        
 
         $methodPath = $_SERVER['REQUEST_METHOD'];
 
         switch($methodPath){
             case 'GET':
-                if($parameters[0] == "pokemon"){
-                    $this->getPokemon($parameters[1]);
+                if($parameters[0] == "pokemon" && isset($parameters[1]) && is_numeric($parameters[1])){
+                    $this->getPokemon($params,$parameters[1]);
                 }
                 if($parameters[0] == "pokemons"){
                     $this->getAllPokemons();
@@ -47,22 +47,16 @@ class ControladorRestApi{
     }
 
 //Funcion que obtiene el json de un solo pokemon
-    private function getPokemon($id){
+    private function getPokemon($params,$parameters){
 
-        $modeloPokemon = new ModeloPokemon();
-        $sourceDB['source'] = "DB";
+      $modeloPokemon = new ModeloPokemon();
+      $imprime = $modeloPokemon->getPokemonID($params, intval($parameters[1]));
 
-        $pokemon = $modeloPokemon->getPokemonID($sourceDB, $id);
+      header('Content-Type: application/json; charset=utf-8');
+        $encode = json_encode($imprime);
 
-        $encode = json_encode($pokemon);
+        return $encode;
 
-        header('Content-Type: application/json; charset=utf-8');
-
-        // echo "<pre>";
-        // print_r($pokemon);
-        // echo "</pre>";
-
-        echo $encode;
     }
 
     //Funcion qur obtiene el json de todos los pokemons 

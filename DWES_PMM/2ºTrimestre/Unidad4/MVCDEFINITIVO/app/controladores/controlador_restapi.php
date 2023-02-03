@@ -37,7 +37,13 @@ class ControladorRestApi{
                    
                 }
                 if($parameters[0] == "pokemons"){
-                    $this->getAllPokemons();
+                    
+                    $modeloPokemon = new ModeloPokemon();
+                    $imprimir = $modeloPokemon->getAllPokemons($params);
+                    header('Content-Type: application/json; charset=utf-8');
+
+                    echo $encode = json_encode($imprimir);
+                    echo $encode;
                 }
             break;
 
@@ -50,27 +56,5 @@ class ControladorRestApi{
         }
     }
 
-    
-//Funcion que obtiene el json de un solo pokemon
-    private function getPokemon($id){
-
-        $modeloPokemon = new ModeloPokemon();
-        $sourceDB['source'] = "DB";
-
-         $modeloPokemon->getPokemonID($sourceDB, $id);
-
-        $encode = json_encode($modeloPokemon);
-        
-
-        header('Content-Type: application/json; charset=utf-8');
-
-        //  echo "<pre>";
-        //  print_r($pokemon);
-        //  echo "</pre>";
-
-        return $encode;
-    }
-
-    //Funcion qur obtiene el json de todos los pokemons 
 
 }
