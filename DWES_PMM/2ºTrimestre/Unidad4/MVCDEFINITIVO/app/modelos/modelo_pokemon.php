@@ -217,6 +217,7 @@ public function alimentarBBDD($id){
         
         //  echo intval($infoPokemon['tipo']);
 
+        //Consulta para insertar datos de la api en la base de datos 
     $query = $this->manejador_conexion->prepare('INSERT INTO pokemons(nombre,tipo,url_imagen,descripcion) 
     VALUES (:poke_nombre, :poke_tipo, :poke_desc, :poke_img)');
 
