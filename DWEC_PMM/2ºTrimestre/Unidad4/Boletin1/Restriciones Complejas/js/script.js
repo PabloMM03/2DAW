@@ -12,19 +12,26 @@ function crearListeners() {
 
     document.getElementById("pass").addEventListener("blur", validarPassEvento, false);
     document.getElementById("confirmPass").addEventListener("blur", validarPass2Evento, false);
-    // document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
+    // document.getElementById("genero").addEventListener("blur", validarHombreEvento, false);
+    // document.getElementById("mujer").addEventListener("blur", validarMujerEvento, false);
 
     document.getElementById("pass").addEventListener("invalid", notificarErrorPassEvento, false);
     document.getElementById("confirmPass").addEventListener("invalid", notificarErrorPass2Evento, false);
-    // document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
+    // document.getElementById("genero").addEventListener("invalid", notificarErrorHombreEvento, false);
+    // document.getElementById("mujer").addEventListener("invalid", notificarErrorMujerEvento, false);
 
     document.getElementById("pass").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("confirmPass").addEventListener("input", revisarErroresEvento, false);
+    // let genero = document.querySelector('input[name="genero"]:checked');
     // document.getElementById("genero").addEventListener("input", revisarErroresEvento, false);
+    // document.getElementById("mujer").addEventListener("input", revisarErroresEvento, false);
 
     
 
 }
+// if(!genero){
+//     alert("Debe seleccionar un genero");
+// }
 //PASS
 
 function validarPassEvento(e) {
@@ -42,13 +49,13 @@ function validarPass2Evento(e) {
     validarCampo(confirmPass);
 }
 //GENERO
-// function validarGeneroEvento(e) {
+//  function validarHombreEvento(e) {
    
-//     const genero = e.target;
-//     actualizarErroresGenero(genero);
+//      const genero = e.target;
+//      actualizarErroresHombre(genero);
 
 //     validarCampo(genero);
-// }
+//  }
 //PASS
 function actualizarErroresPass(pass,confirmPass) {
     const contenido = pass.value;
@@ -78,17 +85,17 @@ function actualizarErroresPass2(confirmPass,pass) {
     
 }
 //GENERO
-// function actualizarErroresGenero(genero) {
-//     const genero = genero.value;
+//   function actualizarErroresHombre(genero) {
+//       const genero = genero.value;
 
-//     let mensaje = "";
+//       let mensaje = "";
 
-//     if(genero === false){
-//         mensaje = `El campo genero no puede estar vacío`;
-//     }
-//     genero.setCustomValidity(mensaje);
+//       if(genero){
+//         mensaje = `Debe seleccionar un genero`;
+//       }
+//       genero.setCustomValidity(mensaje);
     
-// }
+//  }
 
 function validarCampoEvento(e) {
     return validarCampo(e.target);
@@ -101,7 +108,7 @@ function validarCampo(campo) {
 
 function revisarErroresEvento(e) {
     const campo = e.target;
-    actualizarErroresNombre(campo);
+    actualizarErroresPass(campo);
     if(campo.validity.valid) {
         eliminarErrores(campo);
     }
@@ -129,15 +136,15 @@ function notificarErrorPass2Evento(e) {
     mostrarMensajesErrorEn(mensajes, confirmPass);
 }
 //GENERO
-// function notificarErrorGeneroEvento(e) {
-//     const genero = e.target;
+//  function notificarErrorGeneroEvento(e) {
+//      const genero = e.target;
     
-//     let mensajes = [];
-//     if(genero.validity.customError) {
-//         mensajes.push(genero.validationMessage);
-//     }
-    
-//     mostrarMensajesErrorEn(mensajes, genero);
+//      let mensajes = [];
+//      if(genero.validity.customError) {
+//          mensajes.push(genero.validationMessage);
+//      }
+//  }
+    //  mostrarMensajesErrorEn(mensajes, genero);
 // }
 function hayErrorEnCampo(campo) {
     return campo.classList.contains(CLASE_ERROR_CAMPO);
