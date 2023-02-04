@@ -5,6 +5,7 @@ crearListeners();
 
 
 function crearListeners() {
+    
     document.getElementById("email").addEventListener("blur", validarCampoEvento, false);
     document.getElementById("pass").addEventListener("blur", validarCampoEvento, false);
     document.getElementById("nombre").addEventListener("blur", validarCampoEvento, false);
@@ -14,71 +15,69 @@ function crearListeners() {
     document.getElementById("pass").addEventListener("invalid", notificarErroresEvento, false);
     document.getElementById("nombre").addEventListener("invalid", notificarErroresEvento, false);
     document.getElementById("edad").addEventListener("invalid", notificarErroresEvento, false);
-   
+
+    
     document.getElementById("email").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("pass").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("edad").addEventListener("input", revisarErroresEvento, false);
+   
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 }
 
-
-function validarCampoEvento(e) {
-    validarCampo(e.target);
+function validarCampoEvento(e){
+    const campo = e.target;
+    validarCampo(campo);
 }
 
-
-function validarCampo(campo) {
+function validarCampo(campo){
     eliminarErrores(campo);
     return campo.checkValidity();
 }
 
-
-function revisarErroresEvento(e) {
+function revisarErroresEvento(e){
     const campo = e.target;
-    if(campo.validity.valid) {
+    if(campo.validity.valid){
         eliminarErrores(campo);
     }
 }
-
-
-function eliminarErrores(campo) {
+function eliminarErrores(campo){
     campo.classList.remove(CLASE_ERROR_CAMPO);
     const mensajesError = document.getElementById(`${campo.name}_error`);
-    if(mensajesError) {
+    if(mensajesError){
         mensajesError.parentElement.removeChild(mensajesError);
     }
 }
 
-
-function notificarErroresEvento(e) {
+function notificarErroresEvento(e){
     const campo = e.target;
     campo.classList.add(CLASE_ERROR_CAMPO);
 
     let mensajes = [];
 
-    if(campo.validity.valueMissing) {
-        mensajes.push("Este campo no puede estar vacío");
+    if(campo.validity.valueMissing){
+        mensajes.push(`El campo ${campo.name} no puede estar vacio`);
     }
-    if(campo.validity.typeMismatch) {
-        mensajes.push("Los datos suministrados no tienen el formato correcto");
+    if(campo.validity.typeMismatch){
+        mensajes.push(`Los datos no tienen el formato correcto`);
     }
-    if(campo.validity.rangeUnderflow || campo.validity.rangeOverflow) {
+    if(campo.validity.rangeUnderflow || campo.validity.rangeOverflow){
         mensajes.push(`Debe contener un valor entre ${campo.min} y ${campo.max}`);
     }
-    if(campo.validity.patternMismatch) {
-        mensajes.push("El campo debe contener al menos un número");
+    if(campo.validity.patternMismatch){
+        mensajes.push(`${campo.name} debe contener al menos un numero`);
     }
-    mostrarMensajesErrorEn(mensajes, campo);
+    mostrarMensajesErrorEn(mensajes,campo);
+
 }
 
+function mostrarMensajesErrorEn(mensajes, campo){
 
-function mostrarMensajesErrorEn(mensajes, campo) {
     let div = document.createElement("div");
-    div.setAttribute("id", `${campo.name}_error`);
+    div.setAttribute("id",`${campo.name}_error`);
     div.classList.add(CLASE_ERROR_MENSAJE);
 
-    for(let i = 0; i < mensajes.length; i++) {
+    for(let i = 0; i< mensajes.length; i++){
         let parrafo = document.createElement("p");
         parrafo.textContent = mensajes[i];
         div.appendChild(parrafo);
@@ -88,23 +87,22 @@ function mostrarMensajesErrorEn(mensajes, campo) {
 
 function insertarDespues(campoReferencia, campoAnadir){
     if(campoReferencia.nextSibling){
-    
-        campoReferencia.parentNode.insertBefore(campoAnadir,campoReferencia.nextSibling); 
-    } else { 
-       
-        campoReferencia.parentNode.appendChild(campoAnadir); 
+        campoReferencia.parentNode.insertBefore(campoAnadir, campoReferencia.nextSibling);
+    }else{
+        campoReferencia.parentNode.appendChild(campoAnadir);
     }
 }
 
-function validarFormularioEvento(e) {
+function validarFormularioEvento(e){
     let formValido = validarCampo(document.getElementById("email"));
-    formValido = validarCampo(document.getElementById("pass")) && formValido;
-    formValido = validarCampo(document.getElementById("nombre")) && formValido;
-    formValido = validarCampo(document.getElementById("edad")) && formValido;
-    if(formValido) {
-        console.log("Formulario sin errores");
-    }else {
+    formValido = validarCampo(document.getElementById("pass"))&& formValido;
+    formValido = validarCampo(document.getElementById("nombre"))&& formValido;
+    formValido = validarCampo(document.getElementById("edad"))&& formValido;
+
+    if(formValido){
+        console.log("El formulario está validado correctamente sin errores.");
+    }else{
         e.preventDefault();
-        console.log("Formulario con errores");
+        console.error("El formulario no está validado ya que tiene errores.");
     }
 }
