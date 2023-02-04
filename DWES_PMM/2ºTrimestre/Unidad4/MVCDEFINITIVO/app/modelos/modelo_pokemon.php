@@ -273,7 +273,6 @@ public function tandaPokemons($params){
 private function _tandaPokemonsAPI(){
 
    
-
     $ch = curl_init($_SESSION['arrayPokemon']['url']);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $resultado = curl_exec($ch);
@@ -287,16 +286,16 @@ private function _tandaPokemonsAPI(){
         $url = $resultado['results'][$i]['url'];
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $respuesta = curl_exec($ch);
-        $respuesta = json_decode($respuesta, true);
+        $resultado2 = curl_exec($ch);
+        $resultado2 = json_decode($resultado2, true);
         curl_close($ch);
 
        
-        $arrayPokemon[$i]['nombre'] = $respuesta['forms'][0]['name'];
-        $arrayPokemon[$i]['id_pokemon'] = $respuesta['id'];
-        $arrayPokemon[$i]['tipo'] = $respuesta['types'][0]['type']['name'];
-        $arrayPokemon[$i]['url_imagen'] = $respuesta['sprites']['front_default'];
-        $arrayPokemon[$i]['url_imagen_shiny'] = $respuesta['sprites']['front_shiny'];
+        $arrayPokemon[$i]['nombre'] = $resultado2['forms'][0]['name'];
+        $arrayPokemon[$i]['id_pokemon'] = $resultado2['id'];
+        $arrayPokemon[$i]['tipo'] = $resultado2['types'][0]['type']['name'];
+        $arrayPokemon[$i]['url_imagen'] = $resultado2['sprites']['front_default'];
+        $arrayPokemon[$i]['url_imagen_shiny'] = $resultado2['sprites']['front_shiny'];
     }
 
     
