@@ -25,6 +25,7 @@
         
     </form>
         <?php
+        
 ////////////////////////////////////////////////////////API///////////////////////////////////////////////////////////////////////////////
         ?><tbody>
             <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
@@ -41,10 +42,13 @@
                     
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Siguiente"></a>
+        </tbody><br>
+        <div class="alinear">
+        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons4" type="submit" name="prev" id="pag2" value="Previous"></a>
+        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" name="next" id="pag" value="Next"></a>
+        </div>
         </table>
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Siguiente"></a>
+        <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Next"></a> -->
         <?php
         
     }else {

@@ -272,56 +272,35 @@ public function tandaPokemons($params){
 
 private function _tandaPokemonsAPI(){
 
-    if (!isset($_SESSION['datosAPI'])) {
-        $_SESSION['datosAPI'] = array(
-            'url' => 'https://pokeapi.co/api/v2/pokemon',
-            'pokemons' => array()
-        );
-        ////////////Primera petición para Nombre e ID//////////////////
-        $ch = curl_init($_SESSION['datosAPI']['url']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $resultado = curl_exec($ch);
-        $resultado = json_decode($resultado, true);
-        curl_close($ch);
+   
 
-        ////////////Cogemos la URL de la siguiente consulta//////////////////
-        $_SESSION['datosAPI']['url'] = $resultado['next'];
-    }
-
-    $ch = curl_init($_SESSION['datosAPI']['url']);
+    $ch = curl_init($_SESSION['arrayPokemon']['url']);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
     $resultado = curl_exec($ch);
     $resultado = json_decode($resultado, true);
-
     curl_close($ch);
-    $_SESSION['datosAPI']['url'] = $resultado['next'];
+    $_SESSION['arrayPokemon']['url'] = $resultado['next'];
 
-
-    ////////////Primera petición para info del Pokemon//////////////////
+  
 
     for ($i = 0; $i < 19; $i++) {
         $url = $resultado['results'][$i]['url'];
         $ch = curl_init($url);
-
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $respuesta = curl_exec($ch);
-
         $respuesta = json_decode($respuesta, true);
-
         curl_close($ch);
 
-    
-        $datosAPI[$i]['nombre'] = $respuesta['forms'][0]['name'];
-        $datosAPI[$i]['id_pokemon'] = $respuesta['id'];
-        $datosAPI[$i]['tipo'] = $respuesta['types'][0]['type']['name'];
-        $datosAPI[$i]['url_imagen'] = $respuesta['sprites']['front_default'];
-        $datosAPI[$i]['url_imagen_shiny'] = $respuesta['sprites']['front_shiny'];
+       
+        $arrayPokemon[$i]['nombre'] = $respuesta['forms'][0]['name'];
+        $arrayPokemon[$i]['id_pokemon'] = $respuesta['id'];
+        $arrayPokemon[$i]['tipo'] = $respuesta['types'][0]['type']['name'];
+        $arrayPokemon[$i]['url_imagen'] = $respuesta['sprites']['front_default'];
+        $arrayPokemon[$i]['url_imagen_shiny'] = $respuesta['sprites']['front_shiny'];
     }
 
-
-    return $datosAPI;
     
+    return $arrayPokemon;
 }
 
 
