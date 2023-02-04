@@ -10,6 +10,7 @@ class ModeloPokemon{
     private $manejador_conexion; 
     private $manejador_query;
 
+    //Constructor
     public function __construct(){
         $dsn = 'mysql:host='.$this->host.';dbname='.$this->nombre_base;
         //Explicar en qué contexto puede ser útil la conexión persistente tal y como se crea.
@@ -23,6 +24,7 @@ class ModeloPokemon{
         $this->manejador_conexion->exec('set names utf8');
     }
     
+    //Obtener todos o un solo pokemon 
     
     public function getAllPokemons($params){
         if((isset($params['source'])&&($params['source']=='api'))){
@@ -73,7 +75,7 @@ class ModeloPokemon{
     } 
         }else{//EN CASO DE QUE EL USUARIO NO HAYA DEFINIDO CUANTOS POKEMONS QUIERE MOSTRAR SE EJECUTARA LO SIGUIENTE
 
-            $poklist = 20; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
+            $poklist = 10; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
 
         $ch = curl_init("https://pokeapi.co/api/v2/pokemon/?limit=400"); //Url de la API
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //opciones de la url
@@ -122,11 +124,13 @@ class ModeloPokemon{
         pokemons.tipo = tipos.id_tipo')->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;      
     }
+    //Obtener todos los tipos
 
     public function getAllTipos(){
         $resultado = $this->manejador_conexion->query('SELECT * FROM tipos')->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;
     }
+    //Obtener el id de la API o BBDD
 
     public function getPokemonID($params,$id){
         if(isset($params['source'])&& ($params['source'] == 'api')){
@@ -167,6 +171,7 @@ class ModeloPokemon{
         return reset($resultado);
     }
 
+    //Eliminar Pokemon
     public function deletePokemon($id){
     
         //   $query = 'DELETE FROM pokemons WHERE id_pokemon ='.$id;
@@ -176,6 +181,7 @@ class ModeloPokemon{
           return $this->manejador_conexion->query('DELETE from pokemons WHERE pokemons.id_pokemon = '.$id);
         }
 
+        //Añadir Pokemon a traves de formulario
     public function añadirPokemon($params_pokemon){
        
         $query = $this->manejador_conexion->prepare('INSERT INTO pokemons(nombre, tipo, url_imagen, descripcion) 
@@ -191,6 +197,7 @@ class ModeloPokemon{
         ));
     }
 
+    //Añadir pokemon de API a Base de datos
 public function alimentarBBDD($id){
 
 
@@ -211,7 +218,7 @@ public function alimentarBBDD($id){
         $infoPokemon['id_pokemon'] = $resultado['id'];
         $infoPokemon['nombre'] = $resultado['forms'][0]['name'];
         $infoPokemon['tipo'] = $resultado['types'][0]['slot'];
-        // $infoPokemon['tipo'] = $resultado['types'][0]['type']['name'];
+        //$infoPokemon['tipo'] = $resultado['types'][0]['type']['name'];
         $infoPokemon['descripcion'] = 'El amigable, divertido, peligroso y todopoderoso \''.ucwords($resultado['forms'][0]['name']).'\'';
         $infoPokemon['url_imagen'] = $resultado['sprites']['front_default'];
         
@@ -260,6 +267,7 @@ public function consulta(){
     ));
 
 }
+//Obtener pokemons de 20 en 2o
 
 public function tandaPokemons($params){
     if((isset($params['source'])&&($params['source']=='api'))){
@@ -277,6 +285,7 @@ public function tandaPokemons2($params){
                       
     }
 }
+
 private function _tandaPokemonsAPInext(){
 
     //Comprobacion de Session
@@ -385,5 +394,6 @@ private function _tandaPokemonsAPIprev(){
     
     return $datosAPI;
 }
+
 
 }

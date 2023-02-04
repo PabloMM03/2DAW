@@ -14,7 +14,7 @@ class ControladorPokemon{
 
     }
 
-    
+    //Pagina cargada por defecto
     public function primeraPagina($params){
       
       if(is_file("./app/vistas/pokemon/pagina_principal.tpl.php")){
@@ -25,7 +25,7 @@ class ControladorPokemon{
       }
 
     }
-
+//Listar pokemons 
     public function listar($params){
 
         $mensajes_usuario = $this->mensajes_usuario;
@@ -40,7 +40,8 @@ class ControladorPokemon{
         throw new Exception('Vista no disponible');
       }
     }
-  
+
+  //Ver informacion de pokemons
     public function ver($params){
       $mensajes_usuario = $this->mensajes_usuario;
       
@@ -65,7 +66,7 @@ class ControladorPokemon{
         throw new Exception('El parámetro no es adecuado');
       }
     }
-
+//Eliminar pokemon 
     public function eliminar($params){
 
       $id = $params['id'];
@@ -85,7 +86,7 @@ class ControladorPokemon{
         }
         header('Location: ./?controlador=pokemon&metodo=listar');
     }
-
+//Añadir pokemon a Base de datos a traves de formulario
     public function addPokemon(){
       
       $modelo = new ModeloPokemon();
@@ -117,6 +118,7 @@ class ControladorPokemon{
       }
     }
 
+//Añadir pokemon de API a Base de datos
     public function addPokemonToBD($params){
 
       $id = $params['id'];
@@ -136,9 +138,9 @@ class ControladorPokemon{
           }
           $_SESSION['mensajes_usuario'] = $this->mensajes_usuario;
         }
-        header('Location: ./?controlador=pokemon&metodo=listar');
+        header('Location: ./?controlador=pokemon&metodo=listar&source=api');
   }
-
+//Obtener pokemons de 20 en 20 
   public function tandaPokemons($params){
     $mensajes_usuario = $this->mensajes_usuario;
 
@@ -165,6 +167,7 @@ class ControladorPokemon{
         throw new Exception("Vista no disponible");
       }
   }
+
 
 }
 

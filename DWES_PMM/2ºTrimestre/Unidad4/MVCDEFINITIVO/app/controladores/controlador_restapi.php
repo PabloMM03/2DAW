@@ -32,10 +32,12 @@ class ControladorRestApi{
             case 'GET':
                 if($parameters[0] == "pokemon" && isset($parameters[1]) && is_numeric($parameters[1])){
                    
+                    
                        $modeloPokemon = new ModeloPokemon();
                        $imp = $modeloPokemon->getPokemonID($params,intval($parameters[1]));
                     
                     //   header('Content-Type: application/json; charset=utf-8');
+                     
                       $encode = json_encode($imp);
                     
                       echo $encode;
@@ -90,28 +92,28 @@ class ControladorRestApi{
             //Añadimos un pokemon 
 
             case 'POST':
-                $modeloPokemon = new ModeloPokemon();
+                // $modeloPokemon = new ModeloPokemon();
 
-                if(isset($_POST['poke_nombre']) && !empty($_POST['poke_nombre'])){
-                    $nombre = $_POST['poke_nombre'];
-                }if(isset($_POST['poke_tipo']) && !empty($_POST['poke_tipo'])){
-                    $tipo = $_POST['poke_tipo'];
-                }
-                if(isset($_POST['poke_img']) && !empty($_POST['poke_img'])){
-                    $url_imagen = $_POST['poke_img'];
-                }
-                if(isset($_POST['poke_desc']) && !empty($_POST['poke_desc'])){
-                    $descripcion = $_POST['poke_desc'];
-                }
+                // if(isset($_POST['poke_nombre']) && !empty($_POST['poke_nombre'])){
+                //     $nombre = $_POST['poke_nombre'];
+                // }if(isset($_POST['poke_tipo']) && !empty($_POST['poke_tipo'])){
+                //     $tipo = $_POST['poke_tipo'];
+                // }
+                // if(isset($_POST['poke_img']) && !empty($_POST['poke_img'])){
+                //     $url_imagen = $_POST['poke_img'];
+                // }
+                // if(isset($_POST['poke_desc']) && !empty($_POST['poke_desc'])){
+                //     $descripcion = $_POST['poke_desc'];
+                // }
 
-                $params_pokemon = array(
-                    'poke_nombre' =>$nombre,
-                    'poke_tipo'  => $tipo,
-                    'poke_img' =>$url_imagen,
-                    'poke_desc' =>$descripcion,
-                );
+                // $params_pokemon = array(
+                //     'poke_nombre' =>$nombre,
+                //     'poke_tipo'  => $tipo,
+                //     'poke_img' =>$url_imagen,
+                //     'poke_desc' =>$descripcion,
+                // );
 
-                $modeloPokemon->añadirPokemon($params_pokemon);
+                // $modeloPokemon->añadirPokemon($params_pokemon);
 
                  break;
 
@@ -126,6 +128,7 @@ class ControladorRestApi{
             
         }
     }
+
 
 
 }
