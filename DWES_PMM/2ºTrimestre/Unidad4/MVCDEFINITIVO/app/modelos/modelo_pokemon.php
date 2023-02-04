@@ -73,7 +73,7 @@ class ModeloPokemon{
     } 
         }else{//EN CASO DE QUE EL USUARIO NO HAYA DEFINIDO CUANTOS POKEMONS QUIERE MOSTRAR SE EJECUTARA LO SIGUIENTE
 
-            $poklist = 10; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
+            $poklist = 20; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
 
         $ch = curl_init("https://pokeapi.co/api/v2/pokemon/?limit=400"); //Url de la API
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //opciones de la url
@@ -263,14 +263,21 @@ public function consulta(){
 
 public function tandaPokemons($params){
     if((isset($params['source'])&&($params['source']=='api'))){
-        return $this->_tandaPokemonsAPI();
+        return $this->_tandaPokemonsAPInext();
     }else{
         return $this->_tandaPokemonsBD();
                       
     }
 }
-
-private function _tandaPokemonsAPI(){
+public function tandaPokemons2($params){
+    if((isset($params['source'])&&($params['source']=='api'))){
+        return $this->_tandaPokemonsAPIprev();
+    }else{
+        return $this->_tandaPokemonsBD();
+                      
+    }
+}
+private function _tandaPokemonsAPInext(){
 
     //Comprobacion de Session
     if (!isset($_SESSION['datosAPI'])) {
@@ -287,6 +294,7 @@ private function _tandaPokemonsAPI(){
 
         $_SESSION['datosAPI']['url'] = $resultado['next']; //Siguiente tanda de pokemons a mostrar
     }
+    
 
     $ch = curl_init($_SESSION['datosAPI']['url']);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -323,6 +331,59 @@ private function _tandaPokemonsAPI(){
     
     return $datosAPI;
 }
+private function _tandaPokemonsAPIprev(){
 
+    //Comprobacion de Session
+    if (!isset($_SESSION['datosAPI'])) {
+        $_SESSION['datosAPI'] = array(
+            'url' => 'https://pokeapi.co/api/v2/pokemon',
+            'pokemons' => array()
+        );
+       //Conversion de Json a array
+        $ch = curl_init($_SESSION['datosAPI']['url']);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $resultado = curl_exec($ch);
+        $resultado = json_decode($resultado, true);
+        curl_close($ch);
+
+        $_SESSION['datosAPI']['url'] = $resultado['previous']; //Siguiente tanda de pokemons a mostrar
+    }
+    
+
+    $ch = curl_init($_SESSION['datosAPI']['url']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $resultado = curl_exec($ch);
+    $resultado = json_decode($resultado, true);
+    curl_close($ch);
+
+    $_SESSION['datosAPI']['url'] = $resultado['previous'];
+    
+  
+    //Obtenemos los datos de los pokemons
+
+    for ($i = 0; $i < 19; $i++) {
+
+        $url = $resultado['results'][$i]['url'];
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $resultado2 = curl_exec($ch);
+            $resultado2 = json_decode($resultado2, true);
+         curl_close($ch);
+
+            // echo("<pre>");
+            // print_r($resultado2);
+            // echo("</pre>");
+
+       
+        $datosAPI[$i]['nombre'] = $resultado2['forms'][0]['name'];
+        $datosAPI[$i]['id_pokemon'] = $resultado2['id'];
+        $datosAPI[$i]['tipo'] = $resultado2['types'][0]['type']['name'];
+        $datosAPI[$i]['url_imagen'] = $resultado2['sprites']['front_default'];
+        $datosAPI[$i]['url_imagen_shiny'] = $resultado2['sprites']['front_shiny'];
+    }
+
+    
+    return $datosAPI;
+}
 
 }

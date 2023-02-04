@@ -44,7 +44,7 @@
             <?php endforeach; ?>
         </tbody><br>
         <div class="alinear">
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons4" type="submit" name="prev" id="pag2" value="Previous"></a>
+        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons2"><input class="botons4" type="submit" name="prev" id="pag2" value="Previous"></a>
         <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" name="next" id="pag" value="Next"></a>
         </div>
         </table>
@@ -100,11 +100,11 @@
         xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                                 let tabla = document.getElementById("pokemonsTabla");
-                                tabla.innerHTML = xhttp.response--;
+                                tabla.innerHTML = xhttp.response++;
                         }
     });
     setTimeout(() => {
-                        xhttp.open("GET", "./?controlador=pokemon&source=api&metodo=tandaPokemons", true);
+                        xhttp.open("GET", "./?controlador=pokemon&source=api&metodo=tandaPokemons2", true);
                         xhttp.send();
                 }, 1000);
         }, false);
