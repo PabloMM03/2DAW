@@ -15,19 +15,32 @@ function crearListeners() {
     document.getElementById("pass").addEventListener("blur", validarPassEvento, false);
     document.getElementById("pass2").addEventListener("blur", validarPass2Evento, false);
     document.getElementById("edad").addEventListener("blur", validarEdadEvento, false);
+    document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
+    document.getElementById("vehicle1").addEventListener("blur", validarInt1Evento, false);
+    document.getElementById("vehicle2").addEventListener("blur", validarInt1Evento, false);
+
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("pass").addEventListener("invalid", notificarErrorPassEvento, false);
     document.getElementById("pass2").addEventListener("invalid", notificarErrorPass2Evento, false);
     document.getElementById("edad").addEventListener("invalid", notificarErrorEdadEvento, false);
+    document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
+    document.getElementById("vehicle1").addEventListener("invalid", notificarErrorInt1Evento, false);
+    document.getElementById("vehicle2").addEventListener("invalid", notificarErrorInt1Evento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresNombreEvento, false);
     document.getElementById("pass").addEventListener("input", revisarErroresPassEvento, false);
     document.getElementById("pass2").addEventListener("input", revisarErroresPass2Evento, false);
     document.getElementById("edad").addEventListener("input", revisarErroresEdadEvento, false);
+    document.getElementById("genero").addEventListener("input", revisarErroresGeneroEvento, false);
+    document.getElementById("vehicle1").addEventListener("input", revisarErroresInt1Evento, false);
+    document.getElementById("vehicle2").addEventListener("input", revisarErroresInt1Evento, false);
     
+    document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
+
 
 }
+
 //Nombre
 function validarNombreEvento(e) {
     const nombre = e.target;
@@ -101,6 +114,38 @@ function actualizarErroresPass2(pass2){
         mensaje = `El campo ${pass2.name} no puede ser diferente a ${pass.name}`;  
     }
     pass2.setCustomValidity(mensaje);
+}
+//Genero
+ function validarGeneroEvento (e){
+     const genero = e.target;
+    actualizarErroresGenero(genero);
+     validarCampo(genero);
+ }
+ function actualizarErroresGenero(genero){
+     const contenido = document.querySelector('input[name="genero"]:checked');
+     let mensaje = "";
+
+     if(!contenido) {
+       mensaje = `Debe seleccionar un genero`;
+       }
+     genero.setCustomValidity(mensaje);
+ }
+ //Interes1
+ function validarInt1Evento (e){
+    const vehicle1 = e.target;
+    const vehicle2 = e.target;
+   actualizarErroresInt1(vehicle1);
+    validarCampo(vehicle1);
+}
+function actualizarErroresInt1(vehicle1){
+    const contenido = vehicle1.checked;
+    const contenido2 = vehicle2.checked;
+    let mensaje = "";
+
+    if(!contenido && !contenido2) {
+      mensaje = `Debe seleccionar almenos dos intereses`;
+      }
+    vehicle1.setCustomValidity(mensaje);
 }
 
 function validarCampoEvento(e) {
@@ -178,6 +223,39 @@ function notificarErrorPass2Evento(e){
     mostrarMensajesErrorEn(mensajes, pass2);
 }
 
+//Genero
+ function revisarErroresGeneroEvento(e){
+     const genero = e.target;
+     actualizarErroresGenero(campo);
+     if(genero.validity.valid){
+         eliminarErrores(genero);
+     }
+}
+ function notificarErrorGeneroEvento(e){
+     const genero = e.target;
+     let mensajes = [];
+     if(genero.validity.customError){
+         mensajes.push(genero.validationMessage);
+     }
+     mostrarMensajesErrorEn(mensajes, genero);
+ }
+ //Interes1
+ function revisarErroresInt1Evento(e){
+    const vehicle1 = e.target;
+    actualizarErroresInt1(campo);
+    if(vehicle1.validity.valid){
+        eliminarErrores(vehicle1);
+    }
+}
+function notificarErrorInt1Evento(e){
+    const vehicle1 = e.target;
+    let mensajes = [];
+    if(vehicle1.validity.customError){
+        mensajes.push(vehicle1.validationMessage);
+    }
+    mostrarMensajesErrorEn(mensajes, vehicle1);
+}
+
 function hayErrorEnCampo(campo) {
     return campo.classList.contains(CLASE_ERROR_CAMPO);
 }
@@ -226,5 +304,20 @@ function insertarDespues(campoReferencia, campoAnadir){
         // El elemento de referencia no tiene un hermano detrás
         // Se añade como último hijo de su padre
         campoReferencia.parentNode.appendChild(campoAnadir); 
+    }
+}
+function validarFormularioEvento(e){
+    let formValido = validarCampo(document.getElementById("pass"));
+    formValido = validarCampo(document.getElementById("pass2"))&& formValido;
+    formValido = validarCampo(document.getElementById("nombre"))&& formValido;
+    formValido = validarCampo(document.getElementById("edad"))&& formValido;
+    formValido = validarCampo(document.getElementById("genero"))&& formValido;
+    formValido = validarCampo(document.getElementById("vehicle1"))&& formValido;
+
+    if(formValido){
+        console.log("El formulario está validado correctamente sin errores.");
+    }else{
+        e.preventDefault();
+        console.error("El formulario no está validado ya que tiene errores.");
     }
 }
