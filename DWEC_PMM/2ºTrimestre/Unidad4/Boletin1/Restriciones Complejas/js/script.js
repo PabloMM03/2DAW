@@ -144,7 +144,7 @@ function notificarErrorPass2Evento(e) {
 //          mensajes.push(genero.validationMessage);
 //      }
 //  }
-    //  mostrarMensajesErrorEn(mensajes, genero);
+     mostrarMensajesErrorEn(mensajes, genero);
 // }
 function hayErrorEnCampo(campo) {
     return campo.classList.contains(CLASE_ERROR_CAMPO);

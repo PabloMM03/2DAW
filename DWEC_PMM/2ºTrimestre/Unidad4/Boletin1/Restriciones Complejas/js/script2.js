@@ -68,19 +68,18 @@ function actualizarErroresEdad(edad){
 function validarPassEvento(e){
     const pass = e.target;
     const pass2 = e.target;
-    actualizarErroresPass(pass,pass2);
+    actualizarErroresPass(pass);
     validarCampo(pass);
 }
-function actualizarErroresPass(pass,pass2){
+function actualizarErroresPass(pass){
     const contenido = pass.value;
-    const contenido2 = pass2.value;
+    const contenido2 = pass2.value
     let mensaje = "";
 
     if(contenido === ""){
         mensaje = `EL campo ${pass.name} no puede estar vacío`;
-    }else if((contenido === "")&& (contenido !== contenido2)){
-        mensaje = `El campo ${pass.name} no puede ser diferente a ${pass2.name}`;
-        mensaje = `El campo ${pass.name} no puede estar vacío`;
+    }if(contenido !== contenido2){
+        mensaje = `El campo ${pass.name} no puede ser diferente a ${pass2.name}`;       
     }
     pass.setCustomValidity(mensaje);
 }
@@ -88,19 +87,18 @@ function actualizarErroresPass(pass,pass2){
 function validarPass2Evento(e){
     const pass = e.target;
     const pass2 = e.target;
-    actualizarErroresPass2(pass,pass2);
+    actualizarErroresPass2(pass2);
     validarCampo(pass2);
 }
-function actualizarErroresPass2(pass2,pass){
+function actualizarErroresPass2(pass2){
     const contenido = pass2.value;
     const contenido2 = pass.value;
     let mensaje = "";
 
     if(contenido === ""){
         mensaje = `EL campo ${pass2.name} no puede estar vacío`;
-    }else if((contenido === "")&&(contenido !== contenido2)){
-        mensaje = `El campo ${pass2.name} no puede ser diferente a ${pass.name}`;
-        mensaje = `El campo ${pass2.name} no puede estar vacío`;
+    }if((contenido !== contenido2)){
+        mensaje = `El campo ${pass2.name} no puede ser diferente a ${pass.name}`;  
     }
     pass2.setCustomValidity(mensaje);
 }
@@ -131,6 +129,13 @@ function notificarErrorNombreEvento(e) {
     mostrarMensajesErrorEn(mensajes, nombre);
 }
 //Edad
+function revisarErroresEdadEvento(e) {
+    const campo = e.target;
+    actualizarErroresEdad(campo);
+    if(campo.validity.valid) {
+        eliminarErrores(campo);
+    }
+}
 function notificarErrorEdadEvento(e) {
     const edad = e.target;
     let mensajes = [];
@@ -139,15 +144,14 @@ function notificarErrorEdadEvento(e) {
     }
     mostrarMensajesErrorEn(mensajes, edad);
 }
-function revisarErroresEdadEvento(e) {
+//Pass
+function revisarErroresPassEvento(e){
     const campo = e.target;
-    actualizarErroresEdad(campo);
-    if(campo.validity.valid) {
+    actualizarErroresPass(campo);
+    if(campo.validity.valid){
         eliminarErrores(campo);
     }
 }
-//Pass
-
 function notificarErrorPassEvento(e){
     const pass = e.target;
     let mensajes = [];
@@ -156,14 +160,15 @@ function notificarErrorPassEvento(e){
     }
     mostrarMensajesErrorEn(mensajes, pass);
 }
-function revisarErroresPassEvento(e){
+
+//Pass2
+function revisarErroresPass2Evento(e){
     const campo = e.target;
-    actualizarErroresPass(campo);
+    actualizarErroresPass2(campo);
     if(campo.validity.valid){
         eliminarErrores(campo);
     }
 }
-//Pass2
 function notificarErrorPass2Evento(e){
     const pass2 = e.target;
     let mensajes = [];
@@ -172,13 +177,7 @@ function notificarErrorPass2Evento(e){
     }
     mostrarMensajesErrorEn(mensajes, pass2);
 }
-function revisarErroresPass2Evento(e){
-    const campo = e.target;
-    actualizarErroresPass2(campo);
-    if(campo.validity.valid){
-        eliminarErrores(campo);
-    }
-}
+
 function hayErrorEnCampo(campo) {
     return campo.classList.contains(CLASE_ERROR_CAMPO);
 }
