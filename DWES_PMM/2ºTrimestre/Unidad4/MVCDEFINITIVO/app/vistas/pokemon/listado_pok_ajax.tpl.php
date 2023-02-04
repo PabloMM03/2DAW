@@ -2,7 +2,7 @@
  <img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
 
  <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
- <table id="pokemonsTabla">
+ <table>
     <?php////////////////////////////////////////////////////FORMULARIO CANTIDAD POKEMONS///////////////////////////////////////////////////////?>
     <?php if((isset($params['source'])&&($params['source']=='api'))){
         ?>
@@ -42,15 +42,14 @@
                 </tr>
             <?php endforeach; ?>
         </tbody>
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Siguiente"></a>
-        </table>
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Siguiente"></a>
-        <?php
         
+       
+        
+        <?php
+           
     }else {
 //////////////////////////////////////////////////////BBDD/////////////////////////////////////////////////////////////////////////////////
     ?>
-   <table>
     <thead>
         <!-- <th>ID</th> -->
         <th>Imagen</th>   

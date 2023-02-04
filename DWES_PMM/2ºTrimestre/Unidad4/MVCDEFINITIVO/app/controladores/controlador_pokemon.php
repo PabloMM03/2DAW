@@ -139,6 +139,20 @@ class ControladorPokemon{
         header('Location: ./?controlador=pokemon&metodo=listar');
   }
 
+  public function tandaPokemons($params){
+    $mensajes_usuario = $this->mensajes_usuario;
+
+      $modelo_pokemon = new ModeloPokemon();
+      $datos = $modelo_pokemon->tandaPokemons($params);
+
+      if(is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")){
+        require_once("./app/vistas/pokemon/listado_pokemons.tpl.php");
+        $_SESSION['mensajes_usuario'] = '';
+      }else{
+        throw new Exception("Vista no disponible");
+      }
+  }
+
 
 }
 
