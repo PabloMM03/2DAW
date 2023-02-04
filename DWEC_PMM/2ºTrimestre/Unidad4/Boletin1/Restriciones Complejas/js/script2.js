@@ -69,7 +69,7 @@ function validarPassEvento(e){
     const pass = e.target;
     const pass2 = e.target;
     actualizarErroresPass(pass,pass2);
-    validarCampo(pass,pass2);
+    validarCampo(pass);
 }
 function actualizarErroresPass(pass,pass2){
     const contenido = pass.value;
@@ -89,7 +89,7 @@ function validarPass2Evento(e){
     const pass = e.target;
     const pass2 = e.target;
     actualizarErroresPass2(pass,pass2);
-    validarCampo(pass2,pass);
+    validarCampo(pass2);
 }
 function actualizarErroresPass2(pass2,pass){
     const contenido = pass2.value;
@@ -98,7 +98,7 @@ function actualizarErroresPass2(pass2,pass){
 
     if(contenido === ""){
         mensaje = `EL campo ${pass2.name} no puede estar vacío`;
-    }else if((contenido === "")&& (contenido !== contenido2)){
+    }else if((contenido === "")&&(contenido !== contenido2)){
         mensaje = `El campo ${pass2.name} no puede ser diferente a ${pass.name}`;
         mensaje = `El campo ${pass2.name} no puede estar vacío`;
     }
