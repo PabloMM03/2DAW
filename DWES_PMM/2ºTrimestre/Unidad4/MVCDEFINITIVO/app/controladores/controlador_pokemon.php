@@ -25,7 +25,8 @@ class ControladorPokemon{
       }
 
     }
-//Listar pokemons 
+
+  //Listar pokemons 
     public function listar($params){
 
         $mensajes_usuario = $this->mensajes_usuario;
