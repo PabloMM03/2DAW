@@ -1,167 +1,134 @@
 <?php
 
-class ControladorRestApi
-{
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-    // Constructor
-    public function __construct()
-    {
+class ControladorRestApi{
+
+    //Constructor
+    public function __contructor(){
+
+
+
     }
 
-    /**
-     * Funcion para procesar todo
-     */
-    public function procesar($params)
-    {
+    //Funcion principal
+
+    public function procesar($params){
+
 
         $path = $params['path'];
-        $parametros = explode("/", $path);
+        
+        // $path = "path"
+        $parameters = explode("/", $path);
+    
+        $methodPath = $_SERVER['REQUEST_METHOD'];
 
-        $metodo = $_SERVER['REQUEST_METHOD'];
+        switch($methodPath){
 
-        switch ($metodo) {
+            //Mostramos un pokemon o todos dependiendo del parametro asignado
             case 'GET':
-                // Mostrar todo o solo un Pokemon
-                $this->getHandler($parametros);
+                if($parameters[0] == "pokemon" && isset($parameters[1]) && is_numeric($parameters[1])){
+                   
+                    
+                       $modeloPokemon = new ModeloPokemon();
+                       $imp = $modeloPokemon->getPokemonID($params,intval($parameters[1]));
+                    
+                    //   header('Content-Type: application/json; charset=utf-8');
+                     
+                      $encode = json_encode($imp);
+                    
+                      echo $encode;
+                   
+                }
+                if($parameters[0] == "pokemons"){
+
+                    $modeloPokemon = new ModeloPokemon();
+                    $imp = $modeloPokemon->getAllPokemons($params);
+                    // header('Content-Type: application/json; charset=utf-8');
+                    $encode = json_encode($imp);
+                    echo $encode;
+                }
+            break;
+
+
+
+            //Eliminamos un pokemon 
+            case 'DELETE':
+                if(isset($parameters[0]) && $parameters[0] === "deletePokemon"){
+                    
+                   $modeloPokemon = new ModeloPokemon();
+                   $imp = array();
+                    if($modeloPokemon->deletePokemon(intval($parameters[1]))->fetchAll()){
+                        $imp = array(
+                            'status' =>200,
+                            'results' => "Pokemon eliminado correctamente"
+                        );
+                        $encode = json_encode($imp, http_response_code($imp['status']));
+                        echo $encode;
+                        
+                    }else{
+                        $imp = array(
+                            'status' =>404,
+                            'results' =>"Pokemon no encontrado"
+                        );
+
+                    }                    
+                    
+                }else{
+
+                    $imp = array(
+                        'status' =>400,
+                        'results' =>"Error, no hay datos en los campos"
+                    );         
+                }
+                    $encode = json_encode($imp, http_response_code($imp['status']));
+                    echo $encode;
+
                 break;
 
-            case 'DELETE':
-                // Eliminar un Pokemon
-                $this->deleteHandler($parametros);
-                break;
+            //Añadimos un pokemon 
+
+            case 'POST':
+                $modeloPokemon = new ModeloPokemon();
+
+                 if(isset($_POST['poke_nombre']) && !empty($_POST['poke_nombre'])){
+                     $nombre = $_POST['poke_nombre'];
+                 }if(isset($_POST['poke_tipo']) && !empty($_POST['poke_tipo'])){
+                     $tipo = $_POST['poke_tipo'];
+                 }
+                 if(isset($_POST['poke_img']) && !empty($_POST['poke_img'])){
+                     $url_imagen = $_POST['poke_img'];
+                 }
+                 if(isset($_POST['poke_desc']) && !empty($_POST['poke_desc'])){
+                     $descripcion = $_POST['poke_desc'];
+                 }
+
+                 $params_pokemon = array(
+                     'poke_nombre' =>$nombre,
+                     'poke_tipo'  => $tipo,
+                     'poke_img' =>$url_imagen,
+                     'poke_desc' =>$descripcion,
+                 );
+
+                // $modeloPokemon->añadirPokemon($params_pokemon);
+
+                 break;
+
+            //
 
             case 'PUT':
-                // Actualizar un Pokemon
-                $this->putHandler($parametros);
-                break;
 
-            
-            case 'POST':
-                // Crear un nuevo Pokemon
-                $this->postHandler($parametros);
                 break;
 
             default:
-                # code...
-                break;
+                 break;
+            
         }
     }
 
-    /**
-     * Obtiene un json de un solo pokemon
-     */
-    private function getPokemon($id)
-    {
-
-        $modeloPokemon = new ModeloPokemon();
-        $sourceDDBB['source'] = "DDBB";
-
-        $pokemon = $modeloPokemon->getDatosPokemon($sourceDDBB, $id);
-
-        // echo "<pre>";
-        // print_r($pokemon);
-        // echo "</pre>";
-
-        $paraEnviar = json_encode($pokemon);
-
-        header('Content-Type: application/json; charset=utf-8');
-
-        echo $paraEnviar;
-    }
-
-    private function getAllPokemons()
-    {
-        $modeloPokemon = new ModeloPokemon();
-        $sourceDDBB['source'] = "ddbb";
-
-        $pokemon = $modeloPokemon->getAllPokemons($sourceDDBB);
-
-        $paraEnviar = json_encode($pokemon);
-
-        header('Content-Type: application/json; charset=utf-8');
-
-        echo $paraEnviar;
-    }
-
-    private function getHandler($parametros)
-    {
-        if ($parametros[0] === "pokemon") {
-            $this->getPokemon($parametros[1]);
-        }
-
-        if ($parametros[0] === "pokemons") {
-            $this->getAllPokemons();
-        }
-    }
-
-    private function putHandler($parametros)
-    {
-    }
-
-    private function deleteHandler($parametros)
-    {
-        // echo "<pre>";
-        // print_r($parametros);
-        // echo "</pre>";
-
-        if (isset($parametros[0]) && $parametros[0] === 'borrarPokemon') {
-            $json = $this->deletePokemon($parametros[1]);
-        } else {
-            $json = array(
-                'status' => 400,
-                'results' => "Error, los campos están vacíos."
-            );
-        }
-
-        echo json_encode($json, http_response_code($json['status']));
-    }
 
 
-    private function deletePokemon($id)
-    {
-        $json = array();
-        $modeloPokemon = new ModeloPokemon();
-        if($modeloPokemon->deletePokemon($id)->fetchAll()){
-            $json = array(
-                'status' => 200,
-                'results' => "Se ha eliminado correctamente"
-            );
-        } else {
-            $json = array(
-                'status' => 404,
-                'results' => "Algo va mal, no se ha encontrado"
-            );
-        }
-
-        return $json;
-    }
-
-    private function postHandler() {
-        $modeloPokemon = new ModeloPokemon();
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
-        if (isset($_POST['nombre']) && !empty($_POST['nombre'])) {
-            $nombre = $_POST['nombre'];
-        }
-        if (isset($_POST['tipo']) && !empty($_POST['tipo'])) {
-            $tipo = $_POST['tipo'];
-        }
-        if (isset($_POST['imagen']) && !empty($_POST['imagen'])) {
-            $imagen = $_POST['imagen'];
-        }
-        if (isset($_POST['descripcion']) && !empty($_POST['descripcion'])) {
-            $descripcion = $_POST['descripcion'];
-        }
-
-        $params_pokemon = array(
-            'poke_nombre' => $nombre,
-            'poke_tipo' => $tipo,
-            'poke_img' => $imagen,
-            'poke_desc' => $descripcion
-        );
-
-        $modeloPokemon->insertPokemon($params_pokemon);
-
-    }
 }

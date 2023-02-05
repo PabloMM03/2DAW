@@ -1,5 +1,6 @@
 <?php include_once('./app/vistas/inc/header.tpl.php'); ?>
-<img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
+<img class="imgPokemon" src="./public/img/pngaaa.com-14399.png" alt="Pokemon">
+<img class="imgPokemon2" src="./public/img/pngaaa.com-11592.png" alt="Pokemon2">
 <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
 
 <?php////////////////////////////////////////////////////////API///////////////////////////////////////////////////////////////////////////////?>

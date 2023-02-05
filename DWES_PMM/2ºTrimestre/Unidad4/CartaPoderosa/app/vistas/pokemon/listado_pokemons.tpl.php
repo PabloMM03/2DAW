@@ -1,8 +1,7 @@
 <?php include_once('./app/vistas/inc/header.tpl.php'); ?>
-<img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
-<div class="pokebola">
-    <div class="detalle"></div>
-</div>
+<img class="imgPokemon" src="./public/img/pngaaa.com-14399.png" alt="Pokemon">
+<img class="imgPokemon2" src="./public/img/pngaaa.com-11592.png" alt="Pokemon2">
+
  <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
  <div id="pokemons">
     <!-- ////////////////////////////////////FORMULARIO MOSTRAR POKEMONS/////////////////////////////////////// -->
@@ -128,6 +127,8 @@
 </div>
 <button id="pag" class="botons2">Next</button>
 <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
+<!--CARGADOR-->
+<!-- <div class="cargador"></div> -->
 <?php
 }else {
 ?>
@@ -238,7 +239,9 @@
         </div>
     </div>
     <?php endforeach; ?>
-</div>     
+</div>   
+
+</script> 
  <?php           
 }
 ?>
@@ -259,9 +262,11 @@
                 };
                 setTimeout(() => {
                         xhttp.open("GET", "./?controlador=pokemon&source=api&metodo=consultarPokemons", true);
-                        xhttp.send();
+                        xhttp.send(); 
                 }, 1000);
 
         }, false);
 </script>
+
+ 
 <?php include_once('./app/vistas/inc/footer.tpl.php'); ?>
