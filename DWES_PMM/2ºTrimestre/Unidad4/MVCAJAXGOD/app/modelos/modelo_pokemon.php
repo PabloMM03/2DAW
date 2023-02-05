@@ -280,10 +280,10 @@ public function tandaPokemons($params){
 private function _tandaPokemonsAPInext(){
 
     //Comprobacion de Session
+    
     if (!isset($_SESSION['datosAPI'])) {
         $_SESSION['datosAPI'] = array(
             'url' => 'https://pokeapi.co/api/v2/pokemon',
-            'pokemons' => array()
         );
        //Conversion de Json a array
         $ch = curl_init($_SESSION['datosAPI']['url']);
@@ -307,7 +307,7 @@ private function _tandaPokemonsAPInext(){
   
     //Obtenemos los datos de los pokemons
 
-    for ($i = 0; $i < 19; $i++) {
+    for ($i = 0; $i < 20; $i++) {
 
         $url = $resultado['results'][$i]['url'];
             $ch = curl_init($url);
