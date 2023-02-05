@@ -93,12 +93,12 @@ class ControladorPokemon{
       $modelo = new ModeloPokemon();
       if(!isset($_POST['add_pokemon'])){
        //Aquí entra la primera vez, o cuando no hay datos en $_POST['add_pokemon']
-       if(is_file("./app/vistas/pokemon/formulario_add_pokemons.tpl.php")){
+       if(is_file("./app/vistas/pokemon/formulario_add_pokemon.tpl.php")){
         $datos = array();
       
         $datos['tipos'] = $modelo->getAllTipos();
         
-        require_once('./app/vistas/pokemon/formulario_add_pokemons.tpl.php');
+        require_once('./app/vistas/pokemon/formulario_add_pokemon.tpl.php');
        
         }else{
           throw new Exception('Vista no disponible');
