@@ -75,7 +75,7 @@ class ModeloPokemon{
     } 
         }else{//EN CASO DE QUE EL USUARIO NO HAYA DEFINIDO CUANTOS POKEMONS QUIERE MOSTRAR SE EJECUTARA LO SIGUIENTE
 
-            $poklist = 10; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
+            $poklist = 9; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
 
         $ch = curl_init("https://pokeapi.co/api/v2/pokemon/?limit=400"); //Url de la API
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //opciones de la url
@@ -307,7 +307,7 @@ private function _tandaPokemonsAPInext(){
   
     //Obtenemos los datos de los pokemons
 
-    for ($i = 0; $i < 20; $i++) {
+    for ($i = 0; $i < 18; $i++) {
 
         $url = $resultado['results'][$i]['url'];
             $ch = curl_init($url);

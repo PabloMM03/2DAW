@@ -9,10 +9,18 @@ p {
     margin: 0;
 }
 
+.container2{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 .container {
     display: flex;
     justify-content: center;
-    margin: 20px;
+    margin: 40px;
 }
 
 .card {

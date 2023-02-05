@@ -2,6 +2,7 @@
 
  <?php if((isset($params['source'])&&($params['source']=='api'))){?>
 <!-- ////////////////////////////////////API/////////////////////////////////////// -->
+<div class="container2">
 <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
     <div class="container">
         <div class="card">
@@ -105,11 +106,13 @@
         </div>
     </div>
     <?php endforeach; ?>
+</div>
 <?php
 }else {
 ?>
 <!-- ////////////////////////////////////BASE DE DATOS/////////////////////////////////////// -->
     <a href="./?controlador=pokemon&metodo=addPokemon"><input class="botons2" type="submit" name="añadir" id="añadir" value="Añadir Pokemon"></a>
+<div class="container2">
         <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
             <div class="container">
         <div class="card">
@@ -214,7 +217,7 @@
         </div>
     </div>
     <?php endforeach; ?>
-            
+</div>            
  <?php           
 }
 ?>

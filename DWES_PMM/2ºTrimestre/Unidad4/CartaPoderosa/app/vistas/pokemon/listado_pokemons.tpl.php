@@ -15,6 +15,7 @@
     </form>
 
 <!-- ////////////////////////////////////API/////////////////////////////////////// -->
+<div class="container2">
 <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
     <div class="container">
         <div class="card">
@@ -121,14 +122,18 @@
         </div>
     </div>
     <?php endforeach; ?>
-    
+</div>  
+</div>
+<button id="pag" class="botons2">Next</button>
+<a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
 <?php
 }else {
 ?>
 <!-- ////////////////////////////////////BASE DE DATOS/////////////////////////////////////// -->
     <a href="./?controlador=pokemon&metodo=addPokemon"><input class="botons2" type="submit" name="añadir" id="añadir" value="Añadir Pokemon"></a>
+    <div class="container2">
         <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
-    <div class="container">
+ <div class="container">
         <div class="card">
             <div class="inner-card">
                 <div class="header">
@@ -231,12 +236,10 @@
         </div>
     </div>
     <?php endforeach; ?>
-            
+</div>     
  <?php           
 }
 ?>
-</div>
-<button id="pag" class="botons2">Next</button>
 
 <!-- Script ajax -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
