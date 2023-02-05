@@ -1,6 +1,8 @@
 <?php include_once('./app/vistas/inc/header.tpl.php'); ?>
 <img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
-
+<div class="pokebola">
+    <div class="detalle"></div>
+</div>
  <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
  <div id="pokemons">
     <!-- ////////////////////////////////////FORMULARIO MOSTRAR POKEMONS/////////////////////////////////////// -->
