@@ -237,6 +237,7 @@
 ?>
 </div>
 <button id="pag" class="botons2">Next</button>
+
 <!-- Script ajax -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
@@ -251,8 +252,6 @@
                                 
                         }
                 };
-
-
                 setTimeout(() => {
                         xhttp.open("GET", "./?controlador=pokemon&source=api&metodo=consultarPokemons", true);
                         xhttp.send();
