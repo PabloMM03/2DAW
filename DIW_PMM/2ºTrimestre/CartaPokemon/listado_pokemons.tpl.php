@@ -25,10 +25,10 @@
                 </div>
                 <div class="card-text">
                     <h2><i class="fas fa-fire"></i><?php echo ucwords($datos_pokemon['nombre']); ?></h2>
-                    <span class="date date-3"><?php  echo ucwords($datos_pokemon['tipo']); ?></span>
+                    <span class="date date-1"><?php  echo ucwords($datos_pokemon['tipo']); ?></span>
                     <p>Personalidad energica y optimista</p>
                 </div>
-                <div class="card-stats card-3">
+                <div class="card-stats card-1">
                     <div class="stat">
                         <div class="value"><a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
                     <input class="botons" type="submit" name="añadirABD" id="añadirABD" value="Añadir"></a></div>
