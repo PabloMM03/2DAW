@@ -142,15 +142,16 @@ class ControladorPokemon{
         header('Location: ./?controlador=pokemon&metodo=listar&source=api');
   }
 //Obtener pokemons de 20 en 20 
-  public function tandaPokemons(){
+
+  public function consultarPokemons($params){
     $mensajes_usuario = $this->mensajes_usuario;
 
       $modelo_pokemon = new ModeloPokemon();
-      $datos = $modelo_pokemon->tandaPokemonsAPInext();
+      $datos = $modelo_pokemon->tandaPokemons($params);
 
       if(is_file("./app/vistas/pokemon/listado_pok_ajax.tpl.php")){
         require_once("./app/vistas/pokemon/listado_pok_ajax.tpl.php");
-        // $_SESSION['mensajes_usuario'] = '';
+        $_SESSION['mensajes_usuario'] = '';
       }else{
         throw new Exception("Vista no disponible");
       }
@@ -158,9 +159,3 @@ class ControladorPokemon{
 
 
 }
-
-
-
-
-
-   
