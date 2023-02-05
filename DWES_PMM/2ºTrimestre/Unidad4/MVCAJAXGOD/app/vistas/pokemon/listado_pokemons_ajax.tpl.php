@@ -1,33 +1,10 @@
 <?php include_once('./app/vistas/inc/header.tpl.php'); ?>
- <img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
-
- <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
- <table id="pokemonsTabla">
+ <table>
     <?php////////////////////////////////////////////////////FORMULARIO CANTIDAD POKEMONS///////////////////////////////////////////////////////?>
     <?php if((isset($params['source'])&&($params['source']=='api'))){
-        ?>
-    <thead>
-        <!-- <th>ID</th> -->
-        <th>Normal</th>
-        <th>Shiny</th>     
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>Añadir a BBDD</th>
-    </thead>
-    
-        <br>
-    <form class="formCant" action="./?controlador=pokemon&metodo=listar&source=api" method="POST">
-            <fieldset>
-                <h2>¿Cuantos Pokemons quieres mostrar?</h2>
-            <input class="in2" type="text" name="cantPok"  placeholder="10" required ><br>
-            </fieldset>
-        <input class="botons2" type="submit" name="enviar"  value="Enviar">
-        
-    </form>
-        <?php
-        
-////////////////////////////////////////////////////////API///////////////////////////////////////////////////////////////////////////////
-        ?><tbody>
+        ?>    
+<?php////////////////////////////////////////////////////////API///////////////////////////////////////////////////////////////////////////////?>
+        <tbody>
             <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
                 <tr>
                     <!-- <td><?php echo $datos_pokemon['id_pokemon'];?></td>  -->
@@ -42,14 +19,9 @@
                     
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-        <!-- <div class="alinear"> -->
-        <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons2"><input class="botons4" type="submit" name="prev" id="pag2" value="Previous"></a>
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" name="next" id="pag" value="Next"></a> -->
-        <!-- </div> -->
+        </tbody><br>
         </table>
-         <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons2" type="submit" id="pag" value="Next"></a>  -->
-         <button class="botons2" id="vermas">Next</button>
+        <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Next"></a> -->
         <?php
         
     }else {
@@ -77,6 +49,4 @@
     </tbody><?php
 }  ?>
 </table>
-
-
 <?php include_once('./app/vistas/inc/footer.tpl.php'); ?>

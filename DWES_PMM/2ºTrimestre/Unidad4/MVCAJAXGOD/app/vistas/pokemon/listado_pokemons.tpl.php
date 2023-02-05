@@ -2,7 +2,7 @@
  <img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
 
  <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
- <table id="pokemonsTabla">
+ <table id="pokemons">
     <?php////////////////////////////////////////////////////FORMULARIO CANTIDAD POKEMONS///////////////////////////////////////////////////////?>
     <?php if((isset($params['source'])&&($params['source']=='api'))){
         ?>
@@ -42,14 +42,10 @@
                     
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-        <!-- <div class="alinear"> -->
-        <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons2"><input class="botons4" type="submit" name="prev" id="pag2" value="Previous"></a>
-        <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" name="next" id="pag" value="Next"></a> -->
-        <!-- </div> -->
+        </tbody><br>
         </table>
-         <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons2" type="submit" id="pag" value="Next"></a>  -->
-         <button class="botons2" id="vermas">Next</button>
+        <button id="pag" class="botons2">Next</button>
+        <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" id="pag" value="Next"></a> -->
         <?php
         
     }else {
@@ -62,8 +58,7 @@
         <th>Nombre</th>
         <th>Tipo</th>
     </thead>
-    <?php
-    ?><tbody>
+    <tbody>
     <a href="./?controlador=pokemon&metodo=addPokemon"><input class="botons2" type="submit" name="añadir" id="añadir" value="Añadir Pokemon"></a>
         <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
             <tr>
@@ -77,6 +72,27 @@
     </tbody><?php
 }  ?>
 </table>
+<!-- Script ajax -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+        document.querySelector('#pag').addEventListener('click', () => {
 
 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                                let tabla = document.getElementById("pokemons");
+                                tabla.innerHTML += xhttp.response;
+                                
+                        }
+                };
+
+
+                setTimeout(() => {
+                        xhttp.open("GET", "./?controlador=pokemon&source=api&metodo=consultarPokemons", true);
+                        xhttp.send();
+                }, 1000);
+
+        }, false);
+</script>
 <?php include_once('./app/vistas/inc/footer.tpl.php'); ?>

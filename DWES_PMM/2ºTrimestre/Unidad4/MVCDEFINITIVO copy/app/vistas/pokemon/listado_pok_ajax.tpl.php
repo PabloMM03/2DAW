@@ -2,10 +2,9 @@
  <img class="imgPokemon" src="./public/img/PokemonLogo.png" alt="Pokemon">
 
  <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
- <table id="pokemonsTabla">
+ <table>
     <?php////////////////////////////////////////////////////FORMULARIO CANTIDAD POKEMONS///////////////////////////////////////////////////////?>
-    <?php if((isset($params['source'])&&($params['source']=='api'))){
-        ?>
+    
     <thead>
         <!-- <th>ID</th> -->
         <th>Normal</th>
@@ -42,41 +41,12 @@
                     
                 </tr>
             <?php endforeach; ?>
-        </tbody>
+        </tbody><br>
         <!-- <div class="alinear"> -->
         <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons2"><input class="botons4" type="submit" name="prev" id="pag2" value="Previous"></a>
         <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons3" type="submit" name="next" id="pag" value="Next"></a> -->
         <!-- </div> -->
         </table>
-         <!-- <a href="./?controlador=pokemon&source=api&metodo=tandaPokemons"><input class="botons2" type="submit" id="pag" value="Next"></a>  -->
-         <button class="botons2" id="vermas">Next</button>
-        <?php
-        
-    }else {
-//////////////////////////////////////////////////////BBDD/////////////////////////////////////////////////////////////////////////////////
-    ?>
-   <table>
-    <thead>
-        <!-- <th>ID</th> -->
-        <th>Imagen</th>   
-        <th>Nombre</th>
-        <th>Tipo</th>
-    </thead>
-    <?php
-    ?><tbody>
-    <a href="./?controlador=pokemon&metodo=addPokemon"><input class="botons2" type="submit" name="añadir" id="añadir" value="Añadir Pokemon"></a>
-        <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
-            <tr>
-                <!-- <td><?php echo $datos_pokemon['id_pokemon'];?></td> -->
-                <td><a href="./?controlador=pokemon&metodo=ver&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
-                <img src="<?php echo $datos_pokemon['url_imagen']; ?>" ></a></td>
-                <td><?php echo ucwords($datos_pokemon['nombre']); ?></td>
-                <td><?php echo ucwords($datos_pokemon['tipo']); ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody><?php
-}  ?>
-</table>
-
+      
 
 <?php include_once('./app/vistas/inc/footer.tpl.php'); ?>

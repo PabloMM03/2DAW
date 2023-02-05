@@ -4,7 +4,7 @@ class ModeloPokemon{
     
     private $host = DB_HOST;
     private $usuario = DB_USER;
-    private $password = DB_PASSWORD;
+    private $password = DB_PASS;
     private $nombre_base = DB_NAME;
 
     private $manejador_conexion; 
@@ -75,7 +75,7 @@ class ModeloPokemon{
     } 
         }else{//EN CASO DE QUE EL USUARIO NO HAYA DEFINIDO CUANTOS POKEMONS QUIERE MOSTRAR SE EJECUTARA LO SIGUIENTE
 
-            $poklist = 20; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
+            $poklist = 10; //Cantidad de pokemons a mostrar obtenidos del usuario mediante peticion POST
 
         $ch = curl_init("https://pokeapi.co/api/v2/pokemon/?limit=400"); //Url de la API
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //opciones de la url
@@ -267,11 +267,17 @@ public function consulta(){
     ));
 
 }
-//Obtener pokemons de 20 en 2o
+//Obtener pokemons de 20 en 20
+public function tandaPokemons($params){
+    if((isset($params['source'])&&($params['source']=='api'))){
+        return $this->_tandaPokemonsAPInext();
+    }else{
+        return $this->_tandaPokemonsBD();
+                      
+    }
+}
 
-
-
-public function tandaPokemonsAPInext(){
+private function _tandaPokemonsAPInext(){
 
     //Comprobacion de Session
     if (!isset($_SESSION['datosAPI'])) {
@@ -325,5 +331,10 @@ public function tandaPokemonsAPInext(){
     
     return $datosAPI;
 }
+
+public function _tandaPokemonsBD(){
+
+}
+
 
 }
