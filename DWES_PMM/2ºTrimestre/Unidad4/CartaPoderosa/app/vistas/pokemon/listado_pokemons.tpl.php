@@ -18,11 +18,11 @@
 <!-- ////////////////////////////////////API/////////////////////////////////////// -->
 <div class="container2">
 <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
-    <div class="container">
+    <div class="container" >
         <div class="card">
             <div class="inner-card">
                 <div class="header">
-                    <div class="title">
+                    <div class="title"> <!--NOMBRE -->
                         <p><?php echo ucwords($datos_pokemon['nombre']); ?><span class="sub">LV</span><span class="level-number">12</span></p>
                     </div>
                     
@@ -33,13 +33,13 @@
                     </div>
                 </div>
 
-                <div class="image">
+                <div class="image"><!--IMAGEN Y TIPO -->
                 <a href="./?controlador=pokemon&source=api&metodo=ver&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
                     <img src="<?php echo $datos_pokemon['url_imagen']; ?>" alt="neutral"></a>
                     <?php  echo ucwords($datos_pokemon['tipo']); ?>
                 </div>
                 
-                <div class="skill-container">
+                <div class="skill-container"><!--BOTON AÑADIR -->
                 <a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
                     <input class="botons2" type="submit" name="añadirABD" id="añadirABD" value="Añadir"></a>
                     <div class="skill">

@@ -119,8 +119,6 @@ input:focus {
     border-color: red;
  }
  .check{
-    
-    
  }
 
  .texto{
@@ -132,11 +130,15 @@ input:focus {
  .imgPokemon{
     width: 20%;
     margin-left: 37%;
+    margin-top: 30px;    
+    margin-bottom: 3%;
  }
+
  .imgPokemon2{
     width: 120px;
+    margin-bottom: 3%;
 }
- 
+
  fieldset{
     text-align: center;
     border: none;
@@ -157,6 +159,3 @@ input:focus {
     border-radius: 15px;
 }
 
-.centro{
-    margin: 50px 50px 50px 50px;
-}
