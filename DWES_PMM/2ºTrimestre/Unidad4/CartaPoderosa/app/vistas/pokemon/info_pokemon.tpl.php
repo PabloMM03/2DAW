@@ -107,7 +107,7 @@
 
         </div>
     </div>
-    <a href="./?controlador=pokemon&metodo=listar&source=api"><input class="botons2"  type="submit" name="volver" id="voilver" value="Volver Atrás"></a>
+    <a href="./?controlador=pokemon&metodo=listar&source=api"><img src="./public/img/Back.png" class="icons" alt=""></a>
     
 <?php
 }else{
@@ -216,7 +216,7 @@
     </div>
     <a href="./?controlador=pokemon&metodo=eliminar&id=<?php echo $datos['id_pokemon']; ?>">
      <img src="./public/img/eliminar.png" class="icons" alt=""></a>
-<a href="./?controlador=pokemon&metodo=listar"><input class="botons2"  type="submit" name="volver" id="voilver" value="Volver Atrás"></a>
+<a href="./?controlador=pokemon&metodo=listar"><img src="./public/img/Back.png" class="icons" alt=""></a>
 <?php
 }
 ?>

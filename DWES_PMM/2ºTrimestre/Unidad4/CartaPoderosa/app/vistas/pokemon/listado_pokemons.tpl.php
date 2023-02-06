@@ -12,7 +12,7 @@
             <input class="in2" type="text" name="cantPok"  placeholder="10" required ><br>
             </fieldset>
         <input class="botons2" type="submit" name="enviar"  value="Enviar">
-        
+        <!-- <img src="./public/img/verify.png" alt="Verify" class="icons"> -->
     </form>
 
 <!-- ////////////////////////////////////API/////////////////////////////////////// -->
@@ -129,7 +129,8 @@
     <?php endforeach; ?>
 </div>  
 </div>
-<button id="pag" class="botons2">Next</button>
+<img src="./public/img/next.png" class="icons2" alt="Next" id="pag">
+
 <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
 <!--CARGADOR-->
 <!-- <div class="cargador"></div> -->

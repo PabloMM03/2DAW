@@ -86,7 +86,7 @@ tr:hover td{
 h2{
     text-align: center;
     padding: 10px;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 22px;
     
@@ -131,12 +131,12 @@ input:focus {
     width: 20%;
     margin-left: 37%;
     margin-top: 30px;    
-    margin-bottom: 3%;
+    margin-bottom: 1%;
  }
 
  .imgPokemon2{
     width: 120px;
-    margin-bottom: 3%;
+    margin-bottom: 1%;
 }
 
  fieldset{
@@ -175,4 +175,14 @@ input:focus {
     padding: 10px;
     cursor: pointer;
     margin-left: 48%;  
+}
+
+.icons2{
+    width: 3%;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 48%; 
+    margin-top: 10px; 
 }
