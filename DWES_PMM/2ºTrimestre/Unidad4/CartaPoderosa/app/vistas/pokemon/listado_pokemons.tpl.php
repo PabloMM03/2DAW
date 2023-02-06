@@ -18,6 +18,7 @@
 <!-- ////////////////////////////////////API/////////////////////////////////////// -->
 <div class="container2">
 <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
+    
     <div class="container" >
         <div class="card">
             <div class="inner-card">
@@ -40,8 +41,6 @@
                 </div>
                 
                 <div class="skill-container"><!--BOTON AÑADIR -->
-                <a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
-                    <input class="botons2" type="submit" name="añadirABD" id="añadirABD" value="Añadir"></a>
                     <div class="skill">
                         <div class="energy">
                         <img src="./public/img/neutral_energy.png" alt="neutral">
@@ -119,9 +118,14 @@
                     </div>
                 </div>                   
             </div>
+           
+            <a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
+            <img src="./public/img/cruz.png" class="cruz" alt=""></a>
+            
         </div> 
+        
     </div>
-
+    <!--BOTON AQUI -->
     <?php endforeach; ?>
 </div>  
 </div>
@@ -133,7 +137,7 @@
 }else {
 ?>
 <!-- ////////////////////////////////////BASE DE DATOS/////////////////////////////////////// -->
-    <a href="./?controlador=pokemon&metodo=addPokemon"><input class="botons2" type="submit" name="añadir" id="añadir" value="Añadir Pokemon"></a>
+    <a href="./?controlador=pokemon&metodo=addPokemon"><img src="./public/img/cruz.png" class="icons" alt=""></a>
     <div class="container2">
         <?php foreach($datos as $pokemon => $datos_pokemon): ?> 
  <div class="container">

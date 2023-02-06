@@ -135,8 +135,6 @@
                 </div>
                 
                 <div class="skill-container">
-                <a href="./?controlador=pokemon&metodo=eliminar&id=<?php echo $datos['id_pokemon']; ?>">
-                    <input class="botons2"  type="submit" name="eliminar" id="eliminar" value="X"></a>
                     <div class="skill">
                         <div class="energy">
                         <img src="./public/img/neutral_energy.png" alt="neutral">
@@ -213,11 +211,12 @@
                     </div>
                 </div>                   
             </div>
-
+            
         </div>
     </div>
+    <a href="./?controlador=pokemon&metodo=eliminar&id=<?php echo $datos['id_pokemon']; ?>">
+     <img src="./public/img/eliminar.png" class="icons" alt=""></a>
 <a href="./?controlador=pokemon&metodo=listar"><input class="botons2"  type="submit" name="volver" id="voilver" value="Volver Atrás"></a>
-
 <?php
 }
 ?>
