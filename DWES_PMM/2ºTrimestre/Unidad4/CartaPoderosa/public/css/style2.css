@@ -136,6 +136,11 @@ p {
     margin-left: 10px;
     margin-right: 10px;
 }
+.skill-name{
+    animation-name: anim2;
+    animation-duration: 7s;
+    animation-iteration-count: infinite; 
+}
 
 .skill-container:nth-child(2n){
     margin-top: 20px;
