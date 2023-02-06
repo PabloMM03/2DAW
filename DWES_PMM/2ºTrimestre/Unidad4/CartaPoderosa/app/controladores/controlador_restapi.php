@@ -60,33 +60,22 @@ class ControladorRestApi{
                 if(isset($parameters[0]) && $parameters[0] === "deletePokemon"){
                     
                    $modeloPokemon = new ModeloPokemon();
+                   $imp = $modeloPokemon->deletePokemon($parameters[1]);
                    $imp = array();
+
                     if($modeloPokemon->deletePokemon(intval($parameters[1]))->fetchAll()){
-                        $imp = array(
+                        $imp = array( //Mensaje pokemon eliminado
                             'status' =>200,
                             'results' => "Pokemon eliminado correctamente"
                         );
-                        $encode = json_encode($imp, http_response_code($imp['status']));
-                        echo $encode;
+
                         
-                    }else{
-                        $imp = array(
-                            'status' =>404,
-                            'results' =>"Pokemon no encontrado"
-                        );
-
-                    }                    
-                    
-                }else{
-
-                    $imp = array(
-                        'status' =>400,
-                        'results' =>"Error, no hay datos en los campos"
-                    );         
-                }
+                        
+                    }          
                     $encode = json_encode($imp, http_response_code($imp['status']));
-                    echo $encode;
-
+                    echo $encode;  
+                }
+                
                 break;
 
             //Añadimos un pokemon 
@@ -99,13 +88,13 @@ class ControladorRestApi{
                  }if(isset($_POST['poke_tipo']) && !empty($_POST['poke_tipo'])){
                      $tipo = $_POST['poke_tipo'];
                  }
+                 if(isset($_POST['poke_desc']) && !empty($_POST['poke_desc'])){
+                    $descripcion = $_POST['poke_desc'];
+                }
                  if(isset($_POST['poke_img']) && !empty($_POST['poke_img'])){
                      $url_imagen = $_POST['poke_img'];
                  }
-                 if(isset($_POST['poke_desc']) && !empty($_POST['poke_desc'])){
-                     $descripcion = $_POST['poke_desc'];
-                 }
-
+                 
                  $params_pokemon = array(
                      'poke_nombre' =>$nombre,
                      'poke_tipo'  => $tipo,
@@ -113,7 +102,7 @@ class ControladorRestApi{
                      'poke_desc' =>$descripcion,
                  );
 
-                // $modeloPokemon->añadirPokemon($params_pokemon);
+                 $modeloPokemon->añadirPokemon($params_pokemon);
 
                  break;
 
