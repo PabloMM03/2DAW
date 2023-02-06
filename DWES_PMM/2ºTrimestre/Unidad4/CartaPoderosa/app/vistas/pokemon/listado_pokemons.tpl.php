@@ -2,7 +2,8 @@
 <img class="imgPokemon" src="./public/img/pngaaa.com-14399.png" alt="Pokemon">
 <img class="imgPokemon2" src="./public/img/pngaaa.com-11592.png" alt="Pokemon2">
 
- <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
+ <!-- <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a> -->
+ <a href="./"><img src="./public/img/home.png" class="icons2" alt="Home"></a>
  <div id="pokemons">
     <!-- ////////////////////////////////////FORMULARIO MOSTRAR POKEMONS/////////////////////////////////////// -->
  <?php if((isset($params['source'])&&($params['source']=='api'))){?>
@@ -131,7 +132,8 @@
 </div>
 <img src="./public/img/next.png" class="icons2" alt="Next" id="pag">
 
-<a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a>
+<!-- <a href="./"><input class="botons2" type="submit" name="vol" id="vol" value="INICIO"></a> -->
+<a href="./"><img src="./public/img/home.png" class="icons2" alt="Home"></a>
 <!--CARGADOR-->
 <!-- <div class="cargador"></div> -->
 <?php
