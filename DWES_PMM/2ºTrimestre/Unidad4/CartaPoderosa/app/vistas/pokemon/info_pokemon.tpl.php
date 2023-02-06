@@ -109,6 +109,8 @@
 
         </div>
     </div>
+    <a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos['id_pokemon']; ?>">
+            <img src="./public/img/cruz.png" class="icons2" alt=""></a>
     <a href="./?controlador=pokemon&metodo=listar&source=api"><img src="./public/img/Back.png" class="icons" alt=""></a>
     
 <?php

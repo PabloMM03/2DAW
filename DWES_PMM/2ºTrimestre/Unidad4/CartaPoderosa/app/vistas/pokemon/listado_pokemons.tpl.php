@@ -34,7 +34,6 @@
                         <img src="./public/img/electric_energy.png" alt="electric">
                     </div>
                 </div>
-
                 <div class="image"><!--IMAGEN Y TIPO -->
                 <a href="./?controlador=pokemon&source=api&metodo=ver&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
                     <img src="<?php echo $datos_pokemon['url_imagen']; ?>" alt="neutral"></a>
@@ -119,14 +118,11 @@
                     </div>
                 </div>                   
             </div>
-           
-            <a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
-            <img src="./public/img/cruz.png" class="cruz" alt=""></a>
-            
-        </div> 
-        
+           <!--BOTON AQUI -->
+           <!-- <a href="./?controlador=pokemon&source=api&metodo=addPokemonToBD&id=<?php echo $datos_pokemon['id_pokemon']; ?>">
+            <img src="./public/img/cruz.png" class="cruz" alt=""></a> -->
+        </div>    
     </div>
-    <!--BOTON AQUI -->
     <?php endforeach; ?>
 </div>  
 </div>
