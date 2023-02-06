@@ -86,11 +86,25 @@ tr:hover td{
 h2{
     text-align: center;
     padding: 10px;
-    color: black;
+    color: white;
     font-weight: bold;
     font-size: 22px;
+    animation-name: anim;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
     
 }
+@keyframes anim{
+    0% {color: red;} /*Amarillo*/
+   25% {color: #f80;} /*Naranja*/
+   35% {color: greenyellow;} /*Verde*/
+   50% {color: #000;} /*Negro*/
+   75% {color: #f80;} /*Otra vez naranja*/
+   85% {color: greenyellow;} /*Otra vez verde*/
+  100% {color: red;} /*Otra vez amarillo*/
+  
+}
+
 
 input:focus { 
     padding: 5px;

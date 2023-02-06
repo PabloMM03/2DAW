@@ -4,10 +4,24 @@ body {
     color: #181818;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    /* background-image:url(../img/Pokemon-1-800x433.png); */
+    /* background-image:url(../img/fondo.png); 
     /* background-image:url(../img/OIP.jpg); */
-    
+
+    /*ANIMACION CAMBIO DE COLOR FONDO  */
+    /* animation-name: anim3;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;      */
     background-size:auto;
+}
+@keyframes anim3{
+    0% {background-color: red;} /*Amarillo*/
+   25% {background-color: #f80;} /*Naranja*/
+   35% {background-color: rgb(255, 47, 210);} /*Verde*/
+   50% {background-color: rgb(37, 225, 250);} /*Negro*/
+   75% {background-color: #f80;} /*Otra vez naranja*/
+   85% {background-color: rgb(255, 47, 227);} /*Otra vez verde*/
+  100% {background-color: red;} /*Otra vez amarillo*/
+  
 }
 p {
     margin: 0;
@@ -33,6 +47,7 @@ p {
     box-shadow: 2px 2px 10px gray;
     padding: 15px;
     width: 400px;
+    
 }
 
 .inner-card {
@@ -47,11 +62,25 @@ p {
     display: flex;
     font-size: 24px;
     height: 25px;
-    justify-content:space-between;            
+    justify-content:space-between;    
+    animation-name: anim2;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;          
 }
 
 .header .title {
-    margin-left: 12px;            
+    margin-left: 12px;      
+}
+
+@keyframes anim2{
+    0% {color: red;} /*Amarillo*/
+   25% {color: #f80;} /*Naranja*/
+   35% {color: rgb(255, 47, 210);} /*Verde*/
+   50% {color: rgb(37, 225, 250);} /*Negro*/
+   75% {color: #f80;} /*Otra vez naranja*/
+   85% {color: rgb(255, 47, 227);} /*Otra vez verde*/
+  100% {color: red;} /*Otra vez amarillo*/
+  
 }
 
 .header .hp {
