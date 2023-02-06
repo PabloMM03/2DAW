@@ -17,7 +17,6 @@ function crearListeners() {
     document.getElementById("edad").addEventListener("blur", validarEdadEvento, false);
     document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
     document.getElementById("vehicle1").addEventListener("blur", validarInt1Evento, false);
-    document.getElementById("vehicle2").addEventListener("blur", validarInt1Evento, false);
 
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
@@ -26,7 +25,6 @@ function crearListeners() {
     document.getElementById("edad").addEventListener("invalid", notificarErrorEdadEvento, false);
     document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
     document.getElementById("vehicle1").addEventListener("invalid", notificarErrorInt1Evento, false);
-    document.getElementById("vehicle2").addEventListener("invalid", notificarErrorInt1Evento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresNombreEvento, false);
     document.getElementById("pass").addEventListener("input", revisarErroresPassEvento, false);
@@ -34,7 +32,6 @@ function crearListeners() {
     document.getElementById("edad").addEventListener("input", revisarErroresEdadEvento, false);
     document.getElementById("genero").addEventListener("input", revisarErroresGeneroEvento, false);
     document.getElementById("vehicle1").addEventListener("input", revisarErroresInt1Evento, false);
-    document.getElementById("vehicle2").addEventListener("input", revisarErroresInt1Evento, false);
     
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
