@@ -25,6 +25,7 @@ function crearListeners() {
     document.getElementById("ocupacion").addEventListener("blur", validarOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("blur", validarFechaEvento, false);
     document.getElementById("intereses").addEventListener("blur", validarInteresesEvento, true);
+    document.getElementById("desc").addEventListener("blur", validarDescEvento, true);
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("apellidos").addEventListener("invalid", notificarErrorApellidosEvento, false);
@@ -34,6 +35,7 @@ function crearListeners() {
     document.getElementById("ocupacion").addEventListener("invalid", notificarErrorOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("invalid", notificarErrorFechaEvento, false);
     document.getElementById("intereses").addEventListener("invalid", notificarErrorInteresesEvento, true);
+    document.getElementById("desc").addEventListener("invalid", notificarErrorDescEvento, true);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
@@ -43,7 +45,8 @@ function crearListeners() {
     document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("intereses").addEventListener("input", revisarErroresEvento, true);
-
+    document.getElementById("desc").addEventListener("input", revisarErroresEvento, true);
+    
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
 
@@ -75,6 +78,22 @@ function actualizarErroresNombre(nombre){
     }
 
     nombre.setCustomValidity(mensaje);
+}
+///////////////////////////////////TEXT AREA//////////////////////////////////////
+function validarDescEvento(e){
+    const desc = e.target;
+    actualizarErroresDesc(desc);
+    validarCampo(desc);
+}
+function actualizarErroresDesc(desc){
+    const contenido = desc.value;
+    let mensaje ="";
+
+    if(contenido > 400){
+        mensaje = `El campo ${desc.name}  debe tener un maximo de 400 caracteres`;
+    }
+   
+    desc.setCustomValidity(mensaje);
 }
 
 //////////////////////////////////////////////APELLIDOS///////////////////////////////////////////
@@ -218,6 +237,11 @@ function validarCampoEvento(e){
 
 function revisarErroresEvento(e){
     const campo = e.target;
+    let restantes = 400- campo.value.length;
+    if(restantes<0){
+        restantes = 0;
+    }
+    document.getElementById(campo.id).innerHTML = 'Caracteres restantes: ' + restantes;
     actualizarErroresNombre(campo);
     if(campo.validity.valid){
         eliminarErrores(campo);
@@ -240,6 +264,16 @@ function notificarErrorNombreEvento(e){
         mensajes.push(nombre.validationMessage);
     }
     mostrarMensajesErrorEn(mensajes, nombre);
+}
+//Text Area
+function notificarErrorDescEvento(e){
+    const desc = e.target;
+
+    let mensajes = [];
+    if(desc.validity.customError){
+        mensajes.push(desc.validationMessage);
+    }
+    mostrarMensajesErrorEn(mensajes, desc);
 }
 //Apellidos
 function notificarErrorApellidosEvento(e){
