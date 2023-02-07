@@ -24,7 +24,8 @@ function crearListeners() {
     document.getElementById("hijos").addEventListener("blur", validarHijosEvento, false);
     document.getElementById("ocupacion").addEventListener("blur", validarOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("blur", validarFechaEvento, false);
-    document.getElementById("formulario").addEventListener("blur", validarInteresesEvento, false);
+    // document.getElementById("formulario").addEventListener("blur", validarInteresesEvento, false);
+    document.getElementById("cine").addEventListener("blur", validarInteresesEvento, false);
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("apellidos").addEventListener("invalid", notificarErrorApellidosEvento, false);
@@ -33,7 +34,8 @@ function crearListeners() {
     document.getElementById("hijos").addEventListener("invalid", notificarErrorHijosEvento, false);
     document.getElementById("ocupacion").addEventListener("invalid", notificarErrorOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("invalid", notificarErrorFechaEvento, false);
-    document.getElementById("formulario").addEventListener("invalid", notificarErrorInteresesEvento, false);
+    // document.getElementById("formulario").addEventListener("invalid", notificarErrorInteresesEvento, false);
+    document.getElementById("cine").addEventListener("invalid", notificarErrorInteresesEvento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
@@ -42,8 +44,9 @@ function crearListeners() {
     document.getElementById("hijos").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("formulario").addEventListener("input", revisarErroresEvento, false);
-    
+    // document.getElementById("formulario").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("cine").addEventListener("input", revisarErroresEvento, false);
+
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
 
@@ -187,26 +190,23 @@ function actualizarErroresURL(url){
 
 ///////////////////////////////////////////////INTERESES////////////////////////////////////////
 function validarInteresesEvento(e){
-    const int = e.target;
-    actualizarErroresIntereses(int);
-    validarCampo(int);
+    const cine = e.target;
+    actualizarErroresIntereses(cine);
+    validarCampo(cine);
 
 }
-function actualizarErroresIntereses(int){
-    const contenido = document.getElementById("formulario");
+function actualizarErroresIntereses(cine){
+    const contenido = document.querySelector('input[id="cine"]:checked');
+    const contenido2 = document.querySelector('input[id="musica"]:checked');
+    const contenido3 = document.querySelector('input[id="teatro"]:checked');
 
     let mensaje = "";
-
-    for(let i = 0; i<contenido.elements.length; i++){
-       let elemento = contenido.elements[i];
-        if(elemento.type == "checkbox"){
-            if(!elemento.checked){
-                mensaje = `Debe seleccionar dos intereses`;
-            }
+        if((!contenido) && (!contenido2)){
+            mensaje = `Debe seleccionar dos intereses`;
         }
-    }
+        
     
-    int.setCustomValidity(mensaje);
+        cine.setCustomValidity(mensaje);
 }
 ///////////////////////////////////////////POR DEFECTO/////////////////////////////////////////////
 function validarCampoEvento(e){
@@ -301,14 +301,14 @@ function  notificarErrorURLEvento(e){
 
 //Intereses
 function notificarErrorInteresesEvento(e){
-    const int = e.target;
+    const cine = e.target;
 
     let mensajes = [];
 
-    if(int.validity.customError){
-        mensajes.push(int.validationMessage);
+    if(cine.validity.customError){
+        mensajes.push(cine.validationMessage);
     }
-    mostrarMensajesErrorEn(mensajes, int);
+    mostrarMensajesErrorEn(mensajes, cine);
 }
 //////////////////////////////////////POR DEFCTO 2////////////////////////////////////
 
@@ -362,7 +362,9 @@ function validarFormularioEvento(e){
         formValido = validarCampo(document.getElementById("hijos"))&& formValido;
         formValido = validarCampo(document.getElementById("ocupacion")) && formValido;
         formValido = validarCampo(document.getElementById("fecha")) && formValido;
-        formValido = validarCampo(document.getElementById("int")) && formValido;
+        formValido = validarCampo(document.getElementById("cine")) && formValido;
+        
+        
     if(formValido){
         console.log("El formulario esta validado correctamente");
     }else{
