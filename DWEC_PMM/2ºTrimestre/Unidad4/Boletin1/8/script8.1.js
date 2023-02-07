@@ -6,6 +6,10 @@ const MIN_CHAR = 8;
 const MIN_EDAD = 18;
 const MAX_EDAD = 60;
 
+//Con checkvalidity
+//Que contenga un numero = valdiity.patternMismatch
+//Que tenga el formato correcto validity.typeMismatch
+//Que no este vacio validity.valueMissing
 crearListeners();
 
 function crearListeners() {
@@ -16,23 +20,29 @@ function crearListeners() {
     document.getElementById("nombre").addEventListener("blur", validarNombreEvento, false);
     document.getElementById("apellidos").addEventListener("blur", validarApellidosEvento, false);
     document.getElementById("edad").addEventListener("blur", validarEdadEvento, false);
-    // document.getElementById("url").addEventListener("blur", validarUrlEvento, false);
+    document.getElementById("url").addEventListener("blur", validarURLEvento, false);
     document.getElementById("hijos").addEventListener("blur", validarHijosEvento, false);
     document.getElementById("ocupacion").addEventListener("blur", validarOcupacionEvento, false);
+    document.getElementById("fecha").addEventListener("blur", validarFechaEvento, false);
+    document.getElementById("formulario").addEventListener("blur", validarInteresesEvento, false);
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("apellidos").addEventListener("invalid", notificarErrorApellidosEvento, false);
     document.getElementById("edad").addEventListener("invalid", notificarErrorEdadEvento, false);
-    // document.getElementById("url").addEventListener("invalid", notificarErrorUrlEvento, false);
+    document.getElementById("url").addEventListener("invalid", notificarErrorURLEvento, false);
     document.getElementById("hijos").addEventListener("invalid", notificarErrorHijosEvento, false);
     document.getElementById("ocupacion").addEventListener("invalid", notificarErrorOcupacionEvento, false);
+    document.getElementById("fecha").addEventListener("invalid", notificarErrorFechaEvento, false);
+    document.getElementById("formulario").addEventListener("invalid", notificarErrorInteresesEvento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("edad").addEventListener("input", revisarErroresEvento, false);
-    // document.getElementById("url").addEventListener("input", revisarErroresUrlEvento, false);
+    document.getElementById("url").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("hijos").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("formulario").addEventListener("input", revisarErroresEvento, false);
     
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
@@ -132,16 +142,72 @@ function validarOcupacionEvento(e){
     validarCampo(ocupacion);
 }
 function actualizarErroresOcupacion(ocupacion){
-    const contenido = document.querySelector('select[name="ocupacion"]:checked');
+    const contenido = ocupacion.value;
 
     let mensaje = "";
 
-    if(!contenido){
+    if(contenido === "df"){
         mensaje = `Debe de seleccionar una ${ocupacion.name}`;
     }
     ocupacion.setCustomValidity(mensaje);
 }
+/////////////////////////////////////////FECHA//////////////////////////////////////////////////
 
+function validarFechaEvento(e){
+    const fecha = e.target;
+    actualizarErroresFecha(fecha);
+    validarCampo(fecha);
+}
+function actualizarErroresFecha(fecha){
+    const contenido = fecha.value;
+
+    let mensaje = "";
+
+    if(contenido ===""){
+        mensaje = `EL campo ${fecha.name} no puede estar vacio`;
+    }
+    fecha.setCustomValidity(mensaje);
+}
+///////////////////////////////////////URL/////////////////////////////////////////////////////
+function validarURLEvento(e){
+    const url = e.target;
+    actualizarErroresURL(url);
+    validarCampo(url);
+}
+
+function actualizarErroresURL(url){
+    const contenido = url.value;
+    let mensaje = "";
+
+    if(contenido === ""){
+        mensaje = `El campo ${url.name} no puede estar vacio`;
+    }
+    url.setCustomValidity(mensaje);
+}
+
+///////////////////////////////////////////////INTERESES////////////////////////////////////////
+function validarInteresesEvento(e){
+    const int = e.target;
+    actualizarErroresIntereses(int);
+    validarCampo(int);
+
+}
+function actualizarErroresIntereses(int){
+    const contenido = document.getElementById("formulario");
+
+    let mensaje = "";
+
+    for(let i = 0; i<contenido.elements.length; i++){
+       let elemento = contenido.elements[i];
+        if(elemento.type == "checkbox"){
+            if(!elemento.checked){
+                mensaje = `Debe seleccionar dos intereses`;
+            }
+        }
+    }
+    
+    int.setCustomValidity(mensaje);
+}
 ///////////////////////////////////////////POR DEFECTO/////////////////////////////////////////////
 function validarCampoEvento(e){
     return validarCampo(e.target);
@@ -162,6 +228,7 @@ function validarCampo(campo){
 
 
 //////////////////////////NOTIFICAR///////////////////////////
+//Nombre
 function notificarErrorNombreEvento(e){
     const nombre = e.target;
 
@@ -171,7 +238,7 @@ function notificarErrorNombreEvento(e){
     }
     mostrarMensajesErrorEn(mensajes, nombre);
 }
-
+//Apellidos
 function notificarErrorApellidosEvento(e){
     const apellidos = e.target;
 
@@ -181,7 +248,7 @@ function notificarErrorApellidosEvento(e){
     }
     mostrarMensajesErrorEn(mensajes, apellidos);
 }
-
+//Edad
 function notificarErrorEdadEvento(e){
     const edad = e.target;
 
@@ -191,7 +258,7 @@ function notificarErrorEdadEvento(e){
     }
     mostrarMensajesErrorEn(mensajes, edad);
 }
-
+//Hijos
 function notificarErrorHijosEvento(e){
     const hijos = e.target;
 
@@ -201,7 +268,7 @@ function notificarErrorHijosEvento(e){
     }
     mostrarMensajesErrorEn(mensajes, hijos);
 }
-
+//Ocupacion
 function notificarErrorOcupacionEvento(e){
     const ocupacion = e.target;
     let mensajes = [];
@@ -210,7 +277,39 @@ function notificarErrorOcupacionEvento(e){
     }
     mostrarMensajesErrorEn(mensajes, ocupacion);
 }
+//Fecha
+function notificarErrorFechaEvento(e){
+    const fecha = e.target;
+    let mensajes = [];
+    if(fecha.validity.customError){
+    mensajes.push(fecha.validationMessage);
+    }
+    mostrarMensajesErrorEn(mensajes, fecha);
+}
+//URL
+function  notificarErrorURLEvento(e){
+    const url = e.target;
+    let mensajes = [];
 
+    if(url.validity.customError){
+        mensajes.push(url.validationMessage);
+    }if(url.validity.typeMismatch){
+        mensajes.push(`El campo ${url.name} no tiene el formato correcto`);
+    }
+    mostrarMensajesErrorEn(mensajes,url);
+}
+
+//Intereses
+function notificarErrorInteresesEvento(e){
+    const int = e.target;
+
+    let mensajes = [];
+
+    if(int.validity.customError){
+        mensajes.push(int.validationMessage);
+    }
+    mostrarMensajesErrorEn(mensajes, int);
+}
 //////////////////////////////////////POR DEFCTO 2////////////////////////////////////
 
 
@@ -262,6 +361,8 @@ function validarFormularioEvento(e){
         formValido = validarCampo(document.getElementById("edad"))&& formValido;
         formValido = validarCampo(document.getElementById("hijos"))&& formValido;
         formValido = validarCampo(document.getElementById("ocupacion")) && formValido;
+        formValido = validarCampo(document.getElementById("fecha")) && formValido;
+        formValido = validarCampo(document.getElementById("int")) && formValido;
     if(formValido){
         console.log("El formulario esta validado correctamente");
     }else{
