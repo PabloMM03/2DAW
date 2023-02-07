@@ -21,30 +21,27 @@ function crearListeners() {
     document.getElementById("apellidos").addEventListener("blur", validarApellidosEvento, false);
     document.getElementById("edad").addEventListener("blur", validarEdadEvento, false);
     document.getElementById("url").addEventListener("blur", validarURLEvento, false);
-    document.getElementById("hijos").addEventListener("blur", validarHijosEvento, false);
+    document.getElementById("si").addEventListener("blur", validarSIEvento, false);
     document.getElementById("ocupacion").addEventListener("blur", validarOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("blur", validarFechaEvento, false);
-    // document.getElementById("formulario").addEventListener("blur", validarInteresesEvento, false);
     document.getElementById("cine").addEventListener("blur", validarInteresesEvento, false);
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("apellidos").addEventListener("invalid", notificarErrorApellidosEvento, false);
     document.getElementById("edad").addEventListener("invalid", notificarErrorEdadEvento, false);
     document.getElementById("url").addEventListener("invalid", notificarErrorURLEvento, false);
-    document.getElementById("hijos").addEventListener("invalid", notificarErrorHijosEvento, false);
+    document.getElementById("si").addEventListener("invalid", notificarErrorSIEvento, false);
     document.getElementById("ocupacion").addEventListener("invalid", notificarErrorOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("invalid", notificarErrorFechaEvento, false);
-    // document.getElementById("formulario").addEventListener("invalid", notificarErrorInteresesEvento, false);
     document.getElementById("cine").addEventListener("invalid", notificarErrorInteresesEvento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("edad").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("url").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("hijos").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("si").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
-    // document.getElementById("formulario").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("cine").addEventListener("input", revisarErroresEvento, false);
 
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
@@ -118,24 +115,22 @@ function actualizarErroresEdad(edad){
 }
 
 /////////////////////////////////HIJOS////////////////////////////////////////
-function validarHijosEvento(e){
-    const hijos = e.target;
-    actualizarErroreshijos(hijos);
-    validarCampo(hijos);
+function validarSIEvento(e){
+    const si = e.target;
+    actualizarErroresSI(si);
+    validarCampo(si);
 
 }
 
-function actualizarErroreshijos(hijos){
+function actualizarErroresSI(si){
     const contenido = document.querySelector('input[name="hijos"]:checked');
-
     let mensaje = "";
-
     if(!contenido){
-        mensaje = `Debe seleccionar un campo ${hijos.name}`;
-    }
-    hijos.setCustomValidity(mensaje);
+        mensaje = `Debe seleccionar un campo Hijos`;
+    
 }
-
+si.setCustomValidity(mensaje);
+}
 
 /////////////////////////////////////////////OCUPACION//////////////////////////////////////////////
 function validarOcupacionEvento(e){
@@ -190,23 +185,19 @@ function actualizarErroresURL(url){
 
 ///////////////////////////////////////////////INTERESES////////////////////////////////////////
 function validarInteresesEvento(e){
-    const cine = e.target;
-    actualizarErroresIntereses(cine);
-    validarCampo(cine);
+    const inter = e.target;
+    actualizarErroresIntereses(inter);
+    validarCampo(inter);
 
 }
-function actualizarErroresIntereses(cine){
-    const contenido = document.querySelector('input[id="cine"]:checked');
-    const contenido2 = document.querySelector('input[id="musica"]:checked');
-    const contenido3 = document.querySelector('input[id="teatro"]:checked');
+function actualizarErroresIntereses(inter){
+    const contenido = document.querySelectorAll('input[name="intereses"]:checked');
 
     let mensaje = "";
-        if((!contenido) && (!contenido2)){
+        if((!contenido < MIN_INTERESES)){
             mensaje = `Debe seleccionar dos intereses`;
         }
-        
-    
-        cine.setCustomValidity(mensaje);
+        inter.setCustomValidity(mensaje);
 }
 ///////////////////////////////////////////POR DEFECTO/////////////////////////////////////////////
 function validarCampoEvento(e){
@@ -259,15 +250,16 @@ function notificarErrorEdadEvento(e){
     mostrarMensajesErrorEn(mensajes, edad);
 }
 //Hijos
-function notificarErrorHijosEvento(e){
-    const hijos = e.target;
+function notificarErrorSIEvento(e){
+    const si = e.target;
 
     let mensajes = [];
-    if(hijos.validity.customError){
-        mensajes.push(hijos.validationMessage);
+    if(si.validity.customError){
+        mensajes.push(si.validationMessage);
     }
-    mostrarMensajesErrorEn(mensajes, hijos);
+    mostrarMensajesErrorEn(mensajes, si);
 }
+
 //Ocupacion
 function notificarErrorOcupacionEvento(e){
     const ocupacion = e.target;
@@ -301,14 +293,14 @@ function  notificarErrorURLEvento(e){
 
 //Intereses
 function notificarErrorInteresesEvento(e){
-    const cine = e.target;
+    const inter = e.target;
 
     let mensajes = [];
 
-    if(cine.validity.customError){
-        mensajes.push(cine.validationMessage);
+    if(inter.validity.customError){
+        mensajes.push(cinterine.validationMessage);
     }
-    mostrarMensajesErrorEn(mensajes, cine);
+    mostrarMensajesErrorEn(mensajes, inter);
 }
 //////////////////////////////////////POR DEFCTO 2////////////////////////////////////
 
@@ -359,10 +351,10 @@ function validarFormularioEvento(e){
     let formValido = validarCampo(document.getElementById("nombre"));
         formValido = validarCampo(document.getElementById("apellidos")) && formValido;
         formValido = validarCampo(document.getElementById("edad"))&& formValido;
-        formValido = validarCampo(document.getElementById("hijos"))&& formValido;
+        formValido = validarCampo(document.getElementById("cine"))&& formValido;
+        // formValido = validarCampo(document.getElementById("no"))&& formValido;
         formValido = validarCampo(document.getElementById("ocupacion")) && formValido;
         formValido = validarCampo(document.getElementById("fecha")) && formValido;
-        formValido = validarCampo(document.getElementById("cine")) && formValido;
         
         
     if(formValido){
