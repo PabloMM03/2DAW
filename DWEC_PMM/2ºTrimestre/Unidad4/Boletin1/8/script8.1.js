@@ -191,11 +191,21 @@ function validarInteresesEvento(e){
 
 }
 function actualizarErroresIntereses(inter){
-    const contenido = document.querySelectorAll('input[name="intereses"]:checked');
+    const contenido = document.getElementById("cine").checked;
+    const contenido2 = document.getElementById("cine").checked;
+    const contenido3 = document.getElementById("cine").checked;
 
     let mensaje = "";
-        if((!contenido < MIN_INTERESES)){
+        if((!contenido && !contenido2) || (!contenido && !contenido3)){
             mensaje = `Debe seleccionar dos intereses`;
+        }if((!contenido2 && !contenido3)){
+            mensaje = `Debe seleccionar dos intereses`;
+        }if((contenido && contenido2)){
+            mensaje =" ";
+        }if((contenido && contenido3)){
+            mensaje = " ";
+        }if((contenido2 && contenido3)){
+            mensaje = " ";
         }
         inter.setCustomValidity(mensaje);
 }
@@ -298,7 +308,7 @@ function notificarErrorInteresesEvento(e){
     let mensajes = [];
 
     if(inter.validity.customError){
-        mensajes.push(cinterine.validationMessage);
+        mensajes.push(inter.validationMessage);
     }
     mostrarMensajesErrorEn(mensajes, inter);
 }

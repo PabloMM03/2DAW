@@ -136,7 +136,7 @@ function actualizarErroresPass2(pass2){
 }
 function actualizarErroresInt1(vehicle1){
     const contenido = vehicle1.checked;
-    const contenido2 = vehicle2.checked;
+    const contenido2 = document.getElementById("vehicle2").checked;
     let mensaje = "";
 
     if(!contenido && !contenido2) {
