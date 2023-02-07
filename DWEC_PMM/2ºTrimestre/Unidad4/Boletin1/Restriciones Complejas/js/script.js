@@ -16,7 +16,7 @@ function crearListeners() {
     document.getElementById("pass2").addEventListener("blur", validarPass2Evento, false);
     document.getElementById("edad").addEventListener("blur", validarEdadEvento, false);
     document.getElementById("genero").addEventListener("blur", validarGeneroEvento, false);
-    document.getElementById("vehicle1").addEventListener("blur", validarInt1Evento, false);
+    document.getElementById("intereses").addEventListener("blur", validarInt1Evento, false);
 
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
@@ -24,14 +24,14 @@ function crearListeners() {
     document.getElementById("pass2").addEventListener("invalid", notificarErrorPass2Evento, false);
     document.getElementById("edad").addEventListener("invalid", notificarErrorEdadEvento, false);
     document.getElementById("genero").addEventListener("invalid", notificarErrorGeneroEvento, false);
-    document.getElementById("vehicle1").addEventListener("invalid", notificarErrorInt1Evento, false);
+    document.getElementById("intereses").addEventListener("invalid", notificarErrorInt1Evento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresNombreEvento, false);
     document.getElementById("pass").addEventListener("input", revisarErroresPassEvento, false);
     document.getElementById("pass2").addEventListener("input", revisarErroresPass2Evento, false);
     document.getElementById("edad").addEventListener("input", revisarErroresEdadEvento, false);
     document.getElementById("genero").addEventListener("input", revisarErroresGeneroEvento, false);
-    document.getElementById("vehicle1").addEventListener("input", revisarErroresInt1Evento, false);
+    document.getElementById("intereses").addEventListener("input", revisarErroresInt1Evento, false);
     
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
@@ -129,20 +129,25 @@ function actualizarErroresPass2(pass2){
  }
  //Interes1
  function validarInt1Evento (e){
-    const vehicle1 = e.target;
-    const vehicle2 = e.target;
-   actualizarErroresInt1(vehicle1);
-    validarCampo(vehicle1);
+    const intereses = e.target;
+   actualizarErroresInt1(intereses);
+    validarCampo(intereses);
 }
-function actualizarErroresInt1(vehicle1){
-    const contenido = vehicle1.checked;
-    const contenido2 = document.getElementById(vehicle2).checked;
+function actualizarErroresInt1(intereses){
+    let count = 0;
     let mensaje = "";
 
-    if(!contenido && !contenido2) {
+    const contenido = document.querySelectorAll("type[checkbox]");
+    
+    for(let i =0; i<contenido.length; i++){
+        if(contenido[i].checked){
+            count = count + 1;
+        }
+    }
+    if(count < MIN_INTERESES) {
       mensaje = `Debe seleccionar almenos dos intereses`;
       }
-    vehicle1.setCustomValidity(mensaje);
+    intereses.setCustomValidity(mensaje);
 }
 
 function validarCampoEvento(e) {
@@ -238,19 +243,19 @@ function notificarErrorPass2Evento(e){
  }
  //Interes1
  function revisarErroresInt1Evento(e){
-    const vehicle1 = e.target;
-    actualizarErroresInt1(campo);
-    if(vehicle1.validity.valid){
-        eliminarErrores(vehicle1);
+    const intereses = e.target;
+    actualizarErroresInt1(intereses);
+    if(intereses.validity.valid){
+        eliminarErrores(intereses);
     }
 }
 function notificarErrorInt1Evento(e){
-    const vehicle1 = e.target;
+    const intereses = e.target;
     let mensajes = [];
-    if(vehicle1.validity.customError){
-        mensajes.push(vehicle1.validationMessage);
+    if(intereses.validity.customError){
+        mensajes.push(intereses.validationMessage);
     }
-    mostrarMensajesErrorEn(mensajes, vehicle1);
+    mostrarMensajesErrorEn(mensajes, intereses);
 }
 
 function hayErrorEnCampo(campo) {

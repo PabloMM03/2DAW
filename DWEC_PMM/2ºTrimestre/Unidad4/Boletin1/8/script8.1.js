@@ -24,7 +24,7 @@ function crearListeners() {
     document.getElementById("si").addEventListener("blur", validarSIEvento, false);
     document.getElementById("ocupacion").addEventListener("blur", validarOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("blur", validarFechaEvento, false);
-    document.getElementById("cine").addEventListener("blur", validarInteresesEvento, false);
+    document.getElementById("intereses").addEventListener("blur", validarInteresesEvento, true);
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("apellidos").addEventListener("invalid", notificarErrorApellidosEvento, false);
@@ -33,7 +33,7 @@ function crearListeners() {
     document.getElementById("si").addEventListener("invalid", notificarErrorSIEvento, false);
     document.getElementById("ocupacion").addEventListener("invalid", notificarErrorOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("invalid", notificarErrorFechaEvento, false);
-    document.getElementById("cine").addEventListener("invalid", notificarErrorInteresesEvento, false);
+    document.getElementById("intereses").addEventListener("invalid", notificarErrorInteresesEvento, true);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
@@ -42,7 +42,7 @@ function crearListeners() {
     document.getElementById("si").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("cine").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("intereses").addEventListener("input", revisarErroresEvento, true);
 
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
@@ -190,29 +190,26 @@ function actualizarErroresURL(url){
 
 ///////////////////////////////////////////////INTERESES////////////////////////////////////////
 function validarInteresesEvento(e){
-    const inter = e.target;
-    actualizarErroresIntereses(inter);
-    validarCampo(inter);
+    const intereses = e.target;
+    actualizarErroresIntereses(intereses);
+    validarCampo(intereses);
 
 }
-function actualizarErroresIntereses(inter){
-    const contenido = document.getElementById("cine").checked;
-    const contenido2 = document.getElementById("cine").checked;
-    const contenido3 = document.getElementById("cine").checked;
-
+function actualizarErroresIntereses(intereses){
+    let count = 0;
     let mensaje = "";
-        if((!contenido && !contenido2) || (!contenido && !contenido3)){
-            mensaje = `Debe seleccionar dos intereses`;
-        }if((!contenido2 && !contenido3)){
-            mensaje = `Debe seleccionar dos intereses`;
-        }if((contenido && contenido2)){
-            mensaje =" ";
-        }if((contenido && contenido3)){
-            mensaje = " ";
-        }if((contenido2 && contenido3)){
-            mensaje = " ";
+
+    const contenido = document.querySelectorAll('input[type = checkbox]');
+    
+    for(let i = 0; i<contenido.length; i++){
+        if(contenido[i].checked){
+            count++;
         }
-        inter.setCustomValidity(mensaje);
+    }
+    if(count < MIN_INTERESES) {
+      mensaje = `Debe seleccionar almenos dos intereses`;
+      }
+    intereses.setCustomValidity(mensaje);
 }
 ///////////////////////////////////////////POR DEFECTO/////////////////////////////////////////////
 function validarCampoEvento(e){
@@ -308,14 +305,12 @@ function  notificarErrorURLEvento(e){
 
 //Intereses
 function notificarErrorInteresesEvento(e){
-    const inter = e.target;
-
+    const intereses = e.target;
     let mensajes = [];
-
-    if(inter.validity.customError){
-        mensajes.push(inter.validationMessage);
+    if(intereses.validity.customError){
+        mensajes.push(intereses.validationMessage);
     }
-    mostrarMensajesErrorEn(mensajes, inter);
+    mostrarMensajesErrorEn(mensajes, intereses);
 }
 //////////////////////////////////////POR DEFCTO 2////////////////////////////////////
 
@@ -376,8 +371,7 @@ function validarFormularioEvento(e){
     let formValido = validarCampo(document.getElementById("nombre"));
         formValido = validarCampo(document.getElementById("apellidos")) && formValido;
         formValido = validarCampo(document.getElementById("edad"))&& formValido;
-        formValido = validarCampo(document.getElementById("cine"))&& formValido;
-        // formValido = validarCampo(document.getElementById("no"))&& formValido;
+        formValido = validarCampo(document.getElementById("intereses"))&& formValido;
         formValido = validarCampo(document.getElementById("ocupacion")) && formValido;
         formValido = validarCampo(document.getElementById("fecha")) && formValido;
         
