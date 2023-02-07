@@ -47,7 +47,12 @@ function crearListeners() {
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
 
+
 }
+function validateForm(e) {
+    
+
+  }
 
 ///////////////////////////////////////NOMBRE/////////////////////////////////////////////
 function validarNombreEvento(e){
@@ -357,6 +362,16 @@ function insertarDespues(campoReferencia, campoAnadir){
 }
 
 function validarFormularioEvento(e){
+
+    //Hacer focus primer error
+    let form = document.getElementById("formulario").querySelectorAll("input");
+  
+    for (let i = 0; i < form.length; i++) {
+      if (!form[i].checkValidity()) {
+        form[i].focus();
+        break;
+      }
+    }
 
     let formValido = validarCampo(document.getElementById("nombre"));
         formValido = validarCampo(document.getElementById("apellidos")) && formValido;
