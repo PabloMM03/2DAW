@@ -28,7 +28,7 @@
                 <label for="desc" class="form-label">Descripción Personal</label>
                 <textarea class="form-control" id="desc" rows="3"></textarea>
 
-            <fieldset> 
+            <fieldset id="hijos"> 
                 <legend>Hijos:</legend>
                 <input class = "radio" type="radio" id="si" name="hijos" value="Si">
                 <label for="si">Si</label>
@@ -45,13 +45,12 @@
             </select>
 
             <fieldset id="intereses">
-                <p id="p_intereses"></p>
                 <legend>Intereses:</legend>
                 <input class="form-check-input" type="checkbox" id="cine" name="intereses1" value="cine">
                 <label for="cine">Cine</label>
-                <input class="form-check-input" type="checkbox" id="musica" name="intereses2" value="musica">
+                <input class="form-check-input" type="checkbox" id="musica" name="intereses1" value="musica">
                 <label for="musica">Musica</label>
-                <input class="form-check-input" type="checkbox" id="teatro" name="intereses3" value="teatro">
+                <input class="form-check-input" type="checkbox" id="teatro" name="intereses1" value="teatro">
                 <label for="teatro">Teatro</label>
             </fieldset>
             <input type="submit" value="Enviar" formnovalidate="formnovalidate">

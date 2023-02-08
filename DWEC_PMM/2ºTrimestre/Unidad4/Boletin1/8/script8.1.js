@@ -21,31 +21,31 @@ function crearListeners() {
     document.getElementById("apellidos").addEventListener("blur", validarApellidosEvento, false);
     document.getElementById("edad").addEventListener("blur", validarEdadEvento, false);
     document.getElementById("url").addEventListener("blur", validarURLEvento, false);
-    document.getElementById("si").addEventListener("blur", validarSIEvento, false);
+    document.getElementById("hijos").addEventListener("blur", validarSIEvento, true);
     document.getElementById("ocupacion").addEventListener("blur", validarOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("blur", validarFechaEvento, false);
     document.getElementById("intereses").addEventListener("blur", validarInteresesEvento, true);
-    document.getElementById("desc").addEventListener("blur", validarDescEvento, true);
+    document.getElementById("desc").addEventListener("blur", validarDescEvento, false);
 
     document.getElementById("nombre").addEventListener("invalid", notificarErrorNombreEvento, false);
     document.getElementById("apellidos").addEventListener("invalid", notificarErrorApellidosEvento, false);
     document.getElementById("edad").addEventListener("invalid", notificarErrorEdadEvento, false);
     document.getElementById("url").addEventListener("invalid", notificarErrorURLEvento, false);
-    document.getElementById("si").addEventListener("invalid", notificarErrorSIEvento, false);
+    document.getElementById("hijos").addEventListener("invalid", notificarErrorSIEvento, true);
     document.getElementById("ocupacion").addEventListener("invalid", notificarErrorOcupacionEvento, false);
     document.getElementById("fecha").addEventListener("invalid", notificarErrorFechaEvento, false);
     document.getElementById("intereses").addEventListener("invalid", notificarErrorInteresesEvento, true);
-    document.getElementById("desc").addEventListener("invalid", notificarErrorDescEvento, true);
+    document.getElementById("desc").addEventListener("invalid", notificarErrorDescEvento, false);
 
     document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("edad").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("url").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("si").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("hijos").addEventListener("input", revisarErroresEvento, true);
     document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
     document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("intereses").addEventListener("input", revisarErroresEvento, true);
-    document.getElementById("desc").addEventListener("input", revisarErroresEvento, true);
+    document.getElementById("intereses").addEventListener("input", revisarErroresIntEvento, true);
+    document.getElementById("desc").addEventListener("input", revisarErroresEvento, false);
     
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
@@ -218,7 +218,7 @@ function actualizarErroresIntereses(intereses){
     let count = 0;
     let mensaje = "";
 
-    const contenido = document.querySelectorAll('input[type = checkbox]');
+    const contenido = document.querySelectorAll('input[type="checkbox"]');
     
     for(let i = 0; i<contenido.length; i++){
         if(contenido[i].checked){
@@ -226,7 +226,9 @@ function actualizarErroresIntereses(intereses){
         }
     }
     if(count < MIN_INTERESES) {
-      mensaje = `Debe seleccionar almenos dos intereses`;
+        mensaje = `Debe seleccionar almenos dos intereses`;
+      }else{
+        mensaje = ``;
       }
     intereses.setCustomValidity(mensaje);
 }
@@ -237,16 +239,20 @@ function validarCampoEvento(e){
 
 function revisarErroresEvento(e){
     const campo = e.target;
-    let restantes = 400- campo.value.length;
-    if(restantes<0){
-        restantes = 0;
-    }
-    document.getElementById(campo.id).innerHTML = 'Caracteres restantes: ' + restantes;
     actualizarErroresNombre(campo);
     if(campo.validity.valid){
         eliminarErrores(campo);
     }
 }
+
+function revisarErroresIntEvento(e){
+    const campo = document.getElementById("intereses");
+    actualizarErroresIntereses(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+
 
 function validarCampo(campo){
     eliminarErrores(campo);
@@ -405,6 +411,7 @@ function validarFormularioEvento(e){
     let formValido = validarCampo(document.getElementById("nombre"));
         formValido = validarCampo(document.getElementById("apellidos")) && formValido;
         formValido = validarCampo(document.getElementById("edad"))&& formValido;
+        formValido = validarCampo(document.getElementById("hijos"))&& formValido;
         formValido = validarCampo(document.getElementById("intereses"))&& formValido;
         formValido = validarCampo(document.getElementById("ocupacion")) && formValido;
         formValido = validarCampo(document.getElementById("fecha")) && formValido;
