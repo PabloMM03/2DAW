@@ -77,19 +77,17 @@ function actualizarErroresEdad(edad){
 //Pass
 function validarPassEvento(e){
     const pass = e.target;
-    const pass2 = e.target;
+    // const pass2 = e.target;
     actualizarErroresPass(pass);
     validarCampo(pass);
 }
 function actualizarErroresPass(pass){
     const contenido = pass.value;
-    const contenido2 = pass2.value
+    // const contenido2 = pass2.value
     let mensaje = "";
 
     if(contenido === ""){
         mensaje = `EL campo ${pass.name} no puede estar vacío`;
-    }if(contenido !== contenido2){
-        mensaje = `El campo ${pass.name} no puede ser diferente a ${pass2.name}`;       
     }
     pass.setCustomValidity(mensaje);
 }
