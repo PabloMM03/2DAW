@@ -37,15 +37,15 @@ function crearListeners() {
     document.getElementById("intereses").addEventListener("invalid", notificarErrorInteresesEvento, true);
     document.getElementById("desc").addEventListener("invalid", notificarErrorDescEvento, false);
 
-    document.getElementById("nombre").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("apellidos").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("edad").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("url").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("hijos").addEventListener("input", revisarErroresEvento, true);
-    document.getElementById("ocupacion").addEventListener("input", revisarErroresEvento, false);
-    document.getElementById("fecha").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("nombre").addEventListener("input", revisarErroresNombreEvento, false);
+    document.getElementById("apellidos").addEventListener("input", revisarErroresApellidosEvento, false);
+    document.getElementById("edad").addEventListener("input", revisarErroresEdadEvento, false);
+    document.getElementById("url").addEventListener("input", revisarErroresUrlEvento, false);
+    document.getElementById("hijos").addEventListener("input", revisarErroresSIEvento, true);
+    document.getElementById("ocupacion").addEventListener("input", revisarErroresOcupacionEvento, false);
+    document.getElementById("fecha").addEventListener("input", revisarErroresFechaEvento, false);
     document.getElementById("intereses").addEventListener("input", revisarErroresIntEvento, true);
-    document.getElementById("desc").addEventListener("input", revisarErroresEvento, false);
+    document.getElementById("desc").addEventListener("input", revisarErroresDescEvento, false);
     
     document.getElementById("formulario").addEventListener("submit", validarFormularioEvento, false);
 
@@ -233,18 +233,71 @@ function actualizarErroresIntereses(intereses){
     intereses.setCustomValidity(mensaje);
 }
 ///////////////////////////////////////////POR DEFECTO/////////////////////////////////////////////
-function validarCampoEvento(e){
-    return validarCampo(e.target);
-}
-
-function revisarErroresEvento(e){
+//Nombre
+function revisarErroresNombreEvento(e){
     const campo = e.target;
     actualizarErroresNombre(campo);
     if(campo.validity.valid){
         eliminarErrores(campo);
     }
 }
-
+//Apellidos
+function revisarErroresApellidosEvento(e){
+    const campo = e.target;
+    actualizarErroresApellidos(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//Edad
+function revisarErroresEdadEvento(e){
+    const campo = e.target;
+    actualizarErroresEdad(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//URL
+function revisarErroresUrlEvento(e){
+    const campo = e.target;
+    actualizarErroresURL(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//SI HIJOS RADIO
+function revisarErroresSIEvento(e){
+    const campo = e.target;
+    actualizarErroresSI(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//CHECKBOX
+function revisarErroresOcupacionEvento(e){
+    const campo = e.target;
+    actualizarErroresOcupacion(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//FECHA
+function revisarErroresFechaEvento(e){
+    const campo = e.target;
+    actualizarErroresFecha(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//DESCRIPCION
+function revisarErroresDescEvento(e){
+    const campo = e.target;
+    actualizarErroresDesc(campo);
+    if(campo.validity.valid){
+        eliminarErrores(campo);
+    }
+}
+//INTERESES
 function revisarErroresIntEvento(e){
     const campo = document.getElementById("intereses");
     actualizarErroresIntereses(campo);
