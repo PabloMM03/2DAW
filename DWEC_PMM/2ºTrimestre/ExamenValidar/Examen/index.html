@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" />
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="signupSection">
+        <form id="form-registro" action="#" method="POST" class="formulario" name="formulario">
+            <h2>Regístrate</h2>
+            <ul class="sinMarca">
+                <li>
+                    <label for="nombre" class="campoLabel">Nombre de usuario</label>
+                    <input type="text" class="campoInput" id="nombre" name="nombre"/>
+                    <div id="error-nombre" class="texto-error" aria-labelledby="nombre"></div>
+                </li>
+                <li>
+                    <label for="email" class="campoLabel">Dirección de correo electrónico</label>
+                    <input type="email" class="campoInput" id="email" name="email" title="Debe introducir un correo válido" placeholder="ejemplo@dominio.com" />
+                    <div id="error-email" class="texto-error" aria-labelledby="email"></div>
+                </li>
+                <li>
+                    <label for="clave" class="campoLabel">Contraseña</label>
+                    <input type="password" class="campoInput" title="La contraseña debe contener al menos una letra mayúscula, una minúscula, un número, un símbolo y una longitud mínima de 8" id="clave" name="clave" />
+                    <div id="error-clave" class="texto-error" aria-labelledby="clave"></div>
+                </li>
+                <li class="relativo">
+                    <label for="pais" class="campoLabel">País</label>
+                        <select id="pais" class="checkPais" name="pais">
+                            <option value="df" selected>Selecciona un país</option>
+                            <option value="pt">Portugal</option>
+                            <option value="fr">Francia</option>
+                            <option value="uk">Reino Unido</option>
+                            <option value="de">Alemania</option>
+                            <option value="es">España</option>
+                        </select>
+                        <span class="flechaSelect"></span>
+                    <div id="error-pais" class="texto-error" aria-labelledby="pais"></div>
+                </li>
+                <li>
+                    <div class="contenedor-cumple">
+                        <fieldset>
+                            <legend>Fecha de nacimiento</legend>
+                            <div id="contenedor-campos-cumple">
+                                <div>
+                                    <label for="dia" class="campoLabel">Día</label>
+                                    <input class="campoInput" type="text" title="Introduce un día entre 1 y 31" id="dia" name="dia" placeholder="DD"/>
+                                </div>
+                                <div>
+                                    <label for="mes" class="campoLabel">Mes</label>
+                                    <input class="campoInput" type="text" title="Introduce un mes entre 1 y 12" id="mes" name="mes" placeholder="MM"/>
+                                </div>
+                                <div>
+                                    <label for="año " class="campoLabel">Año</label>
+                                    <input class="campoInput" type="text" title="Introduce un año entre 1900 y 2099" id="año" name="año" placeholder="AAAA"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div id="error-dia" class="texto-error" aria-labelledby="dia"></div>
+                        <div id="error-mes" class="texto-error" aria-labelledby="mes"></div>
+                        <div id="error-año" class="texto-error" aria-labelledby="año    "></div>
+                    </div>
+                </li>
+                <li>
+                    <label class="contenedor-condiciones campoLabel" for="condiciones">Acepto los términos del servicio
+                            <input type="checkbox" id="condiciones" name="condiciones" value="aceptadas">
+                            <span class="checkmark"></span>
+                    </label>
+                    <div id="error-condiciones" class="texto-error" aria-labelledby="dia"></div>
+                </li>
+
+                <li id="boton-centrado">
+                    <input type="submit" id="unete-btn" name="unete" alt="unete" value="Únete">
+                </li>
+            </ul>
+        </form>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
