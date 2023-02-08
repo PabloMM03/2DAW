@@ -336,5 +336,20 @@ public function _tandaPokemonsBD(){
 
 }
 
+public function actualizar($params_pokemon){
+
+    $query = $this->manejador_conexion->prepare("UPDATE pokemons SET nombre =:poke_nombre, tipo =:poke_tipo, url_imagen=:poke_img, descripcion=:poke_desc 
+    WHERE id_pokemon =:poke_id")->fetchAll(PDO::FETCH_ASSOC);
+
+    return $query->execute(array(
+
+        'nombre' =>$params_pokemon['poke_nombre'],
+        'poke_tipo' =>$params_pokemon['poke_tipo'],
+        'poke_img' =>$params_pokemon['poke_img'],
+        'poke_desc' =>$params_pokemon['poke_desc'],
+
+    ));
+    
+}
 
 }

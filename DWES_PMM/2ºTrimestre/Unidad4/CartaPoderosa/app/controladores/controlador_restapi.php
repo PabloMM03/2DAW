@@ -69,18 +69,22 @@ class ControladorRestApi{
                             'results' => "Pokemon eliminado correctamente"
                         );
 
-                        
-                        
+                           
                     }          
                     $encode = json_encode($imp, http_response_code($imp['status']));
                     echo $encode;  
                 }
-                
+                //Comprobar terminal
+                //curl -X "DELETE" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/deletePokemon/1'
+
                 break;
 
             //Añadimos un pokemon 
 
             case 'POST':
+                if(isset($parameters[0]) && $parameters[0] === "añadirPokemon"){
+
+                
                 $modeloPokemon = new ModeloPokemon();
 
                  if(isset($_POST['poke_nombre']) && !empty($_POST['poke_nombre'])){
@@ -102,11 +106,13 @@ class ControladorRestApi{
                      'poke_desc' =>$descripcion,
                  );
 
-                 $modeloPokemon->añadirPokemon($params_pokemon);
+                 $imp = $modeloPokemon->añadirPokemon($params_pokemon);
+                 $encode = json_encode($imp);
+                }
+                //Comprobar Terminal
+                //curl -d '{"id_pokemon":2,"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripci\u00f3n del malvado pokemon raichu."}' -X "POST" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/añadirPokemon/1'
 
                  break;
-
-            //
 
             case 'PUT':
 
