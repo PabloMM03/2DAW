@@ -92,7 +92,7 @@ function actualizarErroresPass(clave){
     let regexp = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
     if(contenido === ""){
         mensaje = `El campo ${clave.name} no puede estar vacio`;
-    }if(contenido !== regexp){
+    }else if(contenido !== regexp){
         mensaje = `El campo ${clave.name} no cumple con los requisitos`;
     }
     clave.setCustomValidity(mensaje);
@@ -125,7 +125,7 @@ function actualizarErroresDia(dia){
 
     if(contenido === ""){
         mensaje = `El campo ${dia.name} no puede estar vacio`;
-    }if((contenido > 31) || (contenido < 1)){
+    }else if((contenido > 31) || (contenido < 1)){
         mensaje = `EL campo ${dia.name} debe de tener un valor entre 1 y 31`;
     }
 
@@ -143,7 +143,7 @@ function actualizarErroresMes(mes){
 
     if(contenido === ""){
         mensaje = `El campo ${mes.name} no puede estar vacio`;
-    }if((contenido > 12) || (contenido < 1)){
+    }else if((contenido > 12) || (contenido < 1)){
         mensaje = `EL campo ${dia.name} debe de tener un valor entre 1 y 12`;
     }
 
@@ -161,7 +161,7 @@ function actualizarErroresAño(año){
 
     if(contenido === ""){
         mensaje = `El campo ${año.name} no puede estar vacio`;
-    }if((contenido > 2099) || (contenido < 1900)){
+    }else if((contenido > 2099) || (contenido < 1900)){
         mensaje = `EL campo ${año.name} debe de tener un valor entre 1900 y 2099`;
     }
 
