@@ -147,7 +147,7 @@ function validarSIEvento(e){
 }
 
 function actualizarErroresSI(si){
-    const contenido = document.querySelector('input[name="hijos"]:checked');
+    const contenido = document.querySelector('input[type="radio"]:checked');
     let mensaje = "";
     if(!contenido){
         mensaje = `Debe seleccionar un campo Hijos`;
