@@ -86,21 +86,15 @@ class ControladorRestApi{
                 
                 $modeloPokemon = new ModeloPokemon();
 
-                 if(isset($_POST['poke_nombre']) && !empty($_POST['poke_nombre'])){
-                     $nombre = $_POST['poke_nombre'];
-                 }if(isset($_POST['poke_tipo']) && !empty($_POST['poke_tipo'])){
-                     $tipo = $_POST['poke_tipo'];
-                 }
-                 if(isset($_POST['poke_desc']) && !empty($_POST['poke_desc'])){
+                    $nombre = $_POST['poke_nombre'];
+                    $tipo = $_POST['poke_tipo'];
+                    $url_imagen = $_POST['poke_img'];
                     $descripcion = $_POST['poke_desc'];
-                }
-                 if(isset($_POST['poke_img']) && !empty($_POST['poke_img'])){
-                     $url_imagen = $_POST['poke_img'];
-                 }
+                    
                  
                  $params_pokemon = array(
                      'poke_nombre' =>$nombre,
-                     'poke_tipo'  => $tipo,
+                     'poke_tipo'  =>$tipo,
                      'poke_img' =>$url_imagen,
                      'poke_desc' =>$descripcion,
                  );
