@@ -76,7 +76,6 @@ class ControladorRestApi{
                 }
                 //Comprobar terminal
                 //curl -X "DELETE" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/deletePokemon/1'
-
                 break;
 
             //Añadimos un pokemon 
@@ -108,13 +107,21 @@ class ControladorRestApi{
 
                  $imp = $modeloPokemon->añadirPokemon($params_pokemon);
                  $encode = json_encode($imp);
+                 echo $encode;
                 }
                 //Comprobar Terminal
                 //curl -d '{"id_pokemon":2,"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripci\u00f3n del malvado pokemon raichu."}' -X "POST" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/añadirPokemon/1'
-
                  break;
 
             case 'PUT':
+
+                if(isset($parameters[0]) && $parameters[0] === "updatePokemon"){
+                    $modeloPokemon = new ModeloPokemon();
+
+                    $imp = $modeloPokemon->actualizar($params_pokemon['poke_id']);
+                    $encode = json_encode($imp);
+                    echo $encode;
+                }
 
                 break;
 
