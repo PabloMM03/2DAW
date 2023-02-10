@@ -10,7 +10,7 @@
 body {
 	background-image: url("../res/fondo1.jpg");
 	background-repeat: no-repeat;
-	background-size: auto;
+	background-size:cover;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
@@ -39,7 +39,7 @@ table {
 	padding: 6px;
 	text-align: left;
   }
-
+  
   div.color_fondo{
 	
 	color: white;
@@ -398,11 +398,97 @@ select.error:focus ~ .flechaSelect {
 	margin-top: 40px;
 }
 nav.navbar{
-	position: sticky;
+	position: fixed;
 	top: 0;
     left: 0;
     width: 100%;
     background-color: #333;
     color: #fff;
     padding: 10px;
+	z-index: 10;
 }
+table:hover{
+    background-color:darkcyan;
+}
+th{
+    background-color: #1f53c5;
+    border-bottom: solid 5px cornflowerblue;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: black;
+}
+tr:hover td{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.menu{
+    width: 2.2rem;
+    /* height: 2.7rem; */
+    background-color: black;
+    border-radius: 0.5rem;
+    position: fixed;
+    top: 30%;
+    left: 0%;
+    font-family: sans-serif;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    transition: 0.7s left;
+    cursor: pointer;
+}
+.checkbox:checked ~ .menu{
+    left: 15%;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+.left-panel{
+    width: 15%;
+    height: 200%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 73px;
+    left: -40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.4s;
+    color: white;
+    text-align: center;
+    font-family:'lobster',cursive;
+    font-size: 1.2rem;
+    box-shadow:7px 13px 37px #000 ;
+    
+}
+.left-panel ul li{
+    list-style: none;
+    margin: 5px;
+}
+.left-panel ul li a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-family:'lobster';
+    font-size: 1.2rem;
+    padding: 5px;
+}
+.checkbox:checked ~ .left-panel{
+    left: 0;
+}
+.checkbox{
+    display: none;
+}
+.bg-dark {
+    background:none;
+	color: white;
+	margin-top: 50%;
+	position: fixed;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	z-index: 1;
+	
+  }
+  
+

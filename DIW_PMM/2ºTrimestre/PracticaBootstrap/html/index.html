@@ -46,7 +46,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </div>
     </nav>
-
+<!--Lista desplegable-->
     <div class="dropdown">
       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Servicios
@@ -59,9 +59,65 @@
       </div>
     </div>
 
-    
-    
+    <!--panel lateral-->
+    <input type="checkbox" class="checkbox" id="check">
+    <label for="check" class="menu">|||</label>
 
+<div class="left-panel">
+
+<ul>
+
+<h3>Listado Paciente</h3>
+<li><a href="#" class="nav-enlace">Ficha Paciente</a></li>
+<li><a href="#" class="nav-enlace">Administracion</a></li>
+<li><a href="#" class="nav-enlace">Tu Salud</a></li>
+<li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Politicas
+</button></li>
+</ul>
+
+</div>
+
+
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Cabecera del Modal -->
+      <div class="modal-header">
+        <h4 class="modal-title">Informacion de politicas</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Contenido del Modal -->
+      <div class="modal-body">
+    <p> Autorizado: El acceso a los sistemas y recursos informáticos de la empresa sólo está permitido a los empleados autorizados y a aquellos con una necesidad legítima de acceder a ellos.</p>
+
+<p> Contraseñas: Todos los usuarios deben tener una contraseña segura y confidencial y deben cambiarla periódicamente.</p>
+
+<p>Uso ético: El acceso a los sistemas y recursos informáticos de la empresa debe ser utilizado de manera ética y profesional. Prohibido el uso de los recursos para actividades ilegales o inapropiadas.</p>
+
+<p>Protección de la información: Toda la información almacenada en los sistemas y recursos informáticos de la empresa debe ser protegida y mantenida confidencial.</p>
+
+<p>Monitoreo: La empresa se reserva el derecho de monitorear el uso de los sistemas y recursos informáticos en cualquier momento para garantizar su adecuado uso y protección de la información.</p>
+
+  <p>Cumplimiento de la ley: Todos los usuarios deben cumplir con todas las leyes y regulaciones aplicables relacionadas con el uso de los sistemas y recursos informáticos.</p>
+      </div>
+
+      <!-- Pie de página del Modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--Principal-->
+  
     <div class="container my-5">
         <h1>Bienvenido a mi Pagina Web</h1>
         <p>
@@ -159,14 +215,21 @@
         </div>
       </div>
     </div>
+    
 </div>
 
 
+<footer class="bg-dark py-3">
+  <div class="container">
+    <p class="text-center ">Autor: Pablo Millán</p>
+    <p class="text-center " ><a href="mailto:pabloskym16@gmail.com">pablokym16@gmail.com</a></p>
+    <p class="text-center text-white">Copyright &copy; Pablo Millán 2023</p>
+  </div>
+</footer>
 
 
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
@@ -176,6 +239,14 @@
         });
         
         </script>
+<script>
+  setTimeout(function() {
+    var confirmResult = confirm("¿Desea continuar navegando en esta página?");
+    if (!confirmResult) {
+      window.location = "https://google.com";
+    }
+  }, 5000);
+</script>
 
     </body>
 </html>
