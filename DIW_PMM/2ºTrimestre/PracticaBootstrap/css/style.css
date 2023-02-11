@@ -25,6 +25,7 @@ h2{
 }
 div.dropdown{
 	margin-top: 5px;
+	
 }
 
 table {
@@ -439,27 +440,31 @@ tr:hover td{
     cursor: pointer;
 }
 .checkbox:checked ~ .menu{
-    left: 15%;
+    left: 16%;
     border-radius: 0 0.5rem 0.5rem 0;
+	z-index: 1;
 }
 .left-panel{
-    width: 15%;
-    height: 200%;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 73px;
-    left: -40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: left 0.4s;
-    color: white;
-    text-align: center;
-    font-family:'lobster',cursive;
-    font-size: 1.2rem;
-    box-shadow:7px 13px 37px #000 ;
     
+  color: white;
+  text-align: center;
+  font-family:'lobster',cursive;
+  font-size: 1.2rem;
+  box-shadow:7px 13px 37px #000 ;
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  top: 73px;
+  left: -30%;
+  background-image: url("../res/fondo1.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
+  padding: 20px;
+  transition: left 0.4s;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 .left-panel ul li{
     list-style: none;
@@ -471,7 +476,7 @@ tr:hover td{
     text-align: center;
     font-family:'lobster';
     font-size: 1.2rem;
-    padding: 5px;
+    padding: 10px;
 }
 .checkbox:checked ~ .left-panel{
     left: 0;
@@ -483,7 +488,7 @@ tr:hover td{
     background:none;
 	color: white;
 	margin-top: 50%;
-	position: fixed;
+	
 	left: 0;
 	width: 100%;
 	bottom: 0;
@@ -491,4 +496,3 @@ tr:hover td{
 	
   }
   
-
