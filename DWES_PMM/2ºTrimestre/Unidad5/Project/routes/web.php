@@ -27,10 +27,15 @@ Route::get('cursos/create', function () {
 });
 
 //cursos/php (variable) ejecuta esta
-Route::get('cursos/{curso}', function ($curso) {
-    return "Bienvenidoa al curso: $curso";
-});
+// Route::get('cursos/{curso}', function ($curso) {
+//     return "Bienvenidoa al curso: $curso";
+// });
 
-Route::get('cursos/{curso}/{categoria}', function ($curso, $categoria) {
-    return "Bienvenidoa al curso: $curso, de la categoria $categoria";
+Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
+
+    if($categoria){
+        return "Bienvenidoa al curso: $curso, de la categoria $categoria";
+    }else{
+        return "Bienvenidoa al curso: $curso";
+    }
 });
