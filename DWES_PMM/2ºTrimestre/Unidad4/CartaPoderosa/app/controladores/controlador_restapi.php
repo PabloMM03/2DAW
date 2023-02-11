@@ -75,37 +75,45 @@ class ControladorRestApi{
                     echo $encode;  
                 }
                 //Comprobar terminal
-                //curl -X "DELETE" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/deletePokemon/1'
+                //curl -X "DELETE" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=deletePokemon/1'
                 break;
 
             //Añadimos un pokemon 
 
             case 'POST':
-                if(isset($parameters[0]) && $parameters[0] === "añadirPokemon"){
+                if(isset($parameters[0]) && $parameters[0] === "addPokemon"){
 
                 
                 $modeloPokemon = new ModeloPokemon();
 
-                    $nombre = $_POST['poke_nombre'];
-                    $tipo = $_POST['poke_tipo'];
-                    $url_imagen = $_POST['poke_img'];
-                    $descripcion = $_POST['poke_desc'];
+                echo '<pre>';
+                print_r($_POST);
+                echo '</pre>';
+
+                
+                    // $nombre = $_POST['poke_nombre'];
+                    // $tipo = $_POST['poke_tipo'];
+                    // $url_imagen = $_POST['poke_img'];
+                    // $descripcion = $_POST['poke_desc'];
                     
                  
                  $params_pokemon = array(
-                     'poke_nombre' =>$nombre,
-                     'poke_tipo'  =>$tipo,
-                     'poke_img' =>$url_imagen,
-                     'poke_desc' =>$descripcion,
+                     'poke_nombre' =>$_POST['poke_nombre'],
+                     'poke_tipo'  =>$_POST['poke_tipo'],
+                     'poke_img' =>$_POST['poke_img'],
+                     'poke_desc' =>$_POST['poke_desc'],
                  );
 
-                 $imp = $modeloPokemon->añadirPokemon($params_pokemon);
+                 $imp =$modeloPokemon->añadirPokemon($params_pokemon);
                  $encode = json_encode($imp);
                  echo $encode;
                 }
                 //Comprobar Terminal
                 //curl -d '{"id_pokemon":2,"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripci\u00f3n del malvado pokemon raichu."}' -X "POST" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/añadirPokemon/1'
-                 break;
+                //curl -d '{"nombre":"Raichu","tipo":"electric","url_imagen":https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' -X "POST" http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon
+                // curl-v -XPOST -H "Content-type: application/json" -d '{"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' 'http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon'
+                
+                break;
 
             case 'PUT':
 
