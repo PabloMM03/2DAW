@@ -1,0 +1,520 @@
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
+*:focus {
+	outline: 0 !important;
+}
+
+
+body {
+	background-image: url("../res/fondo1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	overflow: auto;
+}
+
+h2 {
+	text-align: center;
+	font-weight: 300;
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+
+div.dropdown {
+	margin-top: 5px;
+
+}
+
+table {
+
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 50px;
+
+
+}
+
+th,
+td {
+	border: 1px solid #ddd;
+	padding: 6px;
+	text-align: left;
+}
+
+div.color_fondo {
+
+	color: white;
+}
+
+.contenedor-condiciones {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Ocultamos el checkbox del navegador */
+.contenedor-condiciones input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Creamos un checkbox propio */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background: rgba(20, 20, 20, .2);
+	border: 1px solid rgba(10, 180, 180, 1);
+	transition: .3s;
+}
+
+/* Cuando pasamos el ratón sobre el checkbox */
+.contenedor-condiciones:hover #condiciones~.checkmark,
+#condiciones:focus~.checkmark {
+	background: rgba(0, 0, 0, 0.3);
+	border: 2px solid rgb(28, 252, 252);
+	height: 23px;
+	width: 23px;
+	top: -2px;
+	left: -2px;
+}
+
+/* Cuando el checkbox está checked */
+.contenedor-condiciones input:checked~.checkmark {
+	background: rgba(20, 20, 20, .2);
+}
+
+/* Crea la marca (el tick) de checkbox (oculto cuando no está checked) */
+.checkmark::after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Muestra la marca del checkbox cuando está checked */
+.contenedor-condiciones input:checked~.checkmark::after {
+	display: block;
+}
+
+.contenedor-condiciones>.error~.checkmark {
+	border: 1px solid rgb(224, 11, 11);
+}
+
+.contenedor-condiciones:hover>#condiciones.error~.checkmark,
+#condiciones.error:focus~.checkmark {
+	border: 2px solid rgb(224, 11, 11);
+}
+
+.contenedor-condiciones>.error~.checkmark::after {
+	border: 1px solid rgb(224, 11, 11);
+	border-width: 0 3px 3px 0;
+}
+
+/* Estilo del tick del checkbox */
+.contenedor-condiciones .checkmark::after {
+	left: 6px;
+	top: 2px;
+	width: 5px;
+	height: 10px;
+	border-bottom: solid rgba(10, 180, 180, 1);
+	border-right: solid rgba(10, 180, 180, 1);
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	transition: .3s;
+}
+
+/* Estilo del tick del checkbox cuando está enfocado o con el ratón encima */
+.contenedor-condiciones input:hover~.checkmark::after,
+.contenedor-condiciones input:focus~.checkmark::after {
+	left: 7px;
+	top: 3px;
+	border: solid rgb(28, 252, 252);
+	border-width: 0 4px 4px 0;
+
+}
+
+.campoLabel,
+legend {
+	margin-top: 10px;
+	display: block;
+	text-align: left;
+	font-size: small;
+}
+
+legend {
+	padding-top: 10px;
+}
+
+.campoLabelCheck {
+	margin-top: 10px;
+	margin-left: 3px;
+	font-size: small;
+}
+
+.signupSection {
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 560px;
+	height: 780px;
+	display: flex;
+	color: white;
+	box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
+}
+
+.formulario {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	padding: 10px 0;
+	background: rgba(20, 40, 40, .5);
+	transition: .2s;
+
+}
+
+.sinMarca {
+	margin: 0 auto;
+	list-style-type: none;
+	padding: 0;
+}
+
+#unete-btn {
+	border: 1px solid rgba(10, 180, 180, 1);
+	background: rgba(20, 20, 20, .6);
+	font-size: 18px;
+	color: white;
+	margin-top: 20px;
+	padding: 10px 50px;
+	cursor: pointer;
+	transition: .4s;
+}
+
+#unete-btn:hover,
+#unete-btn:focus {
+	background: rgba(20, 20, 20, .8);
+	padding: 10px 80px;
+	border: 2px solid rgb(28, 252, 252);
+	font-weight: 800;
+}
+
+#boton-centrado {
+	margin: 0 auto;
+	display: grid;
+	justify-items: center;
+}
+
+.contenedor-cumple fieldset {
+	border: none;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+#contenedor-campos-cumple {
+	display: flex;
+	align-items: center;
+	width: 265px;
+	justify-content: space-between;
+}
+
+#contenedor-campos-cumple div {
+	width: 30%;
+}
+
+.contenedor-cumple .campoInput {
+	width: 80%;
+}
+
+.campoInput {
+	margin: 5px 0 5px 0;
+	font-size: 16px;
+	padding: 10px;
+	width: 250px;
+	border: 1px solid rgba(10, 180, 180, 1);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	background: rgba(20, 20, 20, .2);
+	color: white;
+	outline: none;
+	transition: .3s;
+}
+
+.campoInput:focus {
+	border: 2px solid rgb(28, 252, 252);
+	background: rgba(0, 0, 0, 0.3);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	padding: 13px 10px;
+	font-weight: 800;
+}
+
+.texto-error {
+	margin-top: -5px;
+	color: rgb(224, 11, 11);
+	font-size: 11px;
+	max-width: 265px;
+}
+
+.error {
+	border: 1px solid rgb(224, 11, 11);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.error:focus {
+	border: 2px solid rgb(224, 11, 11);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+select {
+	/* Reseteamos el select */
+	appearance: none;
+	outline: 0;
+	border: 0;
+	box-shadow: none;
+	/* Lo personalizamos */
+	flex: 1;
+	padding: 0 1em;
+	color: #fff;
+	background-color: var(--darkgray);
+	background-image: none;
+	cursor: pointer;
+	border: 1px solid rgba(10, 180, 180, 1);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	background: rgba(20, 20, 20, .2);
+	height: 45px;
+	transition: .3s all ease;
+	width: 272px;
+	margin-bottom: 5px;
+}
+
+select:focus,
+select:hover {
+	border: 2px solid rgba(10, 180, 180, 1);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	background: rgba(0, 0, 0, .3);
+	height: 52px;
+	font-weight: 800;
+	transition: .3s all ease;
+}
+
+select.error {
+	border: 1px solid rgb(224, 11, 11);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+select.error:focus,
+select.error:hover {
+	border: 2px solid rgb(224, 11, 11);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.relativo {
+	position: relative;
+}
+
+/* div.overflow-auto{
+	overflow: scroll;
+} */
+select option {
+	color: black;
+	font-weight: 500;
+}
+
+/* Flecha del select */
+.flechaSelect {
+	cursor: pointer;
+	left: 245px;
+	top: 31px;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	border-bottom: solid rgba(10, 180, 180, 1);
+	border-right: solid rgba(10, 180, 180, 1);
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	transition: .3s;
+
+}
+
+/* Transición */
+select:hover~.flechaSelect,
+select:focus~.flechaSelect,
+.flechaSelect:hover {
+	left: 244px;
+	top: 33px;
+	border: solid rgb(28, 252, 252);
+	border-width: 0 4px 4px 0;
+}
+
+select.error~.flechaSelect {
+	border: solid rgb(224, 11, 11);
+	border-width: 0 3px 3px 0;
+}
+
+select.error:hover~.flechaSelect,
+select.error:focus~.flechaSelect {
+	border: solid rgb(224, 11, 11);
+	border-width: 0 4px 4px 0;
+}
+
+.cards {
+	margin-top: 40px;
+}
+
+.card {
+	margin-top: 40px;
+}
+
+.otrasCard {
+	margin-top: 40px;
+}
+
+nav.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+	z-index: 10;
+}
+
+table:hover {
+	background-color: darkcyan;
+}
+
+th {
+	background-color: #1f53c5;
+	border-bottom: solid 5px cornflowerblue;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: black;
+}
+
+tr:hover td {
+	background-color: cornflowerblue;
+	color: white;
+}
+
+.menu {
+	width: 2.2rem;
+	/* height: 2.7rem; */
+	background-color: black;
+	border-radius: 0.5rem;
+	position: fixed;
+	top: 30%;
+	left: 0%;
+	font-family: sans-serif;
+	font-size: 2rem;
+	color: white;
+	text-align: center;
+	transition: 0.7s left;
+	cursor: pointer;
+}
+
+.checkbox:checked~.menu {
+	left: 16%;
+	border-radius: 0 0.5rem 0.5rem 0;
+	z-index: 1;
+}
+
+.left-panel {
+
+	color: white;
+	text-align: center;
+	font-family: 'lobster', cursive;
+	font-size: 1.2rem;
+	box-shadow: 7px 13px 37px #000;
+	position: fixed;
+	width: 300px;
+	height: 100%;
+	top: 73px;
+	left: -30%;
+	background-image: url("../res/fondo1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	padding: 20px;
+	transition: left 0.4s;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+}
+
+.left-panel ul li {
+	list-style: none;
+	margin: 5px;
+}
+
+.left-panel ul li a {
+	text-decoration: none;
+	color: white;
+	text-align: center;
+	font-family: 'lobster';
+	font-size: 1.2rem;
+	padding: 10px;
+}
+
+.checkbox:checked~.left-panel {
+	left: 0;
+}
+
+.checkbox {
+	display: none;
+}
+
+.bg-dark {
+	background: none;
+	color: white;
+	margin-top: 50%;
+
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	z-index: 1;
+
+}
+
+ul.pagination {
+	align-items: center;
+	justify-content: center;
+}
