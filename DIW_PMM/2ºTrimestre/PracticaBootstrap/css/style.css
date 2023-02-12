@@ -29,8 +29,9 @@ div.dropdown{
 }
 
 table {
-	border: 1px solid #ddd;
+
 	border-collapse: collapse;
+	width: 100%;
 	margin-top: 50px;
 	
 	
@@ -495,4 +496,7 @@ tr:hover td{
 	z-index: 1;
 	
   }
-  
+  ul.pagination{
+	align-items: center;
+	justify-content: center;
+  }
