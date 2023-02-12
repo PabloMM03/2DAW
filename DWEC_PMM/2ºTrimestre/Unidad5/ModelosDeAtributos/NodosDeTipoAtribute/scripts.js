@@ -9,36 +9,38 @@ for( let x = 0; x < document.getElementById("callout2").attributes.length; x++ )
 }
 
 
+
 //b) Añade el atributo title con el valor Información sobre identificadores al tercer
 //párrafo del elemento identificado como content.
 
 
-    let atributo2 = document.getElementsByTagName("p")[2];
-    atributo2.setAttribute('type' , 'text');
-    atributo2.setAttribute('value', 'Información');
-
-
-    for( let x = 0; x < document.getElementById("content").attributes.length; x++ )
-    {
-         let atributo2 = document.getElementsByTagName("p")[2].attributes[x];
-         document.write(atributo2.nodeName+ " -> "+atributo2.nodeValue+"<br/>");
-    }
-    
-
-    document.write(atributo2.nodeName+ " -> "+atributo2.nodeValue+"<br/>");
+const content = document.querySelector("#content");
+const thirdParagraph = content.querySelectorAll("p")[2];
+thirdParagraph.setAttribute("title", "Información");
 
 
 
 //c) Añade el atributo title con el valor Información sobre clases al cuarto párrafo del
 //elemento identificado como content
 
+let parrafo4 = document.querySelector("#content p:nth-child(3)").setAttribute("title", "Información");
+
 
 
 //d) Obtén el nombre de la hoja de estilo del documento HTML.
 
-
+let styleSheet = document.styleSheets;
+for(let i =0; i<styleSheet.length; i++){
+     console.log(styleSheet[i].href);
+}
 
 //e) Obtén la codificación de caracteres del documento HTML.
 
+console.log(document.characterSet);
 
 //f) Elimina los atributos title añadidos anteriormente a los párrafos.
+
+const parrafo =  document.querySelectorAll("p");
+parrafo.forEach(p=>{
+     p.removeAttribute("title");
+});
