@@ -123,3 +123,9 @@ d.setAttribute("id", "descripción");
 let texto2 = document.createTextNode("Esto es un ejemplo de página HTML sencilla");
 d.appendChild(texto2);
 content2.insertBefore(d,content2.firstChild);
+
+//e) Elimina la estructura anterior:
+
+let parent = document.getElementById("content"); //Identificar elemento padre
+let elementRemove = document.getElementById("descripción");  //Identificar elemento a eliminar
+parent.removeChild(elementRemove); //Eliminar Elemento
