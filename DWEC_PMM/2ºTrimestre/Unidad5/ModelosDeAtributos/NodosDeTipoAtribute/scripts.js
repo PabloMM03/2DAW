@@ -129,3 +129,14 @@ content2.insertBefore(d,content2.firstChild);
 let parent = document.getElementById("content"); //Identificar elemento padre
 let elementRemove = document.getElementById("descripción");  //Identificar elemento a eliminar
 parent.removeChild(elementRemove); //Eliminar Elemento
+
+
+//f) Crea una estructura igual a la del elemento HTML con clase callout y añádela justo después de éste.
+
+let f = document.createElement("p");
+f.setAttribute("title", "Callout crear");
+f.setAttribute("id", "descripcion");
+let texto3 = document.createTextNode("Esto es un ejemplo para el apartado F");
+f.appendChild(texto3);
+let callout = document.getElementById("callout2");
+callout.insertBefore(f,callout.firstChild);
