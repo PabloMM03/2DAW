@@ -140,3 +140,5 @@ let texto3 = document.createTextNode("Esto es un ejemplo para el apartado F");
 f.appendChild(texto3);
 let callout = document.getElementById("callout2");
 callout.insertBefore(f,callout.firstChild);
+
+
