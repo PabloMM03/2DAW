@@ -75,3 +75,51 @@ console.log(contenido);
 
 parrafoEnCuestion.innerHTML = parrafoEnCuestion.innerHTML + " pero bien formado";
 
+
+//Actividad 4. Creación y borrado de nodos.
+
+//a) Crea un nuevo párrafo con el texto Me cuelo en primera posición y añádelo antes del
+//primer hijo del elemento identificado como content
+
+let crearParrafo = document.createElement("p");
+let texto = document.createTextNode("Me cuelo en primera Posición"); //tetxo a añadir 
+crearParrafo.appendChild(texto);//Añadimos el texto a el parrafo creado
+let content2 = document.getElementById("content"); //Obtenemos id del elemento
+content2.insertBefore(crearParrafo,content2.firstChild); // añadimos en la posicion indicada el parrafo
+
+
+//b) Crea un nuevo párrafo con el texto Me coloco en última posición y añádelo como
+//último hijo del elemento identificado como content.
+
+let ultParrafo = document.createElement("p");
+texto = document.createTextNode("Me coloco en última pocición");
+ultParrafo.appendChild(texto);
+content2.appendChild(ultParrafo);
+
+//c) Realiza las actividades a) y b) usando la función insertAdjacentElement.
+
+//a
+
+let crearParrafo2 = document.createElement("p");
+texto = document.createTextNode("Me cuelo en primera Posición 2"); //tetxo a añadir 
+crearParrafo2.appendChild(texto);//Añadimos el texto a el parrafo creado
+content2.insertAdjacentElement("afterbegin",crearParrafo2);                                //ES LO MISMO QUE EN A Y B                                       
+
+//b
+
+let ultParrafo2 = document.createElement("p");
+texto = document.createTextNode("Me coloco en última pocición 2");
+ultParrafo2.appendChild(texto);
+
+content2.insertAdjacentElement("afterend",ultParrafo2);
+
+
+
+//d) Crea la siguiente estructura y añádela a continuación del elemento h1:
+
+let d = document.createElement("p");
+d.setAttribute("title", "Página sencilla");
+d.setAttribute("id", "descripción");
+let texto2 = document.createTextNode("Esto es un ejemplo de página HTML sencilla");
+d.appendChild(texto2);
+content2.insertBefore(d,content2.firstChild);
