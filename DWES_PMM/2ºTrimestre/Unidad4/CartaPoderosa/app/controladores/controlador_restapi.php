@@ -86,9 +86,9 @@ class ControladorRestApi{
                 
                 $modeloPokemon = new ModeloPokemon();
 
-                echo '<pre>';
-                print_r($_POST);
-                echo '</pre>';
+                // echo '<pre>';
+                // print_r($_POST);
+                // echo '</pre>';
 
                 
                     //  $nombre = $_POST['nombre'];
@@ -115,6 +115,8 @@ class ControladorRestApi{
                 //curl -d '{"nombre":"Raichu","tipo":"electric","url_imagen","https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' -X "POST" http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon
                 //curl -X "POST" "http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=addPokemon"
                 
+                //Ubuntu
+                //curl -X POST "http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=addPokemon"
                 break;
 
             case 'PUT':
