@@ -91,17 +91,17 @@ class ControladorRestApi{
                 echo '</pre>';
 
                 
-                    // $nombre = $_POST['poke_nombre'];
-                    // $tipo = $_POST['poke_tipo'];
-                    // $url_imagen = $_POST['poke_img'];
-                    // $descripcion = $_POST['poke_desc'];
+                    //  $nombre = $_POST['nombre'];
+                    //  $tipo = $_POST['tipo'];
+                    // $url_imagen = $_POST['img'];
+                    //  $descripcion = $_POST['desc'];
                     
                  
                  $params_pokemon = array(
-                     'poke_nombre' =>$_POST['poke_nombre'],
-                     'poke_tipo'  =>$_POST['poke_tipo'],
-                     'poke_img' =>$_POST['poke_img'],
-                     'poke_desc' =>$_POST['poke_desc'],
+                    'poke_nombre' =>"Pablo",
+                    'poke_tipo'  =>"1",
+                    'poke_img' => "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png",
+                    'poke_desc' =>"Una descrion un tanto peculiar",
                  );
 
                  $imp =$modeloPokemon->añadirPokemon($params_pokemon);
@@ -110,8 +110,10 @@ class ControladorRestApi{
                 }
                 //Comprobar Terminal
                 //curl -d '{"id_pokemon":2,"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripci\u00f3n del malvado pokemon raichu."}' -X "POST" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/añadirPokemon/1'
-                //curl -d '{"nombre":"Raichu","tipo":"electric","url_imagen":https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' -X "POST" http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon
-                // curl-v -XPOST -H "Content-type: application/json" -d '{"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' 'http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon'
+                
+                //Funcionan en Windows
+                //curl -d '{"nombre":"Raichu","tipo":"electric","url_imagen","https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' -X "POST" http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon
+                //curl -X "POST" "http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=addPokemon"
                 
                 break;
 
