@@ -83,42 +83,32 @@ class ControladorRestApi{
             case 'POST':
                 if(isset($parameters[0]) && $parameters[0] === "addPokemon"){
 
-                
                 $modeloPokemon = new ModeloPokemon();
+                            
+                         
+                    $params_pokemon = array(
 
-                // echo '<pre>';
-                // print_r($_POST);
-                // echo '</pre>';
-
-                
-                    //  $nombre = $_POST['nombre'];
-                    //  $tipo = $_POST['tipo'];
-                    // $url_imagen = $_POST['img'];
-                    //  $descripcion = $_POST['desc'];
-                    
-                 
-                 $params_pokemon = array(
                     'poke_nombre' =>"Pablo",
-                    'poke_tipo'  =>"1",
+                    'poke_tipo'  =>"12",
                     'poke_img' => "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png",
-                    'poke_desc' =>"Una descrion un tanto peculiar",
+                    'poke_desc' =>"Una descripción un tanto peculiar",
                  );
-
-                 $imp =$modeloPokemon->añadirPokemon($params_pokemon);
-                 $encode = json_encode($imp);
-                 echo $encode;
-                }
-                //Comprobar Terminal
-                //curl -d '{"id_pokemon":2,"nombre":"Raichu","tipo":"electric","url_imagen":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripci\u00f3n del malvado pokemon raichu."}' -X "POST" 'http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/añadirPokemon/1'
-                
+                          
+                    $imp = $modeloPokemon->añadirPokemon($params_pokemon);
+                    $encode = json_encode($imp);
+                    echo $encode;
+                        
+                        
                 //Funcionan en Windows
                 //curl -d '{"nombre":"Raichu","tipo":"electric","url_imagen","https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/26.png","descripcion":"Una descripcion."}' -X "POST" http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=pokemon/addPokemon
                 //curl -X "POST" "http://localhost:3000/DWES_PMM/2%C2%BATrimestre/Unidad4/CartaPoderosa/?controlador=restapi&metodo=procesar&path=addPokemon"
-                
-                //Ubuntu
+                       
+                //Ubuntu                //Esto es la ruta donde se encuentra mi controlador y metodo
                 //curl -X POST "http://localhost/Temas/Unidad2/Ejercicio/CartaPoderosa/?controlador=restapi&metodo=procesar&path=addPokemon"
+            }
                 break;
 
+               
             case 'PUT':
 
                 if(isset($parameters[0]) && $parameters[0] === "updatePokemon"){
