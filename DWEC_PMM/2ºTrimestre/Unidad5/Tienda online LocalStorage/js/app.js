@@ -12,6 +12,8 @@ function crearListeners(){
     document.getElementById("filter-container").addEventListener("input", filtrarCategoria,false);
     document.getElementById("contenedor-tabla-carrito").addEventListener("click", eliminarProducto, false)
     document.getElementById("vaciar-carrito").addEventListener("click", vaciarCarritoEvento, false);
+    document.getElementById("products-container").addEventListener("click", anadirProducto, false);
+
 
 
 }
@@ -162,3 +164,8 @@ function actualizarCarrito(){
 function htmlCarrito(){
     document.querySelector('#lista-carrito tbody').innerHTML ="";
 }
+
+//AñadirPorductos
+
+//RellenarCarrito
+
