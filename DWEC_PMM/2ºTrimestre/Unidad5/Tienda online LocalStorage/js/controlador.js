@@ -29,3 +29,16 @@ export class ControladorDB {
     }
 
 }
+
+export class ControladorCarrito {
+
+    static vaciarCarrito() {
+        localStorage.clear();
+    }
+
+   
+    static eliminarProducto(id) {
+        localStorage.removeItem(id);
+    }
+
+}
