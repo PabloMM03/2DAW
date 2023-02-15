@@ -2,7 +2,7 @@
 import {productos, categorias} from "../db/db.js";
 import {Util} from "./util.js"; 
 
-
+//ControladorCarrito
 export class ControladorDB {
    
     static getProductos() {
@@ -29,16 +29,52 @@ export class ControladorDB {
     }
 
 }
-
+//COntroladorCarrito
 export class ControladorCarrito {
 
     static vaciarCarrito() {
         localStorage.clear();
     }
 
-   
     static eliminarProducto(id) {
         localStorage.removeItem(id);
+    }
+    
+    static getProducto(id) {
+        return JSON.parse(localStorage.getItem(id));
+    }
+
+    static existeProducto(id) {
+        return ControladorCarrito.getProducto(id) !== null;
+    }
+
+    static getCantidadProducto(id) {
+        const producto = ControladorCarrito.getProducto(id);
+        return producto ? producto.cantidad : 0;
+    }
+
+
+    static addProducto(producto) {
+        if(producto) {
+            const id = producto.id;
+            if(ControladorCarrito.existeProducto(id)) {
+                producto = ControladorCarrito.getProducto(id);
+                producto.cantidad += 1;
+            }else {
+                producto.cantidad = 1;
+            }
+            localStorage.setItem(id, JSON.stringify(producto));
+        }
+    }
+
+    static getProductos() {
+        let productosCarrito = [];
+        for(let i=0; i<localStorage.length; i++) {
+            const id = localStorage.key(i);
+            const producto = JSON.parse(localStorage.getItem(id));
+            productosCarrito.push(producto);
+        }
+        return productosCarrito;
     }
 
 }

@@ -12,7 +12,7 @@ function crearListeners(){
     document.getElementById("filter-container").addEventListener("input", filtrarCategoria,false);
     document.getElementById("contenedor-tabla-carrito").addEventListener("click", eliminarProducto, false)
     document.getElementById("vaciar-carrito").addEventListener("click", vaciarCarritoEvento, false);
-    document.getElementById("products-container").addEventListener("click", anadirProducto, false);
+    document.getElementById("products-container").addEventListener("click", añadirProducto, false);
 
 
 
@@ -159,6 +159,7 @@ function eliminarProducto(e){
 
 function actualizarCarrito(){
     htmlCarrito();
+    rellenarCarrito();
 }
 
 function htmlCarrito(){
@@ -167,5 +168,37 @@ function htmlCarrito(){
 
 //AñadirPorductos
 
+function añadirProducto(e){
+    e.preventDefault();
+    const boton = e.target;
+    if(boton.classList.contains("add")){
+        const idProd = boton.parentNode.parentNode.parentNode.id;
+        const productoDB = ControladorDB.getProducto(idProd);
+        ControladorCarrito.addProducto(productoDB);
+
+    }
+    actualizarCarrito();    
+}
+
 //RellenarCarrito
 
+function rellenarCarrito(){
+    const productos = ControladorCarrito.getProductos();
+    productos.forEach(producto => {
+        const {id, nombre, imagen, precio,cantidad} = producto;
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+             <td>  
+                  <img src="${imagen}">
+             </td>
+             <td>${nombre}</td>
+             <td>${precio}€</td>
+             <td>${cantidad} </td>
+             <td>
+                  <a href="#" class="borrar-curso" data-id="${id}">X</a>
+             </td>
+        `;
+        
+        document.querySelector("#lista-carrito tbody").appendChild(fila);
+    });
+}
