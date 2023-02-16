@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+
 use Illuminate\Database\Seeder;
+use App\Models\Curso;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +24,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+//Sirve para utilizar todo lo que hayamos escrito en CursoSeeder
+    //    $this->call(CursoSeeder::class);
+
+    //Datos aleatorios
+       User::factory(10)->create();
+       Curso::factory(50)->create();
     }
 }
