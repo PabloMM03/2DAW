@@ -11,7 +11,7 @@ class CursoController extends Controller
     public function index(){
 
         $cursos  = Curso::all(); // los obtiene todos los datos
-        $cursos  = Curso::paginate(); // Obtiene los datos poco a poco
+        $cursos  = Curso::orderBy('id', 'desc')->paginate(); // Obtiene los datos poco a poco
         
 
         return view('cursos.index', compact('cursos'));
@@ -20,11 +20,36 @@ class CursoController extends Controller
     public function create(){
         return view('cursos.create');
     }
+
+    public function store(Request $request){
+        $curso = new Curso();
+
+        $curso->name = $request->name;
+        $curso->descripcion = $request->descripcion;
+        $curso->categoria = $request->categoria;
+
+        $curso->save();
+        return redirect()->route('cursos.show', $curso); // es lo mismo que poner $curso->id
+    }
+
     //Mostrar Elemento ->Proviene de la vista show.php
-    public function show($id){
+    public function show(Curso $curso){
         // compact('curso');  ['curso' =>$curso];  Para poder pasarle una variable del html
         //Tambien se podria hacer con :return view('cursos.show', ['curso' =>$curso]); 
-        $curso = Curso::find($id);
         return view('cursos.show', compact('curso'));
+    }
+
+    public function edit(Curso $curso){
+        return view('cursos.edit', compact('curso'));
+    }
+
+    public function update(Request $request,Curso $curso){
+
+        $curso->name = $request->name;
+        $curso->descripcion = $request->descripcion;
+        $curso->categoria = $request->categoria;
+
+        $curso->save();
+        return redirect()->route('cursos.show', $curso);
     }
 }

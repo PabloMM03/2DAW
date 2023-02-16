@@ -14,4 +14,5 @@
 <p><strong>Categoria: {{$curso->categoria}}</strong></p>
 <p>{{$curso->descripcion}}</p>
 <a href="{{route('cursos.index')}}"><input type="submit" name="volver" id="volver" value="Volver a cursos"></a>
+<a href="{{route('cursos.edit', $curso)}}"><input type="submit" name="editar" id="editar" value="Editar Curso"></a>
 @endsection
