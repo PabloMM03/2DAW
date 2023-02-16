@@ -28,9 +28,12 @@ Route::get('/', HomeController::class);
 
 //Crear grupo de rutas de un controlador , es decir todas las rutas provienen del mismo controlador
  Route::controller(CursoController::class)->group(function(){
-    Route::get('cursos','index');
-    Route::get('cursos/create', 'create');
-    Route::get('cursos/{curso}', 'show');
+
+    Route::get('cursos','index')->name('cursos.index'); // name es la ruta donde en los enlaces nos dirigira a la pagina especificada
+    Route::get('cursos/create', 'create')->name('cursos.create');
+    Route::get('cursos/{id}', 'show')->name('cursos.show');
+   //  Route::get('cursos/{curso}', 'show')->name('cursos.show');
+    
  });
 
 
