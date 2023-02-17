@@ -14,14 +14,12 @@ function crearListeners(){
     document.getElementById("vaciar-carrito").addEventListener("click", vaciarCarritoEvento, false);
     document.getElementById("products-container").addEventListener("click", añadirProducto, false);
 
-
-
 }
 
 
 //1) A partir del array de productos llamado productos que se importa en el archivo script.js,
 //rellena el div con id=”products-container” con los productos.
-function mostrarProductos(){
+ function mostrarProductos(){
 
     const productos = ControladorDB.getProductos();
     
@@ -85,10 +83,10 @@ el div con id=”filter-container”. Toma como referencia la siguiente imagen:
 */
 
 //Obetenr panel de filtar productos por categoria
-function mostrarFiltros(){
+async function mostrarFiltros(){
 
     const categorias = ControladorDB.getCategorias();
-    const container = document.getElementById("filter-container");
+    const container = await document.getElementById("filter-container");
 
     let filtros = `
     <form>
