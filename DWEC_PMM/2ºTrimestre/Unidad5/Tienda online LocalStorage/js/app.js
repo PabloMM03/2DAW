@@ -19,12 +19,12 @@ function crearListeners(){
 
 //1) A partir del array de productos llamado productos que se importa en el archivo script.js,
 //rellena el div con id=”products-container” con los productos.
- function mostrarProductos(){
+function mostrarProductos(){
 
     const productos = ControladorDB.getProductos();
     
     productos.forEach(producto => {
-        const container = document.getElementById("products-container");
+        const  container = document.getElementById("products-container");
         container.innerHTML += mostrarHtml(producto);
            
     });
@@ -83,19 +83,19 @@ el div con id=”filter-container”. Toma como referencia la siguiente imagen:
 */
 
 //Obetenr panel de filtar productos por categoria
-async function mostrarFiltros(){
+function mostrarFiltros(){
 
     const categorias = ControladorDB.getCategorias();
-    const container = await document.getElementById("filter-container");
+    const container =  document.getElementById("filter-container");
 
     let filtros = `
     <form>
         <fieldset id="filtro-categoria" name="filtro-categoria">
             <legend>Filtros por categoría:</legend>
         `;
-        categorias.forEach((categoria)=>{
+       categorias.forEach((categoria)=>{
             const {id,nombre} = categoria;
-            filtros +=`
+             filtros +=`
             <div class="contenedor-categoria">
                 <input type="checkbox" id="${id}" name="${id}" value="${id}">
                 <label for="${id}">${nombre}</label>
