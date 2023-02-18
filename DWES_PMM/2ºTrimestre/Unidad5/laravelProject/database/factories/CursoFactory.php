@@ -16,8 +16,9 @@ class CursoFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->sentence();
         return [
-            'name' => $this->faker->sentence(),
+            'name' => $name,
             'descripcion' =>$this->faker->paragraph(),
             'categoria' => $this->faker->randomElement(['Desarrollo web', 'Diseño web']),
         ];

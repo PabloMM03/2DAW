@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 // Route::get('cursos', [CursoController::class, 'index']);
 
@@ -39,3 +39,16 @@ Route::get('/', HomeController::class);
     Route::delete('cursos/{curso}', 'destroy')->name('cursos.destroy');
  });
 
+ Route::view('nosotros', 'nosotros')->name('nosotros');
+//  Route::resource('cursos', CursoController::class); //Cremita
+
+// Route::resource('asignaturas', CursoController::class)->parameters(['asignaturas' => 'curso'])->names('cursos'); //Cremita
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

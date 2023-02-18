@@ -12,9 +12,16 @@
 
     <!-- favicon -->
     <!-- estilos -->
+    <style>
+        .active{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <!-- header -->
+    @include('layouts.partials.header')
     <!-- nav -->
     <h2>@yield('content')</h2>
     <!-- footer -->
