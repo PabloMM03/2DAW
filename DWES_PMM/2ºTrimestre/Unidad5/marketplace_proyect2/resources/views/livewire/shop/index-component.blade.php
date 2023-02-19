@@ -1,5 +1,5 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+    {{-- Se muestra la tienda con los productos y la informacion --}}
     <div class="container">
     
     <div class="row">

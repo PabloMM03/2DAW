@@ -34,8 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <i class="fa-sharp fa-solid fa-cart-shopping"></i>
-                        {{\Cart::session(auth()->id())->getContent()->count()}}
+                              
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -43,7 +42,11 @@
                         <!-- Authentication Links -->
 
                         <li class="nav-item">
-                            <a class="nav-link" href=""></a>
+                            {{-- <i class="fa-solid fa-cart-shopping"></i> <!-- Icono carrito no se muestra-->
+                        {{\Cart::session(auth()->id())->getContent()->count()}} --}}                      
+                          
+                          @livewire('shop.cart-component')
+                        
                         </li>
 
                         @guest
