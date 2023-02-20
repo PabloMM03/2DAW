@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Mail\OrderPagada;
 use App\Models\Order;
+use Darryldecode\Cart\Cart;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PayPalController extends Controller
 {
@@ -50,7 +52,8 @@ public function getExpressCheckoutSuccess(Request $request, $orderId)
             //Enviar correo al usuario
             //php artisan make:mail OrderPagada --markdown=mail.order.paid
 
-            Mail::to($order->user()->email)->send(new OrderPagada($order));
+            Mail::to($order->user->email)->send(new OrderPagada($order));
+            \Cart::session(auth()->id())->clear(); //Vaciar carrito
 
             //En caso de que se efectue con exito
             return  redirect()->route('shop.index')->whithMessage('Pago realizado con exito');

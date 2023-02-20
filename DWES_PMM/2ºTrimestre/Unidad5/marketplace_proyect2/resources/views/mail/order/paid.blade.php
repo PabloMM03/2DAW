@@ -16,8 +16,8 @@ Aquí esta su factura
         @foreach ($order->items as $item)
         <tr>
             <td scope="row">{{$item->name}}</td>
-            <td>{{$item->pivote->quantity}}</td>
-            <td>{{$item->pivote->price}}</td>
+            <td>{{$item->pivot->quantity}}</td>
+            <td>{{$item->pivot->price}}</td>
         </tr>
         @endforeach
     </tbody>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Shop;
 
+use App\Mail\OrderPagada;
 use App\Models\Order;
-
+use Darryldecode\Cart\Cart;
 use Livewire\Component;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutComponent extends Component
 {
@@ -87,11 +89,11 @@ if($this->payment_method == 'paypal'){
 
     return redirect()->route('paypal.checkout', $order->id);
 
-}else{
-   //es false
-
-   
 }
+
+Mail::to($order->user->email)->send(new OrderPagada($order));
+\Cart::session(auth()->id())->clear(); //Vaciar carrito
+return redirect()->route('shop.index');
 
     }
 
