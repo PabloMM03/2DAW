@@ -74,8 +74,9 @@ dd('cancelado');
 
 public function checkoutData($orderId)
 {
-    $cart = \Cart::session(auth()->id());
+    $cart = \Cart::session(auth()->id()); //Contenido de carrito
 
+    //
     $cartItems =  array_map(function($item){
         return [
             'name' => $item['name'],
@@ -84,6 +85,7 @@ public function checkoutData($orderId)
         ];
     },$cart->getContent()->toarray());
 
+    //Obtener productos que compramos
     $checkoutData = [
         'items' => $cartItems,
        'invoice_id' =>uniqid(),

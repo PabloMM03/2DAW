@@ -75,16 +75,16 @@
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="radio" wire:model="payment_method" name="exampleRadios" id="exampleRadios1" value="cash_on_delivey" checked>
+            <input class="form-check-input" type="radio" wire:model="payment_method" name="exampleRadios" id="exampleRadios1" value="cash_on_delivery" checked>
             <label class="form-check-label" for="exampleRadios1">
-                cash_on_delivey
+                Efectivo
             </label>
           </div>
 
           <div class="form-check">
             <input class="form-check-input" type="radio" wire:model="payment_method" name="exampleRadios" id="exampleRadios2" value="paypal">
             <label class="form-check-label" for="exampleRadios2">
-                paypal
+                Paypal
             </label>
           </div>
 

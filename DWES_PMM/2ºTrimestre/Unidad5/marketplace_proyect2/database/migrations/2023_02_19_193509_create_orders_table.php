@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('order_number');
             $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending'); //Proceso de pago
             $table->integer('item_count');
-            $table->boolean('is_paid')->default(false); //Si esta pagado
+            $table->boolean('is_paid')->default(true); //Si esta pagado
             $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('cash_on_delivery'); // metodo de pago
 
 

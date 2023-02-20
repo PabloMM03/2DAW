@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CashController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CartComponent;
@@ -40,3 +41,8 @@ Route::get('/checkout', CheckoutComponent::class)->name('checkout');
 Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
 Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
 Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
