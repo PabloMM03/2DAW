@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Models\Order;
-//use App\PaypalCheckout;
+
 use Livewire\Component;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
@@ -16,13 +16,6 @@ class CheckoutComponent extends Component
   public $billing_fullname, $billing_address, $billing_city, $billing_state, $billing_zipcode, $billing_phonde;
 
   public $payment_method, $total;
-
-//   private $paypalCheckout;
-
-// public function mount(PaypalCheckout $paypalCheckout){
-//     $this->paypalCheckout = $paypalCheckout;
-// }
-
 
 
     public function render()
@@ -91,55 +84,16 @@ foreach($cartItems as $key => $item){
 
 //Comprobar metodo de pago
 if($this->payment_method == 'paypal'){
-    $this->getExpressCheckout($order->id);
+
+    return redirect()->route('paypal.checkout', $order->id);
+
 }else{
    //es false
+
+   
 }
 
     }
-//Funcion para procesar el pago
-    public function getExpressCheckout($orderId){
-        
-        $cart = \Cart::session(auth()->id());
 
-        $cartItems =  array_map(function($item){
-            return [
-                'name' => $item['name'],
-                'price' => $item['price'],
-                'qty' => $item['quantity'],
-            ];
-        },$cart->getContent()->toarray());
-
-        $checkoutData = [
-            'items' => $cartItems,
-           'invoice_id' =>uniqid(),
-            'invoice_description' =>"descripcion de orden",
-            'return_url' => route('paypal.success', $orderId),
-            'cancel_url' => route('paypal.cancel'),
-            'total' => $cart->getTotal(),
-
-        ];
-
-        $provider = new ExpressCheckout;
-
-        $response= $provider->setExpressCheckout($checkoutData);
-
-        return redirect($response['paypal_link']);
-
-
-    }
-
-public function getExpressCheckoutSuccess(Request $request, $orderId)
-{
-    dd($request);
-
-}
-
-public function cancelPage()
-{
-
-dd('cancelado');
-
-}
 }
 
