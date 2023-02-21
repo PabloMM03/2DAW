@@ -1,7 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CashController;
+use App\Http\Controllers\PayPalController;
+use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 
+use App\Http\Livewire\Shop\CheckoutComponent;
+
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +31,22 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//Ruta de la tienda
+
+
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Ruta del carrito
+
+
+//Ruta Pagar
+
+
+//Pagos Paypal
+Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
+Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
+Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
