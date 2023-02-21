@@ -1,3 +1,20 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div>
     {{-- Se muestra la tienda con los productos y la informacion --}}
     <div class="container">
@@ -21,10 +38,13 @@
 
     </div>
     
-
-
     @endforeach
 </div>
+
+
+    {{$products->links()}}
+
+
 </div>
 
 </div>
