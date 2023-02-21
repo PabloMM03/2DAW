@@ -1,11 +1,16 @@
 import {ControladorPHP as Controlador} from "./controlador.js";
 
+crearListeners();
 
-document.getElementById("crearCliente").addEventListener('click', redirect, false);
-document.getElementById("eliminarBD").addEventListener('click', eliminarBD, false);
-document.addEventListener("DOMContentLoaded", mostrarClientes, false);
+function crearListeners(){
 
-//Direccionar a nuev-cliente
+    document.getElementById("crearCliente").addEventListener('click', redirect, false);
+    document.getElementById("eliminarBD").addEventListener('click', eliminarBD, false);
+    window.addEventListener("load", mostrarClientes, false);
+
+
+}
+//Direccionar a nuevo-cliente
 
     function redirect()
     {
@@ -13,22 +18,27 @@ document.addEventListener("DOMContentLoaded", mostrarClientes, false);
     }
 
 
-    //mostrar clientes
+    //mostrar clientes en la tabla
+
+    
     async function mostrarClientes()
     {
-
+        let Añadir = "";
     const clientes = await Controlador.mostrarClientes();
-    console.log(clientes);
-    productos.forEach(cliente => {
-        const contenedor = document.getElementById("listado-clientes");
-        contenedor.innerHTML += getHTMLCliente(cliente);
-        // actualizarCarritoHTML();  
-    });
+    const clienteHijo = clientes.datos;
+    for (let i = 0; i < clienteHijo.length; i++) {
+        Añadir += getHTMLCliente(clienteHijo[i]);
+        
+    }
+     document.getElementById("listado-clientes").innerHTML = Añadir;
+        
+    }
+
+//Generar html datos clientes
 
     function getHTMLCliente(cliente) {
         const {nombre, apellidos, email, telefono, nif} = cliente;
-    
-        return `
+        return  `
         <tr>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <p class="text-sm leading-5 font-medium text-gray-700 text-lg font-bold">${nombre}</p>
@@ -53,9 +63,6 @@ document.addEventListener("DOMContentLoaded", mostrarClientes, false);
             </td>
         </tr>
         `;
-    }
-
-
 
     }
 

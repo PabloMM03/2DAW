@@ -27,16 +27,37 @@ export class ControladorPHP {
     }
 
 
-    static async getProductos() {
-        const respuesta = await fetch(`citasCliente.php`, {
-            method : "POST",
-            headers : {
-                "content-type" : "application/x-www-form-urlencoded"
-            },
-            body : "metodo=getClientes"
-        });
-        const clientes = await respuesta.json();
-        return clientes;
+    static async mostrarClientes() {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "getClientes"
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
     }
+
+
+
+    // static async getProductos() {
+    //     const respuesta = await fetch(`citasCliente.php`, {
+    //         method : "POST",
+    //         headers : {
+    //             "content-type" : "application/x-www-form-urlencoded"
+    //         },
+    //         body : "metodo=getClientes"
+    //     });
+    //     const clientes = await respuesta.json();
+    //     return clientes;
+    // }
 
 }
