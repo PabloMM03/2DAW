@@ -1,0 +1,11 @@
+{
+    "options" : {
+        "pending": "Pendiente",
+        "processing": "En proceso",
+        "completed": "Completado",
+        "declined": "Rechazado"
+        
+    }
+
+    
+}
