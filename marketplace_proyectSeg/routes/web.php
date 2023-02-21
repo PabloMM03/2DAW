@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\CashController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
@@ -43,6 +44,4 @@ Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheck
 Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
 
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
+
