@@ -259,7 +259,7 @@ return [
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => 'false',
 
     /*
     |--------------------------------------------------------------------------
@@ -312,11 +312,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Dashboard',
+            'route'         => 'admin.home',
+            'icon'        => 'fas fa-tachometer-alt fa-fw',
+            
         ],
         ['header' => 'account_settings'],
         [
