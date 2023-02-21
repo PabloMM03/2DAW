@@ -1,8 +1,7 @@
-@extends('layouts.app')
-
 @section('title', 'Productos')
 
 @section('content')
+
 
 <div>
     {{-- Se muestra la tienda con los productos y la informacion --}}
@@ -30,17 +29,12 @@
     @endforeach
 </div>
 
-
-    {{$products->links()}}
-
+    {{$products->links()}} 
 
 </div>
 
 </div>
 
 
-    
+
 @endsection
-
-
-

@@ -1,18 +1,6 @@
+@section('title', 'Productos')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@section('content')
 
 
 <div>
@@ -41,10 +29,12 @@
     @endforeach
 </div>
 
-
-    {{$products->links()}}
-
+    {{$products->links()}} 
 
 </div>
 
 </div>
+
+
+
+@endsection
