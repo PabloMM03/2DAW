@@ -1,8 +1,3 @@
-@section('title', 'Productos')
-
-@section('content')
-
-
 <div>
     {{-- Se muestra la tienda con los productos y la informacion --}}
     <div class="container">
@@ -15,8 +10,8 @@
 
         <div class="card">
             <img class="card-img-top" src="{{asset('default_product.jpg')}}" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title">{{$product->name}}</h4>
+            <div class="card-body"> {{--<a href="{{route('publicaciones.show',$product)}}"> --}}
+                <h4 class="card-title"><a href="{{route('publicaciones.show',$product)}}"> {{$product->name}}</a></h4>
                 <p class="card-text">{{$product->description}}</p>
             </div>
             <div class="card-body">
@@ -37,4 +32,4 @@
 
 
 
-@endsection
+

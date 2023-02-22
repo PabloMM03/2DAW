@@ -1,8 +1,3 @@
-@section('title', 'Productos')
-
-@section('content')
-
-
 <div>
     {{-- Se muestra la tienda con los productos y la informacion --}}
     <div class="container">
@@ -35,6 +30,3 @@
 
 </div>
 
-
-
-@endsection

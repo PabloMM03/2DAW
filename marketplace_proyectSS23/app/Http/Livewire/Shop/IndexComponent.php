@@ -30,4 +30,6 @@ class IndexComponent extends Component
         $this->emit('message', 'El producto se ha añadido correctemente.');
         $this->emitTo('shop.cart-component', 'add_to_cart');
     }
+
+    
 }

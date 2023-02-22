@@ -2,10 +2,9 @@
 
 
 
-use App\Http\Controllers\CashController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ProductController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
-use App\Http\Livewire\Shop\CartComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\IndexComponent;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +26,12 @@ use Illuminate\Support\Facades\Route;
 
 //Ruta de la tienda
 Route::get('/', IndexComponent::class)->name('shop.index');
+
+Route::get('products/{product}', [ProductController::class], 'show')->name('publicaciones.show');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function(){
+    return view('home');
+});
 
 
 Auth::routes();
