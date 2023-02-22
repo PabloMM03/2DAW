@@ -10,7 +10,7 @@ class ProductController extends Controller
 
     public function show(Product $product){
 
-        return view('publicaciones.show', compact('product'))->extends('layouts.app')->section('content');
+        return view('publicaciones.show', compact('product'));
     }
 
 
