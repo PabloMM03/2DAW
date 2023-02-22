@@ -27,7 +27,8 @@ use Illuminate\Support\Facades\Route;
 //Ruta de la tienda
 Route::get('/', IndexComponent::class)->name('shop.index');
 
-Route::get('products/{product}', [ProductController::class], 'show')->name('publicaciones.show');
+//Publicaciones /articulos
+Route::get('products/{product}', [ProductController::class, 'show'])->name('publicaciones.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function(){
     return view('home');

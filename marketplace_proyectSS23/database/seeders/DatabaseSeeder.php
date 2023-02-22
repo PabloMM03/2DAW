@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use ReCaptcha\RequestMethod\Post;
+
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,7 +24,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-            $this->call(ProductSeeder::class);
+            Storage::makeDirectory('productos');
 
+            $this->call(ProductSeeder::class);
+            $this->call(PostSeeder::class);
     }
 }

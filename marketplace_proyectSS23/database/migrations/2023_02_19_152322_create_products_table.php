@@ -16,11 +16,24 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->string('description');
             $table->float('price');
             $table->string('cover_img')->nullable();
+            $table->enum('status', [1,2])->default(1); //Estado publicado o en espera
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            
+
+
             $table->timestamps();
         });
+        
     }
 
     /**

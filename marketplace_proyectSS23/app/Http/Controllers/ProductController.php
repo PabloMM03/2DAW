@@ -13,4 +13,5 @@ class ProductController extends Controller
         return view('publicaciones.show', compact('product'))->extends('layouts.app')->section('content');
     }
 
+
 }

@@ -1,5 +1,35 @@
-<div class="container" py-8>
+ @extends('layouts.app')
 
-    <h1>{{$product->name}}</h1>
+ @section('content')
 
-</div>
+    
+    <div class="container" py-8>
+
+        <h1 class="text 4xl font-bold ">{{$product->name}}</h1>
+
+        <div class="text-lg text-gray-500 mb-2">
+            {{$product->description}}
+        </div>
+
+        <div class="grid grid-cols-3">
+            {{-- Contenido Principal --}}
+            <div class="col-span-2">
+                <figure>
+                    {{$product}}
+                </figure>
+
+            </div>
+            {{-- Contenido relacionado --}}
+
+            <aside>
+
+
+            </aside>
+
+        </div>
+    
+
+    </div>
+
+@endsection
+    

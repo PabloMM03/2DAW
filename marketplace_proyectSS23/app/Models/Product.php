@@ -13,8 +13,14 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'cover_img'
+        'cover_img',
+        'category'
 
     ];
+
+    //Relacion polimorfica
+    public function image(){
+        return $this->morphOne(Image::class, 'img_product');
+    }
 
 }
