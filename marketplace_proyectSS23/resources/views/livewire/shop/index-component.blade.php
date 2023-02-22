@@ -2,20 +2,8 @@
 
 @section('sidebar')
 
-<div class="fixed top-0 left-0 h-screen w-64 bg-gray-900 overflow-y-auto">
+    @livewire('nav-panel-left')
 
-    <ul class="py-4">
-        <li class="px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-            <a href="#" style="text-decoration: none">Inicio</a>
-        </li>
-        <li class="px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-            <a href="#" style="text-decoration: none">Perfil</a>
-        </li>
-        <li class="px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-            <a href="#" style="text-decoration: none">Configuración</a>
-        </li>
-    </ul>
-</div>
 @endsection
 
 

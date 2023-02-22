@@ -86,7 +86,7 @@
               <!-- Active: "bg-gray-100", Not Active: "" -->
               {{-- {{route('profile.show')}}--}}
               <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Perfil</a>
-              <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+              <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Ajustes</a>
 
               {{-- Accion de logout--}}
             <form id="logout-form"  action="{{ route('logout') }}" method="POST">
@@ -95,7 +95,7 @@
                  onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                 
-                {{ __('Logout') }}</a>
+                {{ __('Cerrar Sesión') }}</a>
             </form>
 
             </div>

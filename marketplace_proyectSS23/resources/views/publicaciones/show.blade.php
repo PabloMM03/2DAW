@@ -2,21 +2,9 @@
 
  @section('content')
 
-@section('sidebar')
+ @section('sidebar')
 
-<div class="fixed top-0 left-0 h-screen w-64 bg-gray-900">
-    <ul class="py-4">
-        <li class="px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-            <a href="#">Inicio</a>
-        </li>
-        <li class="px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-            <a href="#">Perfil</a>
-        </li>
-        <li class="px-6 py-3 text-gray-400 hover:text-white hover:bg-gray-800">
-            <a href="#">Configuración</a>
-        </li>
-    </ul>
-</div>
+ @livewire('nav-panel-left')
 
 @endsection
 
