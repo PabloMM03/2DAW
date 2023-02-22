@@ -15,7 +15,10 @@
             {{-- Contenido Principal --}}
             <div class="col-span-2">
                 <figure>
-                    {{$product}}
+                    
+                    <img src="{{Storage::url($product->image->url)}}" alt="">
+                  
+                    
                 </figure>
 
             </div>

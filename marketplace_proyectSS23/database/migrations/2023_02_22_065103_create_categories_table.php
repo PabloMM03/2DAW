@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            // $table->enum('name',['Electronica', 'Informatica', 'Cocina', 'Jardineria', 'Deportes'])->default('Informatica');
             $table->string('slug');
             $table->timestamps();
         });

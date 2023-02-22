@@ -16,14 +16,14 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        $products = Product::factory(50)->create();
+        // $products = Product::factory(50)->create();
 
-        foreach($products as $product){
-            Image::factory(1)->create([
+        // foreach($products as $product){
+        //     Image::factory(1)->create([
 
-                'imagen_id' => $product->id,
-                'imagen_type' => Product::class,
-            ]);
-        }
+        //         'imagen_id' => $product->id,
+        //         'imagen_type' => Product::class,
+        //     ]);
+        // }
     }
 }

@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use ReCaptcha\RequestMethod\Post;
 
@@ -24,9 +29,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-            Storage::makeDirectory('productos');
+            // Storage::makeDirectory('productos');
+            Storage::deleteDirectory('public/products');
+            Storage::makeDirectory('public/products');
 
+            //Llamadas a los seeders
+
+            $this->call(UserSeeder::class);
+           
+            // $this->call(PostSeeder::class);
+            Category::factory(4)->create();
+            Tag::factory(8)->create();
             $this->call(ProductSeeder::class);
-            $this->call(PostSeeder::class);
     }
 }

@@ -13,7 +13,7 @@ class Image extends Model
 
     //Relacion polimorfica
 
-    public function img_product(){
+    public function imagen(){
         return $this->morphTo();
     }
 
