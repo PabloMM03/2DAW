@@ -50,5 +50,6 @@ Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheck
 Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
 Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
 
-
+//filtrar por categorias
+Route::get('category/{category}', [ProductController::class, 'category'])->name('products.category');
 
