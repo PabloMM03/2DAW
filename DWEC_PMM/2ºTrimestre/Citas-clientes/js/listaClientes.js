@@ -1,25 +1,18 @@
-import {ControladorPHP as Controlador} from "./controlador.js";
+ import {ControladorPHP as Controlador} from "./controlador.js";
 
 crearListeners();
 
+ /*Crear Listeners , acciones formulario*/
 function crearListeners(){
 
-    document.getElementById("crearCliente").addEventListener('click', redirect, false);
-    document.getElementById("eliminarBD").addEventListener('click', eliminarBD, false);
-    window.addEventListener("load", mostrarClientes, false);
-
+    document.getElementById("crearCliente").addEventListener("click",()=>window.location.href="nuevo-cliente.html", false);
+    window.addEventListener("DOMContentLoaded", mostrarClientes, false);
 
 }
-//Direccionar a nuevo-cliente
 
-    function redirect()
-    {
-    window.location.href="nuevo-cliente.html";
-    }
-
-
-    //mostrar clientes en la tabla
-
+ /**
+ * Mostrar clientes en la tabla
+ */
     
     async function mostrarClientes()
     {
@@ -34,10 +27,19 @@ function crearListeners(){
         
     }
 
-//Generar html datos clientes
+
+/**
+ * Generar html datos clientes
+ * @param {object} cliente 
+ * @returns String
+ */
 
     function getHTMLCliente(cliente) {
-        const {nombre, apellidos, email, telefono, nif} = cliente;
+        
+        const {nombre, apellidos, email} = cliente;
+        const telefono = cliente.telefono.replace(/(\d{3})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4");
+        const nif = cliente.nif.replace(/(\d{8})(\w)/, '$1-$2');;
+
         return  `
         <tr>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -67,23 +69,5 @@ function crearListeners(){
     }
 
 
-     async function eliminarBD() {
-        let respuestaJSON = null;
-        try {
-            const respuesta = await fetch(`citasClientes.php`, {
-                method : "POST",
-                headers : {
-                    "content-type" : "application/json"
-                },
-                body : JSON.stringify({
-                   metodo: "eliminarBD"
-                })
-            });
-            respuestaJSON = await respuesta.json();
-        }catch(error) {
-            console.error(error.message);
-        }
-        return respuestaJSON;
-    }
 
 

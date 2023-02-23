@@ -26,7 +26,10 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
-
+/**
+ * 
+ * @returns json clientes 
+ */
     static async mostrarClientes() {
         let respuestaJSON = null;
         try {
@@ -46,18 +49,73 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
+/**
+ * 
+ * @param {*} datos 
+ * @returns 
+ */
+    static async setCliente(datos) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "setCliente",
+                   cliente: datos,
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
 
+    /**
+ * 
+ * @returns json citas clientes 
+ */
+    static async mostrarCitas(datos) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "getCitasCliente"
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
 
-    // static async getProductos() {
-    //     const respuesta = await fetch(`citasCliente.php`, {
-    //         method : "POST",
-    //         headers : {
-    //             "content-type" : "application/x-www-form-urlencoded"
-    //         },
-    //         body : "metodo=getClientes"
-    //     });
-    //     const clientes = await respuesta.json();
-    //     return clientes;
-    // }
+    static async setCliente(datos) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "setCita",
+                   cliente: datos,
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
+
 
 }
