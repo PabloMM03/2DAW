@@ -1,4 +1,4 @@
- import {ControladorPHP as Controlador} from "./controlador.js";
+import {ControladorPHP as Controlador} from "./controlador.js";
 
 crearListeners();
 
@@ -8,6 +8,7 @@ function crearListeners(){
     document.getElementById("crearCliente").addEventListener("click",()=>window.location.href="nuevo-cliente.html", false);
     window.addEventListener("DOMContentLoaded", mostrarClientes, false);
 
+    document.getElementsByClassName("crearCita",crearCita ,false);
 }
 
  /**
@@ -34,7 +35,8 @@ function crearListeners(){
  * @returns String
  */
 
-    function getHTMLCliente(cliente) {
+    function getHTMLCliente(cliente) 
+    {
         
         const {nombre, apellidos, email} = cliente;
         const telefono = cliente.telefono.replace(/(\d{3})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4");
@@ -68,6 +70,11 @@ function crearListeners(){
 
     }
 
+    function crearCita()
+    {
+        
+
+    }
 
 
 

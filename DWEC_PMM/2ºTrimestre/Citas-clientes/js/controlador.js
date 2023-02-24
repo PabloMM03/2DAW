@@ -78,7 +78,7 @@ export class ControladorPHP {
  * 
  * @returns json citas clientes 
  */
-    static async mostrarCitas(datos) {
+    static async mostrarCitas() {
         let respuestaJSON = null;
         try {
             const respuesta = await fetch(`citasClientes.php`, {
@@ -97,7 +97,7 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
-    static async setCliente(datos) {
+    static async setCita(datos) {
         let respuestaJSON = null;
         try {
             const respuesta = await fetch(`citasClientes.php`, {

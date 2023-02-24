@@ -1,5 +1,5 @@
 <?php
-
+ 
 // Creación de la base de datos si no existe
 $nombreServidor = "localhost";
 $usuario = "root";
@@ -163,6 +163,8 @@ function setCita($conn, $citaJSON)
 
 function setCliente($conn, $clienteJSON)
 {
+   
+
     $sqlquery = "SELECT * FROM Cliente WHERE Cliente.nif='$clienteJSON->nif'";
     $clientesNIF = $conn->query($sqlquery);
     $arrayClientesNIF = obtenerArrayDeConsultaClientes($clientesNIF);
