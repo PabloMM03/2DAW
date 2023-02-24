@@ -17,16 +17,16 @@
             {{$product->description}}
         </div>
 
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {{-- Contenido Principal --}}
-            <div class="col-span-2">
-                <figure>
-                    
-                    <img src="{{Storage::url($product->image->url)}}" alt="">
-                  
-                    
+            <div class="lg:col-span-2">
+                <figure> 
+                    <img class="w-full h-80 onject-cover object-center" src="{{Storage::url($product->image->url)}}" alt="">
                 </figure>
-                <div class="card-body">
+                <div class="text-2xl text-gray-500 mt-4">
+                    {{$product->price}} €
+                </div>
+                <div class="card-body mt-2">
                     <button type="button" class="btn btn-primary" wire:click="add_to_cart({{$product->id}})">Añadir al carrito</button>
                 </div>
             </div>
@@ -34,7 +34,17 @@
 
             <aside>
 
-
+                <h1 class="text-2xl font-bold text-gray-600 mb-4">Más en {{$product->category->name}}</h1>
+                <ul>
+                    @foreach ($relacionados as $relacionado)
+                        <li class="mb-4">
+                            <a style="text-decoration: none" class="flex" href="{{route('publicaciones.show', $relacionado)}}">
+                                <img class="w-40 h-25 object-cover object-center" src="{{Storage::url($relacionado->image->url)}}" alt="">
+                                <span class="ml-2 text-gray-600">{{$relacionado->name}}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
             </aside>
 
         </div>

@@ -53,3 +53,4 @@ Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('pay
 //filtrar por categorias
 Route::get('category/{category}', [ProductController::class, 'category'])->name('products.category');
 
+Route::get('tags/{tag}', [ProductController::class, 'tag'])->name('products.tag');

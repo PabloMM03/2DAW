@@ -22,6 +22,7 @@
             <div class="card-body"> {{--<a href="{{route('publicaciones.show',$product)}}"> --}}
                 <h4 class="card-title" style="text-align: center"><a style="text-decoration: none" href="{{route('publicaciones.show',$product)}}"> {{$product->name}}</a></h4>
                 <p class="card-text" style="text-align: center">{{$product->description}}</p>
+              
                 <h3 class="card-text" >{{$product->price}} €</h3>
             </div>
             <div class="card-body">

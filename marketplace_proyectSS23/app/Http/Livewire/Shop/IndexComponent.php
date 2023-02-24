@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Models\Product;
+use App\Models\Tag;
 use Livewire\Component;
 
 class IndexComponent extends Component
 {
     public function render()
     {
-        $products = Product::take(20)->latest('id')->paginate(9);
+        $products = Product::where('status', 2)->latest('id')->paginate(6);
         return view('livewire.shop.index-component',compact('products'))->extends('layouts.app')->section('content');
     }
 
@@ -30,6 +31,7 @@ class IndexComponent extends Component
         $this->emit('message', 'El producto se ha añadido correctemente.');
         $this->emitTo('shop.cart-component', 'add_to_cart');
     }
+
 
     
 }

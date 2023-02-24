@@ -25,7 +25,7 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function categoory(){
+    public function category(){
         return $this->belongsTo(Category::class);
     }
 
