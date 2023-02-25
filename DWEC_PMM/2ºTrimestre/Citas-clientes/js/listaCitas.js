@@ -44,6 +44,7 @@ async function mostrarCitasCliente(e)
 function getHTMLClienteCita(cita) 
 {
     const { detalles, descripcion, hora, fecha, nifCliente, id } = cita;
+    
     const tr = document.createElement("tr");
 
     tr.innerHTML = `

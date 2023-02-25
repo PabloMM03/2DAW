@@ -41,7 +41,7 @@ function crearListeners(){
     function getHTMLCliente(cliente) 
     {
         const telefono = cliente.telefono.replace(/(\d{3})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4");
-        const nif = cliente.nif.replace(/(\d{8})(\w)/, '$1-$2');;
+        const nif = cliente.nif.replace(/(\d{8})(\w)/, '$1-$2');
 
         const tr = document.createElement("tr");
         tr.innerHTML =   ` 
@@ -116,7 +116,7 @@ function crearListeners(){
         window.location.href = "lista-citas.html";
       }
 
-    function eliminarCliente(e){
+    async function eliminarCliente(e){
 
         const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
 
@@ -124,6 +124,25 @@ function crearListeners(){
         localStorage.setItem('nombre', nombre);
         localStorage.setItem('apellidos', apellidos);
 
-        window.location.href = "nueva-cita.html";
+       const nombreCompleto = nombre + " " +    apellidos;
+
+       const confirmar = confirm(`¿Seguro que deseas eliminar al cliente ${nombreCompleto}?`);
+
+        if(confirmar){
+            e.preventDefault();
+            const nifCliente = localStorage.getItem('nif');
+            await Controlador.eliminarCliente(nifCliente);
+            window.location.href = "index.html";
+        }else{
+            window.location.href = "index.html";
+
+        }
+
+
     }
+
+    
+    
+
+    
 

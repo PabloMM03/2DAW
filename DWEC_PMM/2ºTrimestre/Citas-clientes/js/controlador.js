@@ -99,7 +99,11 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
-    
+    /**
+     * 
+     * @param {*} datos 
+     * @returns 
+     */
     static async setCita(datos) {
         let respuestaJSON = null;
         try {
@@ -113,6 +117,28 @@ export class ControladorPHP {
                    cita: datos,
                 })
             });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
+
+
+    static async eliminarCliente(nif) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "eliminarCliente",
+                   nifCliente: nif,
+                })
+            });
+            
             respuestaJSON = await respuesta.json();
         }catch(error) {
             console.error(error.message);
