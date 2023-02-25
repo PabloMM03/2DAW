@@ -116,6 +116,11 @@ function crearListeners(){
         window.location.href = "lista-citas.html";
       }
 
+      /**
+       * Eliminar un cliente 
+       * @param {*} e 
+       */
+
     async function eliminarCliente(e){
 
         const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
@@ -130,9 +135,13 @@ function crearListeners(){
 
         if(confirmar){
             e.preventDefault();
-            const nifCliente = localStorage.getItem('nif');
-            await Controlador.eliminarCliente(nifCliente);
-            window.location.href = "index.html";
+            const resultado = await Controlador.eliminarCliente(nif);
+            if (resultado && resultado.ok) {
+                alert("Cliente eliminado correctamente");
+                window.location.reload();
+              } else {
+                alert("Ha ocurrido un error al eliminar el cliente");
+              }
         }else{
             window.location.href = "index.html";
 
@@ -141,6 +150,7 @@ function crearListeners(){
 
     }
 
+    
     
     
 
