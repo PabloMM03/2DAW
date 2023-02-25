@@ -18,9 +18,13 @@ function crearListeners() {
  * Añadir cliente
  */
 
-async function añadirCliente() {
+async function añadirCliente(e) 
+{
+  e.preventDefault();
   const cliente = obtenerDatosCliente();
   await Controlador.setCliente(cliente);
+  window.location.href="index.html";
+
 }
 
 /**
@@ -28,7 +32,8 @@ async function añadirCliente() {
  * @returns json con datos del cliente
  */
 
-function obtenerDatosCliente() {
+function obtenerDatosCliente() 
+{
 
   const formulario = document.getElementById("formulario");
   const datos = new FormData(formulario);
