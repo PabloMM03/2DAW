@@ -9,6 +9,19 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'slug'
+    ];
+
+    /**
+     * Obtener ruta slug de categoria en vez de id 
+     */
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     //Relacion Much to mush
 
     public function products(){

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
-
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
+        $tags =Tag::all();
+
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -36,24 +36,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-     /**
-      * Crear categoria, que no este creada ya
-      */
     public function store(Request $request)
     {
 
         $request->validate([
             'name'=> 'required',
-            'slug'=> 'required|unique:categories'
+            'slug'=> 'required|unique:tags'
 
         ]);
 
 
-      $category = Category::create($request->all());
+      $tag = Tag::create($request->all());
 
-      return redirect()->route('admin.categories.edit', $category)->with('info', 'Categoria creada correctamente');
-       
+      return redirect()->route('admin.tags.edit', $tag)->with('info', 'Etiqueta creada correctamente');
     }
 
     /**
@@ -62,9 +57,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Tag $tag)
     {
-        return view('admin.categories.show', compact('category'));
+        return view('admin.tags.show', compact('tag'));
     }
 
     /**
@@ -73,9 +68,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -85,23 +80,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-     /**
-      * Actulizar categoria, no se podria repetir el nombre
-      */
-    public function update(Request $request,Category $category)
+    public function update(Request $request,Tag $tag)
     {
         $request->validate([
             'name'=> 'required',
-            'slug'=> "required|unique:categories,slug,$category->id"
-
+            'slug'=> "required|unique:tags,slug,$tag->id"
         ]);
 
-        $category->update($request->all());
+        $tag->update($request->all());
 
-        return redirect()->route('admin.categories.edit', $category)->with('info', 'Categoria actualizada correctamente');
-
-
+        return redirect()->route('admin.tags.edit',$tag)->with('info', 'La etiqueta se actualizo correctamente');
     }
 
     /**
@@ -110,10 +98,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
-        $category->delete();
-        return redirect()->route('admin.categories.index')->with('info', 'Categoria eliminada correctamente');
-        
+        $tag->delete();
+        return redirect()->route('admin.tags.index')->with('info', 'Etiqueta eliminada correctamente');
     }
 }

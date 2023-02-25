@@ -3,11 +3,11 @@
 @section('title', 'Tienda PM')
 
 @section('content_header')
-    <h1>PMillán</h1>
+    <h1>Listado de Productos</h1>
 @stop
 
 @section('content')
-    <p>Bienvenido al panel de Adminitracion de tu tienda.</p>
+    @livewire('admin.products-index')
 @stop
 
 @section('css')
