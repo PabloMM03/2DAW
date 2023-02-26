@@ -3,6 +3,7 @@
 @section('title', 'Tienda PM')
 
 @section('content_header')
+<a class="btn btn-primary btn-sm float-right" href="{{route('admin.products.create')}}">Añadir Producto</a>      
     <h1>Listado de Productos</h1>
 @stop
 

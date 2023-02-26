@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>Bienvenido al panel de Adminitracion de tu tienda.</p>
+{{-- @livewire('admin.products-edit') --}}
 @stop
 
 @section('css')

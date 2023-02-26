@@ -9,13 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'description',
-        'price',
-        // 'cover_img',
-        'category'
-
+    /**
+     * Campos a evitar por asignacion masiva
+     */
+    protected $guarded = [
+        
+        'id', 'created_at', 'updated_at'
     ];
 
 

@@ -1,9 +1,6 @@
 <div class="card">
     <div class="card-header">
         <input class="form-control" placeholder="Introduzca el nombre del Producto" type="text" wire:model="search">
-        <div class="card-header">
-            <a class="btn btn-primary btn-sm " href="{{route('admin.products.create')}}">Añadir Producto</a>        
-        </div>
     </div>
 
    @if ($products->count())  

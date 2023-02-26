@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('description');
-            $table->float('price');
+            $table->string('description')->nullable();
+            $table->float('price')->nullable();
             // $table->string('cover_img')->nullable();
             $table->enum('status', [1,2])->default(1); //Estado publicado o en espera
 

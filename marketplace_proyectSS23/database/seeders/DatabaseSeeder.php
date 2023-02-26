@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
             // Storage::makeDirectory('productos');
-            Storage::deleteDirectory('public/products');
-            Storage::makeDirectory('public/products');
+            Storage::deleteDirectory('products');
+            Storage::makeDirectory('products');
 
             //Llamadas a los seeders
 
