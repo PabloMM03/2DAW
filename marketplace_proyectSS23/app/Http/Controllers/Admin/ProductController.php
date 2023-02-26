@@ -58,7 +58,7 @@ class ProductController extends Controller
         * Almacenar imagen en storage
         */
        if($request->file('file')){
-       $url = Storage::put('products',$request->file('file'));
+       $url = Storage::put('public/products',$request->file('file'));
 
         $product->image()->create([             //Especificamos los campos a añadir en la tabla
             'url' => $url,

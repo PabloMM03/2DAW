@@ -9,7 +9,7 @@ use App\Models\Product;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use ReCaptcha\RequestMethod\Post;
+
 
 use Illuminate\Support\Facades\Storage;
 
@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
             // Storage::makeDirectory('productos');
-            Storage::deleteDirectory('products');
-            Storage::makeDirectory('products');
+            Storage::deleteDirectory('public/products');
+            Storage::makeDirectory('public/products');
 
             //Llamadas a los seeders
 
