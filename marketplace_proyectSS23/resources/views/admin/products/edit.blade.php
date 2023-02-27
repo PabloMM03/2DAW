@@ -7,7 +7,30 @@
 @stop
 
 @section('content')
-{{-- @livewire('admin.products-edit') --}}
+@if (session('info'))
+    <div class="alert alert-success">
+        <strong>{{session('info')}}</strong>
+    </div>
+    
+@endif
+
+<div class="crad">
+    <div class="card-body">
+        {{--No autocompletar al excribir--}}
+        {!! Form::model($product,['route' => ['admin.products.update', $product], 'autocomplete' => 'off', 'files' => true, 'method' => 'PUT']) !!}
+
+{{--Id del usuario el cual añade el producto--}}
+
+
+
+{{--formulario de creacionde productos--}}
+
+        @include('admin.products.partials.form')
+
+        {!! Form::submit('Actualizar producto', ['class' => 'btn btn-primary btn-sm']) !!}
+        {!! Form::close() !!}
+    </div>
+</div>
 @stop
 
 @section('css')

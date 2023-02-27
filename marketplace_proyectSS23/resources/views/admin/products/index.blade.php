@@ -8,6 +8,14 @@
 @stop
 
 @section('content')
+{{--Alerta de confirmacion de eliminacion producto--}}
+@if (session('info'))
+    <div class="alert alert-success">
+        <strong>{{session('info')}}</strong>
+    </div>
+    
+@endif
+
     @livewire('admin.products-index')
 @stop
 

@@ -11,8 +11,12 @@ use Illuminate\Notifications\Notifiable;
 // use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use Spatie\Permission\Traits\HasRoles;
+
+
 class User extends Authenticatable
 {
+    use HasRoles;
     use HasApiTokens, HasFactory, Notifiable;
     // use HasProfilePhoto, TwoFactorAuthenticatable;
     /**
@@ -47,9 +51,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = [
-        'profile_photo_url',
-    ];
+    // protected $appends = [
+    //     'profile_photo_url',
+    // ];
 
 
     //Ralaciones 

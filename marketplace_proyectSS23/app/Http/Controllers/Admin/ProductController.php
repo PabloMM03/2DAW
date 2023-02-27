@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\ProductRequest;
 
 
 class ProductController extends Controller
@@ -48,7 +47,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(StoreProductRequest $request)
+    public function store(ProductRequest $request)
     {
         // return Storage::put('products',$request->file('file'));
 
@@ -70,7 +69,7 @@ class ProductController extends Controller
             
        }
 
-       return redirect()->route('admin.products.edit', $product);
+       return redirect()->route('admin.products.edit', $product)->with('info', 'Producto creado correctamente');
     }
 
     /**
@@ -79,6 +78,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show(Product $product)
     {
         return view('admin.products.show', compact('product'));
@@ -90,9 +90,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * AEditar producto
+     */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+
+        $this->authorize('author', $product);// Solo los usuarios  a los que pertenezca el producto podra editarlos
+        $tags = Tag::all();
+        $categories = Category::pluck('name', 'id');
+        return view('admin.products.edit', compact('product','categories', 'tags'));
     }
 
     /**
@@ -102,9 +110,38 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+
+     /**
+      * Actualizar producto y comprobar si tiene una imagen asignada 
+      */
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $this->authorize('author', $product); // Solo los usuarios  a los que pertenezca el producto podra actualizarlos
+        $product->update($request->all());
+
+        if($request->file('file')){
+        $url = Storage::put('public/products', $request->file('file'));
+
+        if($product->image){
+            Storage::delete($product->image->url);
+
+            $product->image->update([
+                'url' => $url,
+            ]);
+       
+        }else{
+          $product->image()->create([
+            'url' => $url,
+          ]);
+        }
+    }
+
+    if($request->tags){
+        $product->tags()->sync($request->tags);
+        
+   }
+
+        return redirect()->route('admin.products.edit', $product)->with('info', 'Producto actualizado correctamente');
     }
 
     /**
@@ -113,8 +150,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     /**
+      * Eliminar producto
+      */
     public function destroy(Product $product)
     {
-        //
+        $this->authorize('author', $product);  // Solo los usuarios  a los que pertenezca el producto podra eliminarlos
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('info', 'Producto eliminado correctamente');
     }
 }

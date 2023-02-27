@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,11 +16,7 @@ class StoreProductRequest extends FormRequest
         /**
          * Verificar que el usuario que crea el producto es el loguedado
          */
-        if($this->user_id == auth()->user()->id){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -30,16 +26,22 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
+
+        $product = $this->route()->parameter('product');
         // Si no esta publicado solo guarda estos datos
         $rules = [ 
             'name' => 'required',
             'slug' => 'required|unique:products',
-            'status' => 'required|in:1,2'
-
+            'status' => 'required|in:1,2',
+            'file' => 'image'
         ];
 
+        if($product){
+            $rules['slug'] = 'required|unique:products,slug,' . $product->id;
+        }
+
         // Si el estado es publicado guarda todos estos datos
-        if($this->status ==2 ){
+        if($this->status == 2 ){
             $rules = array_merge($rules, [
 
                 'category_id' => 'required',

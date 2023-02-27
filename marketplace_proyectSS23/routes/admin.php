@@ -5,9 +5,13 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 
 //Rutas admin
 Route::get('', [HomeController::class, 'index'])->name('admin.home');
+
+//Ruta Users
+Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'destroy'])->names('admin.users');
 
 //Ruta categorias
 Route::resource('categories', CategoryController::class)->names('admin.categories');

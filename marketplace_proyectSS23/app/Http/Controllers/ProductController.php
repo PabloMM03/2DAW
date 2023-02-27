@@ -14,6 +14,8 @@ class ProductController extends Controller
     //Ver publicaciones de los articulos mas a fondo
     public function show(Product $product){
 
+      $this->authorize('published', $product);
+
         /**
          * Obtener productos relacionados mediante consulta 
         */

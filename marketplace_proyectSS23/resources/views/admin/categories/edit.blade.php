@@ -39,7 +39,7 @@
                     </span>       
                 @enderror
             </div>
-            {!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary btn-sm']) !!}
 
         {!! Form::close() !!}
     </div>

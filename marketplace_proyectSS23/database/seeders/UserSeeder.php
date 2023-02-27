@@ -21,9 +21,9 @@ class UserSeeder extends Seeder
             'email' =>'pablo.millan@gmail.com',
             'password' => bcrypt("123456789"),
 
-        ]);
+        ])->assignRole('Admin');
 
         //generar 10 usuarios random
-        User::factory(10)->create();
+        User::factory(15)->create();
     }
 }
