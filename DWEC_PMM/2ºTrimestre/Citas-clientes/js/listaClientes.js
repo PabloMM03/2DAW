@@ -129,20 +129,17 @@ function crearListeners(){
         localStorage.setItem('nombre', nombre);
         localStorage.setItem('apellidos', apellidos);
 
-       const nombreCompleto = nombre + " " +    apellidos;
+       const nombreCompleto = nombre + " " + apellidos;
 
        const confirmar = confirm(`¿Seguro que deseas eliminar al cliente ${nombreCompleto}?`);
 
         if(confirmar){
             e.preventDefault();
-            const resultado = await Controlador.eliminarCliente(nif);
-            if (resultado && resultado.ok) {
+             await Controlador.eliminarCliente(nif);
                 alert("Cliente eliminado correctamente");
                 window.location.reload();
-              } else {
-                alert("Ha ocurrido un error al eliminar el cliente");
-              }
         }else{
+            alert("Ha ocurrido un error al eliminar el cliente");
             window.location.href = "index.html";
 
         }

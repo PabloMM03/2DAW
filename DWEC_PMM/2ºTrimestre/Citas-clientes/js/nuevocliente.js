@@ -11,8 +11,8 @@ function crearListeners() {
   document.getElementById("cancelar").addEventListener("click", () => window.location.href = "index.html", false);
 
   document.getElementById("formulario").addEventListener("submit", añadirCliente, false);
-
-  document.getElementById("formulario").addEventListener("submit",validarForm,false);
+  
+  // document.getElementById("formulario").addEventListener("submit",validarForm,false);
 }
 /**
  * Añadir cliente
@@ -22,9 +22,14 @@ async function añadirCliente(e)
 {
   e.preventDefault();
   const cliente = obtenerDatosCliente();
-  await Controlador.setCliente(cliente);
-  window.location.href="index.html";
+  const errores = validarCliente(cliente);
 
+  if (Object.keys(errores).length === 0) {
+    await Controlador.setCliente(cliente);
+    window.location.href="index.html";
+  } else {
+    mostrarErrores(errores);
+  }
 }
 
 /**
@@ -51,18 +56,64 @@ function obtenerDatosCliente()
 
 
 
- function validarForm(e){
-     const campo = e.target;
-     validarCampo(campo);
- }
+//  function validarForm(e){
+//      const campo = e.target;
+//      validarCampo(campo);
+//  }
 
 
- function validarCampo(campo){
-     eliminarErrores(campo);
-     return campo.checkValidity();
- }
+//  function validarCampo(campo){
+//      eliminarErrores(campo);
+//      return campo.checkValidity();
+//  }
+const regexp  = (/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+ 
+
+function validarCliente(cliente) {
+  const errores = {};
+
+  if (!cliente.nombre) {
+    errores.nombre = "El nombre es obligatorio";
+  }else if(!cliente.nombre.length < 4){
+    errores.nombre = 'El nombre no puede tener menos de 4 caracteres';
+  }else if(!cliente.nombre.length > 30){
+    errores.nombre = 'El nombre no puede tener mas de 30 caracteres';
+  }
+
+  if (!cliente.apellidos) {
+    errores.apellidos = "Los apellidos son obligatorios";
+  }else if(!cliente.apellidos.length < 8){
+    errores.apellidos = 'El apellido no puede tener menos de 8 caracteres';
+  }else if(!cliente.apellidos.length > 50){
+    errores.apellidos = 'El apellido no puede tener mas de 50 caracteres';
+  }
+
+ 
+  return errores;
+}
+
+/**
+ * 
+ * @param {*} errores 
+ */
+
+function mostrarErrores(errores) {
+  const formulario = document.getElementById("formulario");
 
 
+  for (const campo in errores) {
+    const errorP = document.getElementById(`error-${campo}`);
+    errorP.innerText = errores[campo];
+   
+    const input = formulario.querySelector(`[name=${campo}]`);
+    const errorDiv = input.nextElementSibling;
+  
+    errorDiv.style.display = "block";
+
+    // Añadir clase "border-red-600" al input correspondiente
+    input.classList.add("border-red-600");
+  }
+}
 
 
 
