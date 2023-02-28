@@ -71,12 +71,16 @@ function getHTMLClienteCita(cita)
 }
 
 
+/**
+ * Mostrar nombre y apellidos
+ */
+
  function mostrarNombreYApe()
  {
     
-     const nombre = localStorage.getItem('nombre');
-     const apellidos = localStorage.getItem('apellidos');
+  const nombre = localStorage.getItem('nombre');
+  const apellidos = localStorage.getItem('apellidos');
 
-     const campo = document.getElementById('cita-cliente');
-     campo.innerHTML = nombre + " " + apellidos;
+  const campo = document.getElementById('cita-cliente');
+  campo.innerHTML = nombre + " " + apellidos;
  }

@@ -5,7 +5,8 @@ crearListeners();
 /**
  * Listeners
  */
-function crearListeners() {
+function crearListeners() 
+{
   document.getElementById("cancelar").addEventListener("click", cancelarCita, false);
   document.getElementById("formulario").addEventListener("submit", añadirCita, false);
 
@@ -17,7 +18,8 @@ function crearListeners() {
  * @param {*} e 
  */
 
-async function añadirCita(e) {
+async function añadirCita(e) 
+{
   
   e.preventDefault();
   const cita = obtenerDatosCita();
@@ -40,7 +42,8 @@ async function añadirCita(e) {
  * @param {string} nif - NIF del cliente
  * @returns {object} Datos de la cita
  */
-function obtenerDatosCita(nif) {
+function obtenerDatosCita(nif) 
+{
   const formulario = document.getElementById("formulario");
   const datos = new FormData(formulario);
 
@@ -59,7 +62,8 @@ function obtenerDatosCita(nif) {
 /**
  * Mostrar nombre y apellidos
  */
-function mostrarNombreYApe() {
+function mostrarNombreYApe() 
+{
 
   const nombre = localStorage.getItem('nombre');
   const apellidos = localStorage.getItem('apellidos');
@@ -74,7 +78,8 @@ function mostrarNombreYApe() {
  * @param {*} e 
  */
 
-async function cancelarCita(e) {
+async function cancelarCita(e) 
+{
   e.preventDefault();
   const cita = obtenerDatosCita();
   const nifCliente = localStorage.getItem('nif');
@@ -88,7 +93,8 @@ async function cancelarCita(e) {
  * @returns errores
  */
 
-function validarCita(cita) {
+function validarCita(cita) 
+{
   const errores = {};
 
   if (!cita.fecha) {
@@ -117,7 +123,8 @@ function validarCita(cita) {
  * @param {*} errores 
  */
 
-function mostrarErrores(errores) {
+function mostrarErrores(errores) 
+{
   const formulario = document.getElementById("formulario");
 
 
