@@ -127,7 +127,7 @@ function mostrarErrores(errores) {
    
     const input = formulario.querySelector(`[name=${campo}]`);
     const errorDiv = input.nextElementSibling;
-    errorDiv.innerText = errores[campo];
+  
     errorDiv.style.display = "block";
 
     // Añadir clase "border-red-600" al input correspondiente
