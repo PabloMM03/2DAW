@@ -28,6 +28,7 @@
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline auto-validable"
                                     id="fecha"
                                     name="fecha"
+                                    required
                                     type="date"
                                 />
                                 <p id="error-fecha" class="text-red-600 text-xs"></p>
@@ -38,6 +39,7 @@
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline auto-validable"
                                     id="hora"
                                     name="hora"
+                                    required
                                     type="time"
                                 />
                                 <p id="error-hora" class="text-red-600 text-xs"></p>
@@ -48,6 +50,8 @@
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline auto-validable"
                                     id="descripcion"
                                     name="descripcion"
+                                    required
+                                    maxlength="200"
                                     rows="3"></textarea>
                                 <p id="error-descripcion" class="text-red-600 text-xs"></p>
                             </div>
@@ -57,6 +61,7 @@
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline auto-validable"
                                     id="detalles"
                                     name="detalles"
+                                    maxlength="400"
                                     rows="5"></textarea><br>
                                 <p id="error-detalles" class="text-red-600 text-xs"></p>
                             </div>
