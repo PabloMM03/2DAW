@@ -11,13 +11,12 @@
       </svg>  
       
 </a>
- <i style="color:white"> {{\Cart::session(auth()->id())->getTotalQuantity()}}</i> 
      
      {{-- {{\Cart::session(auth()->id())->getContent()->count()}} <!--Obtiene el total de productos pero si hay 20 solo se añaden 20, 1 de cada--> --}}
      <!--  Obtiene el total completo-->
 <!--Acceder de nuevo a la tienda -->
 @auth
-{{\Cart::session(auth()->id())->getTotalQuantity()}} 
+<i style="color:white">{{\Cart::session(auth()->id())->getTotalQuantity()}} </i> 
     
 @else
  0
