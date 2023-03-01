@@ -19,9 +19,6 @@
         {{--No autocompletar al excribir--}}
         {!! Form::model($product,['route' => ['admin.products.update', $product], 'autocomplete' => 'off', 'files' => true, 'method' => 'PUT']) !!}
 
-{{--Id del usuario el cual añade el producto--}}
-
-
 
 {{--formulario de creacionde productos--}}
 

@@ -87,7 +87,12 @@
               {{-- {{route('profile.show')}}--}}
               <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Perfil</a>
               <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Ajustes</a>
+
+
+              @can('admin.home')
               <a href="{{route('admin.home')}}" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Admin Panel</a>
+              @endcan
+
               {{-- Accion de logout--}}
             <form id="logout-form"  action="{{ route('logout') }}" method="POST">
                 @csrf

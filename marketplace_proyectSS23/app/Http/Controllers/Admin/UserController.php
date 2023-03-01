@@ -58,4 +58,12 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('admin.users.index')->with('info', 'Usuario eliminado correctamente');
     }
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+
+    }
+
 }

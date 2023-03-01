@@ -13,6 +13,16 @@ use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.products.index')->only('index');
+        $this->middleware('can:admin.products.create')->only('create', 'store');
+        $this->middleware('can:admin.products.destroy')->only('destroy');
+        $this->middleware('can:admin.products.edit')->only('edit', 'update');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,17 +82,6 @@ class ProductController extends Controller
        return redirect()->route('admin.products.edit', $product)->with('info', 'Producto creado correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function show(Product $product)
-    {
-        return view('admin.products.show', compact('product'));
-    }
 
     /**
      * Show the form for editing the specified resource.
