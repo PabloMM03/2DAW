@@ -10,7 +10,7 @@
 <h2 class="h3">
     Listado de Permisos
 </h2>
-
+{{--Seleccionar roles marcados--}}
 <div class="form-check">
     @foreach ($permisos as $permiso)
         <input class="form-check-input" type="checkbox" name="cod_permiso[]" value="{{$permiso->id}}" 
