@@ -56,39 +56,54 @@ function obtenerDatosCliente()
 
 
 
-//  function validarForm(e){
-//      const campo = e.target;
-//      validarCampo(campo);
-//  }
-
-
-//  function validarCampo(campo){
-//      eliminarErrores(campo);
-//      return campo.checkValidity();
-//  }
-const regexp  = (/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
- 
-
 function validarCliente(cliente) {
   const errores = {};
+  const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!cliente.nombre) {
     errores.nombre = "El nombre es obligatorio";
-  }else if(!cliente.nombre.length < 4){
+  }else if(cliente.nombre.length < 4){
     errores.nombre = 'El nombre no puede tener menos de 4 caracteres';
-  }else if(!cliente.nombre.length > 30){
+  }else if(cliente.nombre.length > 30){
     errores.nombre = 'El nombre no puede tener mas de 30 caracteres';
+  }if(cliente.nombre){
+    errores.nombre ='';
   }
 
   if (!cliente.apellidos) {
     errores.apellidos = "Los apellidos son obligatorios";
-  }else if(!cliente.apellidos.length < 8){
+  }else if(cliente.apellidos.length < 8){
     errores.apellidos = 'El apellido no puede tener menos de 8 caracteres';
-  }else if(!cliente.apellidos.length > 50){
+  }else if(cliente.apellidos.length > 50){
     errores.apellidos = 'El apellido no puede tener mas de 50 caracteres';
+  }if(cliente.apellidos){
+    errores.apellidos ='';
   }
 
+  if (!cliente.email) {
+    errores.email = "El email es obligatorio";
+  }else if(cliente.email.value !== regexCorreo){
+    errores.email = 'El email no tiene el formato correcto';
+  }if(cliente.email){
+    errores.email ='';
+  }
+
+  if (!cliente.telefono) {
+    errores.telefono = "El telefono es obligatorio";
+  }else if(cliente.telefono.length < 8){
+    errores.telefono = 'El telefono no puede tener menos de 8 caracteres';
+  }if(cliente.telefono){
+    errores.telefono ='';
+  }
  
+  if (!cliente.nif) {
+    errores.nif = "El nif es obligatorio";
+  }else if(cliente.nif.length < 8){
+    errores.nif = 'El nif no puede tener menos de 8 caracteres';
+  }if(cliente.nif){
+    errores.nif ='';
+  }
+
   return errores;
 }
 
@@ -102,16 +117,19 @@ function mostrarErrores(errores) {
 
 
   for (const campo in errores) {
-    const errorP = document.getElementById(`error-${campo}`);
+    const errorP = document.getElementById(`error-${campo}`)
     errorP.innerText = errores[campo];
    
     const input = formulario.querySelector(`[name=${campo}]`);
-    const errorDiv = input.nextElementSibling;
-  
-    errorDiv.style.display = "block";
+    // const errorDiv = input.nextElementSibling;
+  if(`${campo}` !== ''){
+    input.classList.remove("border-red-600");
+  }
+    // errorDiv.style.display = "block";
 
     // Añadir clase "border-red-600" al input correspondiente
     input.classList.add("border-red-600");
+
   }
 }
 

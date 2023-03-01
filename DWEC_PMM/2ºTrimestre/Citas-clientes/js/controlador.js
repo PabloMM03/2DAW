@@ -78,7 +78,7 @@ export class ControladorPHP {
  * 
  * @returns json citas clientes 
  */
-    static async mostrarCitas(nif) {
+    static async mostrarCitas(nif,datos) {
         
         let respuestaJSON = null;
         try {
@@ -90,6 +90,7 @@ export class ControladorPHP {
                 body : JSON.stringify({
                    metodo: "getCitasCliente",
                    nifCliente: nif,
+                   citas: datos
                 })
             });
             respuestaJSON = await respuesta.json();
