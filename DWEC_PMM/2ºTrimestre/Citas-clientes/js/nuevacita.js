@@ -42,7 +42,7 @@ async function añadirCita(e)
   
   e.preventDefault();
   const cita = obtenerDatosCita();
-  // const errores = validarCita(cita);
+   const errores = validarCita(e);
 
   const nifCliente = localStorage.getItem('nif');
   cita.nifCliente = nifCliente;
@@ -127,7 +127,7 @@ function revisarErrores(e){
 }
 function eliminarErrores(campo){
   campo.classList.remove(CLASE_ERROR_CAMPO);
-  const mensajesError = document.getElementById(`error-${campo}`);
+  const mensajesError = document.getElementById(`error-${campo.name}`);
   if(mensajesError){
       mensajesError.parentElement.removeChild(mensajesError);
   }
@@ -138,39 +138,54 @@ function notificarErrores(e){
   const campo = e.target;
   campo.classList.add(CLASE_ERROR_CAMPO);
 
-  let errores = [];
+  let mensajes = [];
 
   if(campo.validity.valueMissing){
-      errores.push(`El campo ${campo.name} es obligatorio`);
+    mensajes.push(`El campo ${campo.name} es obligatorio`);
   }
-  if(campo.validity.rangeOverflow){
-      errores.push(`Debe contener un valor menor a ${campo.max}`);
+  if(campo.validity.rangeOverFlow){
+    mensajes.push(`Debe contener un valor menor a ${campo.max}`);
   }
-  mostrarMensajesErrorEn(errores,campo);
+  mostrarMensajesErrorEn(mensajes,campo);
 
 }
 
 function mostrarMensajesErrorEn(mensajes, campo){
 
-  const formulario = document.getElementById("formulario");
+  let div = document.createElement("div");
+    div.setAttribute("id",`error-${campo.name}`);
+    div.classList.add(CLASE_ERROR_MENSAJE);
+    for(let i = 0; i< mensajes.length; i++){
+        let parrafo = document.createElement("p");
+        parrafo.textContent = mensajes[i];
+        div.appendChild(parrafo);
+    }
+    insertarDespues(campo, div);
 
-
-    for (const campo in errores) {
-       const errorP = document.getElementById(`error-${campo}`);
-       errorP.innerText = errores[campo];
-     
-       const input = formulario.querySelector(`[name=${campo}]`);
-       const errorDiv = input.nextElementSibling;
-    
-       errorDiv.style.display = "block";
-  
-       // Añadir clase "border-red-600" al input correspondiente
-       input.classList.add("border-red-600");
-     }
-
-  insertarDespues(campo, div);
 }
 
+
+function insertarDespues(campoReferencia, campoAnadir){
+  if(campoReferencia.nextSibling){
+      campoReferencia.parentNode.insertBefore(campoAnadir, campoReferencia.nextSibling);
+  }else{
+      campoReferencia.parentNode.appendChild(campoAnadir);
+  }
+}
+
+function validarCita(e){
+  let formValido = validarCampo(document.getElementById("fecha"));
+  formValido = validarCampo(document.getElementById("hora"))&& formValido;
+  formValido = validarCampo(document.getElementById("descripcion"))&& formValido;
+  formValido = validarCampo(document.getElementById("detalles"))&& formValido;
+
+  if(formValido){
+      console.log("El formulario está validado correctamente sin errores.");
+  }else{
+      e.preventDefault();
+      console.error("El formulario no está validado ya que tiene errores.");
+  }
+}
 
 
 
