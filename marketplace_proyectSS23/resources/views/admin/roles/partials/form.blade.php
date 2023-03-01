@@ -11,11 +11,18 @@
     Listado de Permisos
 </h2>
 
-@foreach ($permisos as $permiso)
-    <div>
-        <label for="">
-            {!! Form::checkbox('permisos[]', $permiso->id, null, ['class' => 'mr-1']) !!}
-            {{$permiso->description}}
+<div class="form-check">
+    @foreach ($permisos as $permiso)
+        <input class="form-check-input" type="checkbox" name="cod_permiso[]" value="{{$permiso->id}}" 
+            @foreach($role->permissions as $permissions)
+                @if ($permissions->id == $permiso->id)
+                    checked
+                @endif
+            @endforeach
+        id="cod_permiso">
+        <label class="form-check-label" for="flexCheckDefault">
+            {{ $permiso->description }} 
         </label>
-    </div>
-@endforeach
+        <br>
+    @endforeach
+</div>
