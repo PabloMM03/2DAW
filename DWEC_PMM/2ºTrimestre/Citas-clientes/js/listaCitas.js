@@ -43,8 +43,9 @@ async function mostrarCitasCliente(e)
 
 function getHTMLClienteCita(cita) 
 {
-    const { detalles, descripcion, hora, fecha, nifCliente, id } = cita;
-    
+    const regex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    const fecha = cita.fecha.replace(regex, '$3-$2-$1');
+
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
@@ -53,16 +54,16 @@ function getHTMLClienteCita(cita)
             <p class="text-gray-700">${fecha}</p>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
-            <p class="text-gray-700">${hora}</p>
+            <p class="text-gray-700">${cita.hora}</p>
         </td>
         <td class="px-6 py-4 border-b border-gray-200 leading-5 text-gray-700">
-            <p class="text-gray-600">${descripcion}</p>
+            <p class="text-gray-600">${cita.descripcion}</p>
         </td>
         <td class="px-6 py-4 border-b border-gray-200 leading-5 text-gray-700">
-            <p class="text-gray-600">${detalles}</p>
+            <p class="text-gray-600">${cita.detalles}</p>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
-            <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-citaid="${id}" datanifcliente="${nifCliente}" data-citafecha="${fecha}" data-citahora="${hora}">Eliminar cita</a>
+            <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-citaid="${cita.id}" datanifcliente="${cita.nifCliente}" data-citafecha="${cita.fecha}" data-citahora="${cita.hora}">Eliminar cita</a>
         </td>
     `;
 
