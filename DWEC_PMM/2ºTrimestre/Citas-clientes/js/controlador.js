@@ -125,7 +125,11 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
-
+/**
+ * Eliminar Cliente
+ * @param {*} nif 
+ * @returns 
+ */
     static async eliminarCliente(nif) {
         let respuestaJSON = null;
         try {
@@ -136,7 +140,7 @@ export class ControladorPHP {
                 },
                 body : JSON.stringify({
                    metodo: "eliminarCliente",
-                   nifCliente: nif,
+                   nif: nif,
                 })
             });
             
@@ -147,5 +151,30 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
+/**
+ * Eliminar Cita
+ * @param {*} nif 
+ * @returns 
+ */
+    static async eliminarCita(id) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "eliminarCita",
+                   id: id,
+                })
+            });
+            
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
 
 }

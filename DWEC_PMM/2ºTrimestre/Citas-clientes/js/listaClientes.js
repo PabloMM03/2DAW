@@ -9,9 +9,6 @@ function crearListeners(){
     window.addEventListener("DOMContentLoaded", mostrarClientes, false);
 
     window.addEventListener('click', accionesCita, false);
-
-
-    // document.getElementsByClassName("crearCita", crearCita ,false);
 }
 
  /**
@@ -61,10 +58,8 @@ function crearListeners(){
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
                 <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 crearCita" data-clientenombre="${cliente.nombre}"
                 data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Crear cita</a>
-                <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 verCitas" data-clientenombre="${cliente.nombre}" data
-                clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Ver citas</a>
-                <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-clientenombre="${cliente.nombre}" data-
-                clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Eliminar cliente</a>
+                <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 verCitas" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Ver citas</a>
+                <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Eliminar cliente</a>
             </td>
         
         `;
@@ -107,6 +102,7 @@ function crearListeners(){
      */
 
     function verCitas(e) {
+         
         const { dataset: { clientenif: nif, clientenombre: nombre, clienteapellidos: apellidos } } = e.target;
       
         localStorage.setItem('nif', nif);
@@ -136,10 +132,9 @@ function crearListeners(){
         if(confirmar){
             e.preventDefault();
              await Controlador.eliminarCliente(nif);
-                alert("Cliente eliminado correctamente");
                 window.location.reload();
         }else{
-            alert("Ha ocurrido un error al eliminar el cliente");
+
             window.location.href = "index.html";
 
         }

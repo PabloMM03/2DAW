@@ -14,6 +14,8 @@ function crearListeners()
 
     window.addEventListener("DOMContentLoaded", mostrarCitasCliente, false);
     window.addEventListener("DOMContentLoaded", mostrarNombreYApe, false);
+
+    window.addEventListener('click', accionesCita, false);
     
 }
   
@@ -71,7 +73,6 @@ function getHTMLClienteCita(cita)
 
 }
 
-
 /**
  * Mostrar nombre y apellidos
  */
@@ -85,3 +86,45 @@ function getHTMLClienteCita(cita)
   const campo = document.getElementById('cita-cliente');
   campo.innerHTML = nombre + " " + apellidos;
  }
+
+ function accionesCita(e)
+{
+        const classList = Array.from(e.target.classList);
+
+        if(classList.includes('eliminar')){
+            eliminarCita(e);
+        }
+
+}
+
+async function eliminarCita(e){
+
+    // const {dataset: { nifcliente:nif, citafecha: fecha, citahora: hora,  }} = e.target;
+
+    const nif = e.target.getAttribute('datanifcliente');
+    const fecha = e.target.getAttribute('data-citafecha');
+    const hora = e.target.getAttribute('data-citahora');
+    const id = e.target.getAttribute('data-citaid');
+
+    localStorage.setItem('nif', nif);
+    localStorage.setItem('id', id);
+    localStorage.setItem('fecha', fecha);
+    localStorage.setItem('hora', hora);
+
+   const fechaCompleta = fecha + " a las " + hora;
+
+   const confirmar = confirm(`¿Seguro que deseas eliminar la cita del  ${fechaCompleta}?`);
+
+    if(confirmar){
+        e.preventDefault();
+         await Controlador.eliminarCita(id);
+            window.location.reload();
+    }else{
+        window.location.href = "lista-citas.html";
+
+    }
+
+
+}
+
+
