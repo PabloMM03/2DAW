@@ -163,7 +163,7 @@ function mostrarMensajesErrorEn(mensajes, campo) {
   // }
 
   if (error) {
-      error.setAttribute("id", errorId);
+      // error.setAttribute("id", errorId);
       error.classList.add(CLASE_ERROR_MENSAJE);
       error.textContent = mensajes.join("\n");
       error.style.display = "block";
@@ -174,7 +174,7 @@ function mostrarMensajesErrorEn(mensajes, campo) {
       error.focus();
   } else {
       error = document.createElement("p");
-      error.setAttribute("id", errorId);
+      // error.setAttribute("id", errorId);
       error.classList.add(CLASE_ERROR_MENSAJE);
       insertarDespues(campo, error);
       error.textContent = mensajes.join("\n");

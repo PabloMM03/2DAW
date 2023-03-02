@@ -19,10 +19,11 @@ function crearListeners()
     
 }
   
+
 /**
  * Mostrar citas del cliente
+ * @param {*} e 
  */
-
 async function mostrarCitasCliente(e) 
 {
     const nif = localStorage.getItem('nif');
