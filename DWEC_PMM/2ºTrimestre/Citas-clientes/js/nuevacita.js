@@ -40,19 +40,14 @@ function crearListeners()
 async function añadirCita(e) 
 {
   
-  e.preventDefault();
   const cita = obtenerDatosCita();
-   const errores = validarCita(e);
+  validarCita(e);
 
   const nifCliente = localStorage.getItem('nif');
   cita.nifCliente = nifCliente;
-
-  // if (Object.keys(errores).length === 0) {
     await Controlador.setCita(cita);
     window.location.href = "lista-citas.html";
-  // } else {
-  //   mostrarErrores(errores);
-  // }
+
 
 }
 
@@ -109,6 +104,10 @@ async function cancelarCita(e)
 
 //Validar formulario
 
+/**
+ * 
+ * @param {*} e 
+ */
 function validarCampoEvento(e){
   const campo = e.target;
   validarCampo(campo);
@@ -131,7 +130,6 @@ function eliminarErrores(campo){
   if(mensajesError){
       mensajesError.parentElement.removeChild(mensajesError);
   }
-
 }
 
 function notificarErrores(e){
@@ -143,26 +141,53 @@ function notificarErrores(e){
   if(campo.validity.valueMissing){
     mensajes.push(`El campo ${campo.name} es obligatorio`);
   }
-  if(campo.validity.rangeOverFlow){
+  if(campo.validity.rangeOverflow){
     mensajes.push(`Debe contener un valor menor a ${campo.max}`);
-  }
+}
   mostrarMensajesErrorEn(mensajes,campo);
 
 }
 
-function mostrarMensajesErrorEn(mensajes, campo){
+/**
+ * 
+ * @param {*} mensajes 
+ * @param {*} campo 
+ */
+function mostrarMensajesErrorEn(mensajes, campo) {
 
-  let div = document.createElement("div");
-    div.setAttribute("id",`error-${campo.name}`);
-    div.classList.add(CLASE_ERROR_MENSAJE);
-    for(let i = 0; i< mensajes.length; i++){
-        let parrafo = document.createElement("p");
-        parrafo.textContent = mensajes[i];
-        div.appendChild(parrafo);
+  const errorId = `error-${campo.name}`;
+  let error = document.getElementById(errorId);
+
+  // if (!error) {
+  //   error = campo.nextElementSibling;
+  // }
+
+  if (error) {
+      error.setAttribute("id", errorId);
+      error.classList.add(CLASE_ERROR_MENSAJE);
+      error.textContent = mensajes.join("\n");
+      error.style.display = "block";
+      campo.classList.add(CLASE_ERROR_CAMPO);
+      campo.setAttribute("aria-invalid", true);
+      campo.setAttribute("aria-describedby", errorId);
+      error.style.color = "red";
+      error.focus();
+  } else {
+      error = document.createElement("p");
+      error.setAttribute("id", errorId);
+      error.classList.add(CLASE_ERROR_MENSAJE);
+      insertarDespues(campo, error);
+      error.textContent = mensajes.join("\n");
+      error.style.display = "block";
+      campo.classList.add(CLASE_ERROR_CAMPO);
+      campo.setAttribute("aria-invalid", true);
+      campo.setAttribute("aria-describedby", errorId);
+      error.style.color = "red";
+      error.focus();
     }
-    insertarDespues(campo, div);
-
 }
+
+
 
 
 function insertarDespues(campoReferencia, campoAnadir){
@@ -173,7 +198,13 @@ function insertarDespues(campoReferencia, campoAnadir){
   }
 }
 
+/**
+ * 
+ * @param {*} e 
+ */
+
 function validarCita(e){
+  
   let formValido = validarCampo(document.getElementById("fecha"));
   formValido = validarCampo(document.getElementById("hora"))&& formValido;
   formValido = validarCampo(document.getElementById("descripcion"))&& formValido;
@@ -204,60 +235,4 @@ function validarCita(e){
 
 
 
-
-
-/**
- * 
- * @param {*} cita 
- * @returns errores
- */
-
-// function validarCita(cita) 
-// {
-//   const errores = {};
-
-//   if (!cita.fecha) {
-//     errores.fecha = "La fecha es obligatoria";
-//   }
-
-//   if (!cita.hora) {
-//     errores.hora = "La hora es obligatoria";
-//   }
-
-//   if (!cita.descripcion) {
-//     errores.descripcion = "La descripción es obligatoria";
-//   } else if (cita.descripcion.length > 200) {
-//     errores.descripcion = "La descripción no puede tener más de 200 caracteres";
-//   }
-
-//   if (cita.detalles && cita.detalles.length > 400) {
-//     errores.detalles = "Los detalles no pueden tener más de 400 caracteres";
-//   }
-
-//   return errores;
-// }
-
-// /**
-//  * 
-//  * @param {*} errores 
-//  */
-
-// function mostrarErrores(errores) 
-// {
-//   const formulario = document.getElementById("formulario");
-
-
-//   for (const campo in errores) {
-//     const errorP = document.getElementById(`error-${campo}`);
-//     errorP.innerText = errores[campo];
-   
-//     const input = formulario.querySelector(`[name=${campo}]`);
-//     const errorDiv = input.nextElementSibling;
-  
-//     errorDiv.style.display = "block";
-
-//     // Añadir clase "border-red-600" al input correspondiente
-//     input.classList.add("border-red-600");
-//   }
-// }
 
