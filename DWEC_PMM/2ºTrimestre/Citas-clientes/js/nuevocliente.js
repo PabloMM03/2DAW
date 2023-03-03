@@ -179,9 +179,9 @@ function mensajeError(e)
   if (e.valueMissing) {
     mensajes = "Este campo es obligatorio"; 
   }else if (e.tooShort) {
-    mensajes = "Este campo tiene menos carácteres que los requeridos";
+    mensajes = "Este campo tiene menos carácteres de los requeridos";
   } else if (e.tooLong) {
-    mensajes = "Este campo tiene más carácteres que los requeridos";
+    mensajes = "Este campo tiene más carácteres de los requeridos";
   }
 
   return mensajes;
