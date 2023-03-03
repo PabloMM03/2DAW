@@ -66,7 +66,10 @@ function crearListeners(){
         return tr;
 
     }
-
+/**
+ * Realiza las acciones de la vista clientes
+ * @param {*} e 
+ */
     function accionesCita(e)
     {
         const classList = Array.from(e.target.classList);
@@ -86,6 +89,10 @@ function crearListeners(){
 
     }
 
+    /**
+     * Almacena los datos en localstorage
+     * @param {*} e 
+     */
     function almacenarDatos(e)
     {
         const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
@@ -100,8 +107,6 @@ function crearListeners(){
        * Eliminar un cliente 
        * @param {*} e 
        */
-
-
     async function eliminarCliente(e){
 
       almacenarDatos(e);
