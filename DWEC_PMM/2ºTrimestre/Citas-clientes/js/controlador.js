@@ -50,7 +50,7 @@ export class ControladorPHP {
     }
 
 /**
- * 
+ * Añadir un nuevo cliente
  * @param {*} datos 
  * @returns 
  */
@@ -74,7 +74,7 @@ export class ControladorPHP {
         return respuestaJSON;
     }
 
-    /**
+/**
  * 
  * @returns json citas clientes 
  */
@@ -101,7 +101,7 @@ export class ControladorPHP {
     }
 
     /**
-     * 
+     * Añadir una nueva cita 
      * @param {*} datos 
      * @returns 
      */
@@ -126,7 +126,7 @@ export class ControladorPHP {
     }
 
 /**
- * Eliminar Cliente
+ * Eliminar Cliente por su nif
  * @param {*} nif 
  * @returns 
  */
@@ -152,8 +152,8 @@ export class ControladorPHP {
     }
 
 /**
- * Eliminar Cita
- * @param {*} nif 
+ * Eliminar Cita por su id
+ * @param {*} id
  * @returns 
  */
     static async eliminarCita(id) {

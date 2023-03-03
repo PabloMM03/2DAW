@@ -39,7 +39,7 @@ async function mostrarCitasCliente(e)
 }
 
 /**
- * 
+ * Generar html datos citas
  * @param {object} cita 
  * @returns 
  */
@@ -88,6 +88,10 @@ function getHTMLClienteCita(cita)
   campo.innerHTML = nombre + " " + apellidos;
  }
 
+ /**
+  * Realiza las acciones de la vista citas
+  * @param {*} e 
+  */
  function accionesCita(e)
 {
         const classList = Array.from(e.target.classList);
@@ -97,10 +101,11 @@ function getHTMLClienteCita(cita)
         }
 
 }
-
+/**
+ * Elimar cita segun el id y el nif del cliente
+ * @param {*} e 
+ */
 async function eliminarCita(e){
-
-    // const {dataset: { nifcliente:nif, citafecha: fecha, citahora: hora,  }} = e.target;
 
     const nif = e.target.getAttribute('datanifcliente');
     const fecha = e.target.getAttribute('data-citafecha');
