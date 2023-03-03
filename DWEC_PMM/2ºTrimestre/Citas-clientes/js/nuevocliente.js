@@ -35,6 +35,8 @@ function crearListeners()
 
   document.getElementById("formulario").addEventListener("submit", añadirCliente, false);
   
+  document.querySelectorAll("input")[0].focus();
+
 }
 
 /**
