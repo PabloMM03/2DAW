@@ -51,16 +51,13 @@ async function añadirCliente(e)
 {
   try {
 
-    e.preventDefault();
+e.preventDefault();
 
-  let formValido = validarCampo(document.getElementById("nombre"));
-  formValido =
-  validarCampo(document.getElementById("apellidos")) && formValido;
-  formValido = validarCampo(document.getElementById("email")) && formValido;
-  formValido =
-  validarCampo(document.getElementById("telefono")) && formValido;
-  formValido = validarCampo(document.getElementById("nif")) && formValido;
-
+let formValido = validarCampo(document.getElementById("nombre"));
+    formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
+    formValido = validarCampo(document.getElementById("email"))&& formValido;
+    formValido = validarCampo(document.getElementById("telefono"))&& formValido;
+    formValido = validarCampo(document.getElementById("nif"))&& formValido;
   
     if (formValido) {
       const cliente = obtenerDatosCliente();
@@ -71,7 +68,7 @@ async function añadirCliente(e)
         window.location.href = "index.html";
       }
     }
-    console.log(document.getElementsByClassName("border-red-600")[0].focus());
+    document.getElementsByClassName("border-red-600")[0].focus();
   } catch (error) {
     console.error(error);
   }
@@ -121,6 +118,7 @@ function datosForm(datosRecogidos)
   return validado;
 
 }
+
 /**
  * Validar campo
  * @param {*} campo 
@@ -201,3 +199,13 @@ function revisarErrores(e)
   }
 }
 
+// function validarCliente(){
+  
+//   let formValido = validarCampo(document.getElementById("nombre"));
+//     formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
+//     formValido = validarCampo(document.getElementById("email"))&& formValido;
+//     formValido = validarCampo(document.getElementById("telefono"))&& formValido;
+//     formValido = validarCampo(document.getElementById("nif"))&& formValido;
+ 
+
+//   }
