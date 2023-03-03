@@ -111,6 +111,8 @@ function crearListeners(){
 
       almacenarDatos(e);
 
+      const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
+
        const nombreCompleto = nombre + " " + apellidos;
 
        const confirmar = confirm(`¿Seguro que deseas eliminar al cliente ${nombreCompleto}?`);
