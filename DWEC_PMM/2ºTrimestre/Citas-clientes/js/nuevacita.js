@@ -120,6 +120,12 @@ async function cancelarCita(e)
   window.location.href = "lista-citas.html";
 }
 
+/**
+ * Mostrar mensajes de error en caso de que coincida una cita el mismo dia a la misma hora
+ * @param {*} datosRecogidos 
+ * @returns 
+ */
+
 
 function datosForm(datosRecogidos)
 {
@@ -127,12 +133,12 @@ function datosForm(datosRecogidos)
   let validado = false;
   for (let i = 0; i < datosRecogidos.camposError.length; i++) {
         // Asignar mensaje de error al elemento correspondiente
-    const campoError = document.getElementById(`error-${datosRecogidos.camposError[i]}`);
-    campoError.innerHTML = datosRecogidos.mensajesError[i];
+    const errorCampo = document.getElementById(`error-${datosRecogidos.camposError[i]}`);
+    errorCampo.innerHTML = datosRecogidos.mensajesError[i];
 
     // Añadir la clase 'border-red-600' al elemento con error
-    const campoConError = document.getElementById(`${datosRecogidos.camposError[i]}`);
-    campoConError.classList.add("border-red-600");
+    const errorEnCampo = document.getElementById(`${datosRecogidos.camposError[i]}`);
+    errorEnCampo.classList.add("border-red-600");
 
         // Marcar el formulario como validado si hay algún error
     validado = true;
