@@ -30,8 +30,7 @@
                                     name="nombre"
                                     type="text"
                                     required
-                                    min="4"
-                                    max="30"
+                                    minlength="4" maxlength="30"
                                     placeholder="Nombre Cliente"
                                 />
                                 <p id="error-nombre" class="text-red-600 text-xs"></p>
@@ -44,8 +43,7 @@
                                     name="apellidos"
                                     type="text"
                                     required
-                                    min="8"
-                                    max="50"
+                                    minlength="8" maxlength="50"
                                     placeholder="Apellidos Cliente"
                                 />
                                 <p id="error-apellidos" class="text-red-600 text-xs"></p>
@@ -58,6 +56,7 @@
                                     name="email"
                                     type="email"
                                     required
+                                    pattern="[^\s]+@[^\s]+\.[^\s]+"
                                     placeholder="Email Cliente (ejemplo@dominio.com)"
                                     title="Debe introducir un correo válido"
                                 />
@@ -72,7 +71,7 @@
                                     name="telefono"
                                     type="tel"
                                     required
-                                    pattern="/^\d{3}\s?\d{2}\s?\d{2}\s?\d{2}$/"
+                                    pattern="\d{3}\s?\d{2}\s?\d{2}\s?\d{2}"                 
                                     placeholder="Teléfono Cliente (698 76 54 32)"
                                     title="El teléfono debe componerse de 9 números (pueden usarse espacios)"
                                 />
@@ -87,7 +86,7 @@
                                     name="nif"
                                     type="text"
                                     required
-                                    pattern="/^\d{8}-?[A-HJ-NP-TV-Z]$/i"
+                                    pattern="\d{8}[-]?\w{1}"
                                     placeholder="NIF Cliente (12345678-R)"
                                     title="El NIF se compone de 8 números y una letra"
                                 />

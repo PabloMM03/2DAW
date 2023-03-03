@@ -1,7 +1,5 @@
 import { ControladorPHP as Controlador } from "./controlador.js";
 
-const CLASE_ERROR_CAMPO = "error";
-const CLASE_ERROR_MENSAJE = "campoAnadir";
 
 crearListeners();
 
@@ -9,7 +7,11 @@ crearListeners();
  * Crear Listeners
  */
 
-function crearListeners() {
+function crearListeners() 
+{
+
+  document.getElementById("formulario").setAttribute("novalidate", true);
+
 
   document.getElementById("cancelar").addEventListener("click", () => window.location.href = "index.html", false);
 
@@ -33,298 +35,169 @@ function crearListeners() {
 
   document.getElementById("formulario").addEventListener("submit", añadirCliente, false);
   
-  // document.getElementById("formulario").addEventListener("submit",validarForm,false);
 }
+
 /**
  * Añadir cliente
+ * 
+ * primero se valida el cliente y se guarda el resultado en una constante llamada esValido
+ * se almacena el resultado en una constante llamada esValidacionExitosa. Si esValidacionExitosa es verdadero, 
+ * se redirecciona a la página de inicio
+ * @param {*} e 
  */
+
 
 async function añadirCliente(e) 
 {
- 
-  const cliente = obtenerDatosCliente();
-  validarCliente(e);
-    await Controlador.setCliente(cliente);
-    window.location.href="index.html";
- 
+  try {
+
+    e.preventDefault();
+
+  let formValido = validarCampo(document.getElementById("nombre"));
+  formValido =
+  validarCampo(document.getElementById("apellidos")) && formValido;
+  formValido = validarCampo(document.getElementById("email")) && formValido;
+  formValido =
+  validarCampo(document.getElementById("telefono")) && formValido;
+  formValido = validarCampo(document.getElementById("nif")) && formValido;
+
+  
+    if (formValido) {
+      const cliente = obtenerDatosCliente();
+      const datosRecogidos = await Controlador.setCliente(cliente);
+      const validacion = datosForm(datosRecogidos);
+
+      if (!validacion) {
+        window.location.href = "index.html";
+      }
+    }
+    console.log(document.getElementsByClassName("border-red-600")[0].focus());
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 /**
- * 
+ * se utilizan los inputs del formulario para obtener los valores de los campos y 
+ * se almacenan en un objeto datos que se devuelve al final de la función.
+ * se recorren los inputs con un forEach, asignando los valores de cada input al objeto datos
  * @returns json con datos del cliente
  */
 
 function obtenerDatosCliente() 
 {
-
-  const formulario = document.getElementById("formulario");
-  const datos = new FormData(formulario);
-
-  return {
-    nombre: datos.get('nombre'),
-    apellidos: datos.get('apellidos'),
-    email: datos.get('email'),
-    telefono: datos.get('telefono'),
-    nif: datos.get('nif')
-
-  };
-
+  const inputs = document.querySelectorAll('#formulario input');
+  const datos = {};
+  
+  inputs.forEach(input => {
+    datos[input.name] = input.value.trim();
+  });
+  
+  return datos;
 }
-
-
-//Validar formulario
 
 /**
  * 
- * @param {*} e 
+ * @param {*} datosRecogidos 
+ * @returns 
  */
-function validarCampoEvento(e){
-  const campo = e.target;
-  validarCampo(campo);
-}
 
-function validarCampo(campo){
-  eliminarErrores(campo);
+function datosForm(datosRecogidos)
+{
+
+  let validado = false;
+  for (let i = 0; i < datosRecogidos.camposError.length; i++) {
+        // Asignar mensaje de error al elemento correspondiente
+    const campoError = document.getElementById(`error-${datosRecogidos.camposError[i]}`);
+    campoError.innerHTML = datosRecogidos.mensajesError[i];
+
+    // Añadir la clase 'border-red-600' al elemento con error
+    const campoConError = document.getElementById(`${datosRecogidos.camposError[i]}`);
+    campoConError.classList.add("border-red-600");
+
+        // Marcar el formulario como validado si hay algún error
+    validado = true;
+  }
+  return validado;
+
+}
+/**
+ * Validar campo
+ * @param {*} campo 
+ * @returns 
+ */
+function validarCampo(campo) 
+{
   return campo.checkValidity();
 }
 
-function revisarErrores(e){
-  const campo = e.target;
-  if(campo.validity.valid){
-      eliminarErrores(campo);
-  }
-}
-function eliminarErrores(campo){
-  campo.classList.remove(CLASE_ERROR_CAMPO);
-  const mensajesError = document.getElementById(`error-${campo.name}`);
-  if(mensajesError){
-      mensajesError.parentElement.removeChild(mensajesError);
-  }
-}
-
-function notificarErrores(e){
-  const campo = e.target;
-  campo.classList.add(CLASE_ERROR_CAMPO);
-
-  let mensajes = [];
-
-  if(campo.validity.valueMissing){
-    mensajes.push(`El campo ${campo.name} es obligatorio`);
-  }
-  if(campo.validity.typeMismatch){
-    mensajes.push(`Los datos no tienen el formato correcto`);
-}
-if(campo.validity.rangeUnderflow || campo.validity.rangeOverflow){
-    mensajes.push(`Debe contener un valor entre ${campo.min} y ${campo.max}`);
-}
-
-  mostrarMensajesErrorEn(mensajes,campo);
-
-}
-
-/**
- * 
- * @param {*} mensajes 
- * @param {*} campo 
- */
-function mostrarMensajesErrorEn(mensajes, campo) {
-
-  const errorId = `error-${campo.name}`;
-  let error = document.getElementById(errorId);
-
-  // if (!error) {
-  //   error = campo.nextElementSibling;
-  // }
-
-  if (error) {
-      error.setAttribute("id", errorId);
-      error.classList.add(CLASE_ERROR_MENSAJE);
-      error.textContent = mensajes.join("\n");
-      error.style.display = "block";
-      campo.classList.add(CLASE_ERROR_CAMPO);
-      campo.setAttribute("aria-invalid", true);
-      campo.setAttribute("aria-describedby", errorId);
-      error.style.color = "red";
-      error.focus();
-      
-  } else {
-      error = document.createElement("p");
-      error.setAttribute("id", errorId);
-      error.classList.add(CLASE_ERROR_MENSAJE);
-      insertarDespues(campo, error);
-      error.textContent = mensajes.join("\n");
-      error.style.display = "block";
-      campo.classList.add(CLASE_ERROR_CAMPO);
-      campo.setAttribute("aria-invalid", true);
-      campo.setAttribute("aria-describedby", errorId);
-      error.style.color = "red";
-      error.focus();
-    }
-}
-
-/**
- * 
- * @param {*} campoReferencia 
- * @param {*} campoAnadir 
- */
-
-
-function insertarDespues(campoReferencia, campoAnadir){
-  if(campoReferencia.nextSibling){
-      campoReferencia.parentNode.insertBefore(campoAnadir, campoReferencia.nextSibling);
-  }else{
-      campoReferencia.parentNode.appendChild(campoAnadir);
-  }
-}
 
 /**
  * 
  * @param {*} e 
+ * @returns 
  */
 
-function validarCliente(e){
-  
-  let formValido = validarCampo(document.getElementById("nombre"));
-  formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
-  formValido = validarCampo(document.getElementById("email"))&& formValido;
-  formValido = validarCampo(document.getElementById("telefono"))&& formValido;
-  formValido = validarCampo(document.getElementById("nif"))&& formValido;
-
-
-  if(formValido){
-      console.log("El formulario está validado correctamente sin errores.");
-  }else{
-      e.preventDefault();
-      console.error("El formulario no está validado ya que tiene errores.");
-  }
+function validarCampoEvento(e) 
+{
+  return e.target.checkValidity();
 }
 
+/**
+ * Primero, la función llama a la función mensajeError pasándole como parámetro el objeto validity del campo del formulario que generó el evento. 
+ * La función mensajeError devuelve un mensaje de error correspondiente al tipo de validación que falló en el campo.
+ * Luego, la función verifica si el campo que generó el evento es uno de los campos especiales (email, telefono o nif) y, 
+ * si es así, muestra un mensaje de error personalizado
+ * @param {*} e 
+ */
+function notificarErrores(e) 
+{
+  const mensajes = mensajeError(e.target.validity);
 
+  const id = e.target.id;
+  const name = e.target.name;
+  const errorElement = document.getElementById(`error-${name}`);
 
+  if (id === "email" || id === "telefono" || id === "nif") {
+    errorElement.innerHTML = e.target.title;
+  } else {
+    errorElement.innerHTML = mensajes;
+  }
+  
+  e.target.classList.add("border-red-600");
+}
 
+/**
+ * Mostrar nensajes de error
+ * @param {*} e 
+ * @returns 
+ */
 
+function mensajeError(e) 
+{
+  let mensajes = "";
 
+  if (e.valueMissing) {
+    mensajes = "Este campo es obligatorio";
+  }else if (e.tooShort) {
+    mensajes = "Este campo tiene menos carácteres que los requeridos";
+  } else if (e.tooLong) {
+    mensajes = "Este campo tiene más carácteres que los requeridos";
+  }
 
+  return mensajes;
+}
+/**
+ * Se comprueba si el campo correspondiente al evento tiene un valor válido. 
+ * Si es así, se limpia el mensaje de error asociado a ese campo y se quita la clase CSS border-red-600
+ * @param {*} e 
+ */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function validarCliente(cliente) {
-//   const errores = {};
-//   const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-//   if (!cliente.nombre) {
-//     errores.nombre = "El nombre es obligatorio";
-//   }else if(cliente.nombre.length < 4){
-//     errores.nombre = 'El nombre no puede tener menos de 4 caracteres';
-//   }else if(cliente.nombre.length > 30){
-//     errores.nombre = 'El nombre no puede tener mas de 30 caracteres';
-//   }if(cliente.nombre){
-//     errores.nombre ='';
-//   }
-
-//   if (!cliente.apellidos) {
-//     errores.apellidos = "Los apellidos son obligatorios";
-//   }else if(cliente.apellidos.length < 8){
-//     errores.apellidos = 'El apellido no puede tener menos de 8 caracteres';
-//   }else if(cliente.apellidos.length > 50){
-//     errores.apellidos = 'El apellido no puede tener mas de 50 caracteres';
-//   }if(cliente.apellidos){
-//     errores.apellidos ='';
-//   }
-
-//   if (!cliente.email) {
-//     errores.email = "El email es obligatorio";
-//   }else if(cliente.email.value !== regexCorreo){
-//     errores.email = 'El email no tiene el formato correcto';
-//   }if(cliente.email){
-//     errores.email ='';
-//   }
-
-//   if (!cliente.telefono) {
-//     errores.telefono = "El telefono es obligatorio";
-//   }else if(cliente.telefono.length < 8){
-//     errores.telefono = 'El telefono no puede tener menos de 8 caracteres';
-//   }if(cliente.telefono){
-//     errores.telefono ='';
-//   }
- 
-//   if (!cliente.nif) {
-//     errores.nif = "El nif es obligatorio";
-//   }else if(cliente.nif.length < 8){
-//     errores.nif = 'El nif no puede tener menos de 8 caracteres';
-//   }if(cliente.nif){
-//     errores.nif ='';
-//   }
-
-//   return errores;
-// }
-
-// /**
-//  * 
-//  * @param {*} errores 
-//  */
-
-// function mostrarErrores(errores) {
-//   const formulario = document.getElementById("formulario");
-
-
-//   for (const campo in errores) {
-//     const errorP = document.getElementById(`error-${campo}`)
-//     errorP.innerText = errores[campo];
-   
-//     const input = formulario.querySelector(`[name=${campo}]`);
-//     // const errorDiv = input.nextElementSibling;
-//   if(`${campo}` !== ''){
-//     input.classList.remove("border-red-600");
-//   }
-//     // errorDiv.style.display = "block";
-
-//     // Añadir clase "border-red-600" al input correspondiente
-//     input.classList.add("border-red-600");
-
-//   }
-// }
-
-
-
-
-
-
-
-
-
+function revisarErrores(e) 
+{
+  if (e.target.checkValidity()) {
+    document.getElementById(`error-${e.target.name}`).textContent  = "";
+    e.target.classList.remove("border-red-600");
+  }
+}
 
