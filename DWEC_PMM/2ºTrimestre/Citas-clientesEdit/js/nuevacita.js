@@ -29,6 +29,8 @@ function crearListeners()
 
   window.addEventListener("DOMContentLoaded", mostrarNombreYApe, false);
 
+  document.querySelectorAll("input")[0].focus();
+
   document.getElementById("formulario").addEventListener("submit", añadirCita, false);
 }
 

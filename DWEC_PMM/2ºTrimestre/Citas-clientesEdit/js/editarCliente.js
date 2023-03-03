@@ -33,8 +33,11 @@ function crearListeners()
   document.getElementById("telefono").addEventListener("input", revisarErrores, false);
   document.getElementById("nif").addEventListener("input", revisarErrores, false);
 
-  document.getElementById("formulario").addEventListener("submit", actualizarCliente, false);
+  window.addEventListener("DOMContentLoaded", mostrarNombreYApe, false);
   
+  document.querySelectorAll("input")[0].focus();
+
+  document.getElementById("formulario").addEventListener("submit", actualizarCliente, false);
 }
 
 /**
@@ -51,13 +54,7 @@ async function actualizarCliente(e)
 {
   try {
 
-e.preventDefault();
-
-let formValido = validarCampo(document.getElementById("nombre"));
-    formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
-    formValido = validarCampo(document.getElementById("email"))&& formValido;
-    formValido = validarCampo(document.getElementById("telefono"))&& formValido;
-    formValido = validarCampo(document.getElementById("nif"))&& formValido;
+    const formValido = validarCliente(e);
   
     if (formValido) {
       const cliente = obtenerDatosCliente();
@@ -92,6 +89,7 @@ function obtenerDatosCliente()
   
   return datos;
 }
+
 
 /**
  * Mostrar mensajes de error en caso de que un cliente ya se encuentre registrado 
@@ -196,4 +194,18 @@ function revisarErrores(e)
     document.getElementById(`error-${e.target.name}`).textContent  = "";
     e.target.classList.remove("border-red-600");
   }
+}
+
+
+function validarCliente(e)
+{
+  e.preventDefault();
+
+let formValido = validarCampo(document.getElementById("nombre"));
+    formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
+    formValido = validarCampo(document.getElementById("email"))&& formValido;
+    formValido = validarCampo(document.getElementById("telefono"))&& formValido;
+    formValido = validarCampo(document.getElementById("nif"))&& formValido;
+
+    return formValido;
 }

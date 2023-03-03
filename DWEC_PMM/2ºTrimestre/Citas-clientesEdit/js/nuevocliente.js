@@ -35,6 +35,7 @@ function crearListeners()
 
   document.getElementById("formulario").addEventListener("submit", añadirCliente, false);
   
+  document.querySelectorAll("input")[0].focus();
 }
 
 /**
@@ -77,7 +78,7 @@ async function añadirCliente(e)
 
 function obtenerDatosCliente() 
 {
-  const inputs = document.querySelectorAll('#formulario input');
+  const inputs = document.querySelectorAll('#formulario input');  
   const datos = {};
   
   inputs.forEach(input => {
