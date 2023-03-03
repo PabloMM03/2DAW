@@ -71,26 +71,22 @@ async function añadirCita(e)
 
 
 /**
- * json datos de la cita
- * @param {string} nif - NIF del cliente
- * @returns {object} Datos de la cita
+ *se convierte la colección de elementos devuelta por formulario.elements en un array para poder aplicar 
+ *el método filter y se filtra solo los elementos que sean etiquetas input. Luego, con reduce para construir 
+ *el objeto datos,y se asigna cada valor al objeto datos utilizando su propiedad name
+ * @param {*} nif 
+ * @returns 
  */
-function obtenerDatosCita(nif) 
-{
+function obtenerDatosCita(nif) {
   const formulario = document.getElementById("formulario");
-  const datos = new FormData(formulario);
-
-  return {
-    id: datos.get('id'),
-    nifCliente: nif,
-    fecha: datos.get('fecha'),
-    hora: datos.get('hora'),
-    descripcion: datos.get('descripcion'),
-    detalles: datos.get('detalles')
-
-  };
-
+  const inputs = Array.from(formulario.elements).filter(element => element.tagName === "INPUT");
+  
+  return inputs.reduce((datos, input) => {
+    datos[input.name] = input.value.trim();
+    return datos;
+  }, { id: '', nifCliente: nif, fecha: '', hora: '', descripcion: '', detalles: '' });
 }
+
 
 /**
  * Mostrar nombre y apellidos
