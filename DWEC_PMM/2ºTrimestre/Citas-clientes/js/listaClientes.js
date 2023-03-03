@@ -72,11 +72,13 @@ function crearListeners(){
         const classList = Array.from(e.target.classList);
 
         if (classList.includes('crearCita')) {
-            crearCita(e);
+            almacenarDatos(e);
+            window.location.href = "nueva-cita.html"
         }
 
         if (classList.includes('verCitas')) {
-            verCitas(e);
+            almacenarDatos(e);
+            window.location.href = "lista-citas.html";
         }
         if(classList.includes('eliminar')){
             eliminarCliente(e);
@@ -84,47 +86,25 @@ function crearListeners(){
 
     }
 
-    function crearCita(e)
+    function almacenarDatos(e)
     {
         const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
 
         localStorage.setItem('nif', nif);
         localStorage.setItem('nombre', nombre);
         localStorage.setItem('apellidos', apellidos);
-
-        window.location.href = "nueva-cita.html"
-
     }
 
-    /**
-     * ver citas de cliente segun sus datos 
-     * @param {*} e 
-     */
-
-    function verCitas(e) {
-         
-        const { dataset: { clientenif: nif, clientenombre: nombre, clienteapellidos: apellidos } } = e.target;
-      
-        localStorage.setItem('nif', nif);
-        localStorage.setItem('nombre', nombre);
-        localStorage.setItem('apellidos', apellidos);
-      
-        window.location.href = "lista-citas.html";
-      }
 
       /**
        * Eliminar un cliente 
        * @param {*} e 
        */
 
-      
+
     async function eliminarCliente(e){
 
-        const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
-
-        localStorage.setItem('nif', nif);
-        localStorage.setItem('nombre', nombre);
-        localStorage.setItem('apellidos', apellidos);
+      almacenarDatos(e);
 
        const nombreCompleto = nombre + " " + apellidos;
 
