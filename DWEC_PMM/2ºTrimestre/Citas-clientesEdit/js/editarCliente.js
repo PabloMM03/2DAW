@@ -33,7 +33,7 @@ function crearListeners()
   document.getElementById("telefono").addEventListener("input", revisarErrores, false);
   document.getElementById("nif").addEventListener("input", revisarErrores, false);
 
-  document.getElementById("formulario").addEventListener("submit", añadirCliente, false);
+  document.getElementById("formulario").addEventListener("submit", actualizarCliente, false);
   
 }
 
@@ -47,11 +47,17 @@ function crearListeners()
  */
 
 
-async function añadirCliente(e) 
+async function actualizarCliente(e) 
 {
   try {
 
-    const formValido = validarCliente(e);
+e.preventDefault();
+
+let formValido = validarCampo(document.getElementById("nombre"));
+    formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
+    formValido = validarCampo(document.getElementById("email"))&& formValido;
+    formValido = validarCampo(document.getElementById("telefono"))&& formValido;
+    formValido = validarCampo(document.getElementById("nif"))&& formValido;
   
     if (formValido) {
       const cliente = obtenerDatosCliente();
@@ -190,23 +196,4 @@ function revisarErrores(e)
     document.getElementById(`error-${e.target.name}`).textContent  = "";
     e.target.classList.remove("border-red-600");
   }
-}
-
-/**
- * Validar  campos formulario
- * @param {*} e 
- * @returns 
- */
-function validarCliente(e)
-{
-
-  e.preventDefault();
-
-let formValido = validarCampo(document.getElementById("nombre"));
-    formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
-    formValido = validarCampo(document.getElementById("email"))&& formValido;
-    formValido = validarCampo(document.getElementById("telefono"))&& formValido;
-    formValido = validarCampo(document.getElementById("nif"))&& formValido;
-  
-    return formValido;
 }

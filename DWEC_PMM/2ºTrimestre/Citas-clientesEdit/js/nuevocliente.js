@@ -51,8 +51,8 @@ async function añadirCliente(e)
 {
   try {
 
-    const formValido = validarCliente(e);
-  
+  const formValido = validarCliente(e);
+
     if (formValido) {
       const cliente = obtenerDatosCliente();
       const datosRecogidos = await Controlador.setCliente(cliente);
@@ -191,6 +191,7 @@ function revisarErrores(e)
     e.target.classList.remove("border-red-600");
   }
 }
+
 
 /**
  * Validar  campos formulario
