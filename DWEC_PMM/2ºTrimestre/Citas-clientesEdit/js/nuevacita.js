@@ -44,11 +44,7 @@ async function añadirCita(e)
 {
   try {
 
-    e.preventDefault();
-    
-    let formValido = validarCampo(document.getElementById("fecha"));
-        formValido = validarCampo(document.getElementById("hora"))&& formValido;
-        formValido = validarCampo(document.getElementById("descripcion"))&& formValido;
+    const formValido = validarCita(e);
 
   if (formValido) {       
     const cita = obtenerDatosCita();
@@ -216,7 +212,21 @@ function revisarErrores(e)
   }
 }
 
+/**
+ * Validar campos cita
+ * @param {*} e 
+ * @returns 
+ */
+function validarCita(e)
+{
+  e.preventDefault();
+    
+    let formValido = validarCampo(document.getElementById("fecha"));
+        formValido = validarCampo(document.getElementById("hora"))&& formValido;
+        formValido = validarCampo(document.getElementById("descripcion"))&& formValido;
 
+        return formValido;
+}
 
 
 

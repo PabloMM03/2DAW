@@ -212,7 +212,11 @@ function revisarErrores(e)
   }
 }
 
-
+/**
+ * Validar campos cita
+ * @param {*} e 
+ * @returns 
+ */
 
 function validarCita(e)
 {
