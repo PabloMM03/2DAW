@@ -154,12 +154,12 @@ function notificarErrores(e)
 
   const id = e.target.id;
   const name = e.target.name;
-  const errorElement = document.getElementById(`error-${name}`);
+  const error = document.getElementById(`error-${name}`);
 
   if (id === "email" || id === "telefono" || id === "nif") {
-    errorElement.innerHTML = e.target.title;
+    error.innerHTML = e.target.title;
   } else {
-    errorElement.innerHTML = mensajes;
+    error.innerHTML = mensajes;
   }
   
   e.target.classList.add("border-red-600");
@@ -176,7 +176,7 @@ function mensajeError(e)
   let mensajes = "";
 
   if (e.valueMissing) {
-    mensajes = "Este campo es obligatorio";
+    mensajes = "Este campo es obligatorio"; 
   }else if (e.tooShort) {
     mensajes = "Este campo tiene menos carácteres que los requeridos";
   } else if (e.tooLong) {
