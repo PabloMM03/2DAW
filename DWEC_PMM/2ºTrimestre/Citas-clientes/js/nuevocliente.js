@@ -166,7 +166,7 @@ function notificarErrores(e)
 }
 
 /**
- * Mostrar nensajes de error
+ * Mostrar nensajes de error con sus restricciones
  * @param {*} e 
  * @returns 
  */
