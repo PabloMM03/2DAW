@@ -40,9 +40,9 @@ function crearListeners()
 /**
  * Añadir cliente
  * 
- * primero se valida el cliente y se guarda el resultado en una constante llamada esValido
- * se almacena el resultado en una constante llamada esValidacionExitosa. Si esValidacionExitosa es verdadero, 
- * se redirecciona a la página de inicio
+ * primero se valida el cliente, si todos los campos son validos se recogen los datos del formulario 
+ * con la funcion obtenerDatosCliente y se envian al servidor.
+ * Se espera a que se resuelva la promesa devuelta por Controlador.setCliente y valida los datos recibidos con la función datosForm.
  * @param {*} e 
  */
 

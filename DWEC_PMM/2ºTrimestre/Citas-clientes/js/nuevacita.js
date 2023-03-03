@@ -1,8 +1,5 @@
 import { ControladorPHP as Controlador } from "./controlador.js";
 
-const CLASE_ERROR_CAMPO = "error";
-const CLASE_ERROR_MENSAJE = "campoAnadir";
-
 crearListeners();
 
 /**
@@ -37,6 +34,9 @@ function crearListeners()
 
 /**
  * Añadir cita nueva
+ * primero se valida la cita, si todos los campos son validos se recogen los datos del formulario
+ * con la funcion obtenerDatosCita y se envian al servidor.
+ * Se espera a que se resuelva la promesa devuelta por Controlador.setCita y valida los datos recibidos con la función datosForm.
  * @param {*} e 
  */
 
