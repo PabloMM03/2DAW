@@ -143,9 +143,7 @@ function validarCampoEvento(e)
 }
 
 /**
- * Primero, la función llama a la función mensajeError pasándole como parámetro el objeto validity del campo del formulario que generó el evento. 
- * La función mensajeError devuelve un mensaje de error correspondiente al tipo de validación que falló en el campo.
- * Luego, la función verifica si el campo que generó el evento es uno de los campos especiales (email, telefono o nif) y, 
+ * la función verifica si el campo que generó el evento es uno de los campos especiales (email, telefono o nif) y, 
  * si es así, muestra un mensaje de error personalizado
  * @param {*} e 
  */
@@ -199,14 +197,3 @@ function revisarErrores(e)
     e.target.classList.remove("border-red-600");
   }
 }
-
-// function validarCliente(){
-  
-//   let formValido = validarCampo(document.getElementById("nombre"));
-//     formValido = validarCampo(document.getElementById("apellidos"))&& formValido;
-//     formValido = validarCampo(document.getElementById("email"))&& formValido;
-//     formValido = validarCampo(document.getElementById("telefono"))&& formValido;
-//     formValido = validarCampo(document.getElementById("nif"))&& formValido;
- 
-
-//   }
