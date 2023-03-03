@@ -117,6 +117,7 @@ function crearListeners(){
        * @param {*} e 
        */
 
+      
     async function eliminarCliente(e){
 
         const {dataset: { clientenif:nif, clientenombre: nombre, clienteapellidos: apellidos }} = e.target;
