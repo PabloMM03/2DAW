@@ -10,6 +10,9 @@ crearListeners();
  */
 function crearListeners() 
 {
+
+  document.getElementById("formulario").setAttribute("novalidate", true);
+  
   document.getElementById("cancelar").addEventListener("click", cancelarCita, false);
 
   document.getElementById("fecha").addEventListener("blur", validarCampoEvento, false);
@@ -39,17 +42,33 @@ function crearListeners()
 
 async function añadirCita(e) 
 {
-  
-  const cita = obtenerDatosCita();
-  validarCita(e);
+  try {
 
-  const nifCliente = localStorage.getItem('nif');
-  cita.nifCliente = nifCliente;
-    await Controlador.setCita(cita);
-    window.location.href = "lista-citas.html";
+    e.preventDefault();
+    
+    let formValido = validarCampo(document.getElementById("fecha"));
+        formValido = validarCampo(document.getElementById("hora"))&& formValido;
+        formValido = validarCampo(document.getElementById("descripcion"))&& formValido;
 
+  if (formValido) {       
+    const cita = obtenerDatosCita();
+    const nifCliente = localStorage.getItem('nif');
+    cita.nifCliente = nifCliente;
 
+    const datosRecogidos = await Controlador.setCita(cita);
+    const validacion = datosForm(datosRecogidos);
+
+      if (!validacion) {
+        window.location.href = "lista-citas.html";
+      }
+    }
+      document.getElementsByClassName("border-red-600")[0].focus();
+      } catch (error) {
+
+      console.error(error);
+    }
 }
+
 
 /**
  * json datos de la cita
@@ -102,123 +121,100 @@ async function cancelarCita(e)
 }
 
 
-//Validar formulario
+function datosForm(datosRecogidos)
+{
 
-/**
- * 
- * @param {*} e 
- */
-function validarCampoEvento(e){
-  const campo = e.target;
-  validarCampo(campo);
+  let validado = false;
+  for (let i = 0; i < datosRecogidos.camposError.length; i++) {
+        // Asignar mensaje de error al elemento correspondiente
+    const campoError = document.getElementById(`error-${datosRecogidos.camposError[i]}`);
+    campoError.innerHTML = datosRecogidos.mensajesError[i];
+
+    // Añadir la clase 'border-red-600' al elemento con error
+    const campoConError = document.getElementById(`${datosRecogidos.camposError[i]}`);
+    campoConError.classList.add("border-red-600");
+
+        // Marcar el formulario como validado si hay algún error
+    validado = true;
+  }
+  return validado;
+
 }
 
-function validarCampo(campo){
-  eliminarErrores(campo);
+/**
+ * Validar campo
+ * @param {*} campo 
+ * @returns 
+ */
+function validarCampo(campo) 
+{
   return campo.checkValidity();
 }
 
-function revisarErrores(e){
-  const campo = e.target;
-  if(campo.validity.valid){
-      eliminarErrores(campo);
-  }
-}
-function eliminarErrores(campo){
-  campo.classList.remove(CLASE_ERROR_CAMPO);
-  const mensajesError = document.getElementById(`error-${campo.name}`);
-  if(mensajesError){
-      mensajesError.parentElement.removeChild(mensajesError);
-  }
-}
-
-function notificarErrores(e){
-  const campo = e.target;
-  campo.classList.add(CLASE_ERROR_CAMPO);
-
-  let mensajes = [];
-
-  if(campo.validity.valueMissing){
-    mensajes.push(`El campo ${campo.name} es obligatorio`);
-  }
-  if(campo.validity.rangeOverflow){
-    mensajes.push(`Debe contener un valor menor a ${campo.max}`);
-}
-  mostrarMensajesErrorEn(mensajes,campo);
-
-}
-
-/**
- * 
- * @param {*} mensajes 
- * @param {*} campo 
- */
-function mostrarMensajesErrorEn(mensajes, campo) {
-
-  const errorId = `error-${campo.name}`;
-  let error = document.getElementById(errorId);
-
-  // if (!error) {
-  //   error = campo.nextElementSibling;
-  // }
-
-  if (error) {
-      // error.setAttribute("id", errorId);
-      error.classList.add(CLASE_ERROR_MENSAJE);
-      error.textContent = mensajes.join("\n");
-      error.style.display = "block";
-      campo.classList.add(CLASE_ERROR_CAMPO);
-      campo.setAttribute("aria-invalid", true);
-      campo.setAttribute("aria-describedby", errorId);
-      error.style.color = "red";
-      error.focus();
-  } else {
-      error = document.createElement("p");
-      // error.setAttribute("id", errorId);
-      error.classList.add(CLASE_ERROR_MENSAJE);
-      insertarDespues(campo, error);
-      error.textContent = mensajes.join("\n");
-      error.style.display = "block";
-      campo.classList.add(CLASE_ERROR_CAMPO);
-      campo.setAttribute("aria-invalid", true);
-      campo.setAttribute("aria-describedby", errorId);
-      error.style.color = "red";
-      error.focus();
-    }
-}
-
-
-
-
-function insertarDespues(campoReferencia, campoAnadir){
-  if(campoReferencia.nextSibling){
-      campoReferencia.parentNode.insertBefore(campoAnadir, campoReferencia.nextSibling);
-  }else{
-      campoReferencia.parentNode.appendChild(campoAnadir);
-  }
-}
 
 /**
  * 
  * @param {*} e 
+ * @returns 
  */
 
-function validarCita(e){
-  
-  let formValido = validarCampo(document.getElementById("fecha"));
-  formValido = validarCampo(document.getElementById("hora"))&& formValido;
-  formValido = validarCampo(document.getElementById("descripcion"))&& formValido;
-  formValido = validarCampo(document.getElementById("detalles"))&& formValido;
-
-  if(formValido){
-      console.log("El formulario está validado correctamente sin errores.");
-  }else{
-      e.preventDefault();
-      console.error("El formulario no está validado ya que tiene errores.");
-  }
+function validarCampoEvento(e) 
+{
+  return e.target.checkValidity();
 }
 
+/**
+ * Primero, la función llama a la función mensajeError pasándole como parámetro el objeto validity del campo del formulario que generó el evento. 
+ * La función mensajeError devuelve un mensaje de error correspondiente al tipo de validación que falló en el campo.
+ * Luego, la función verifica si el campo que generó el evento es uno de los campos especiales (email, telefono o nif) y, 
+ * si es así, muestra un mensaje de error personalizado
+ * @param {*} e 
+ */
+function notificarErrores(e) 
+{
+  const mensajes = mensajeError(e.target.validity);
 
+  const name = e.target.name;
+  const errorElement = document.getElementById(`error-${name}`);
+
+  errorElement.innerHTML = mensajes;
+  e.target.classList.add("border-red-600");
+}
+
+/**
+ * Mostrar nensajes de error
+ * @param {*} e 
+ * @returns 
+ */
+
+function mensajeError(e) 
+{
+  let mensajes = "";
+
+  if (e.valueMissing) {
+    mensajes = "Este campo es obligatorio";
+  }else if (e.tooShort) {
+    mensajes = "Este campo tiene menos carácteres que los requeridos";
+  } else if (e.tooLong) {
+    mensajes = "Este campo tiene más carácteres que los requeridos";
+  }
+
+  return mensajes;
+}
+
+/**
+ * Se comprueba si el campo correspondiente al evento tiene un valor válido. 
+ * Si es así, se limpia el mensaje de error asociado a ese campo y se quita la clase CSS border-red-600
+ * @param {*} e 
+ */
+
+function revisarErrores(e) 
+{
+  if (e.target.checkValidity()) {
+    document.getElementById(`error-${e.target.name}`).textContent  = "";
+    e.target.classList.remove("border-red-600");
+  }
+}
 
 
 
