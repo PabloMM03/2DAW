@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto Coche</title>
+</head>
+<body>
+    
+<script>
+
+    class Vehiculo{
+        #pasajeros;
+
+        constructor(pasajeros){
+            this.#pasajeros = pasajeros;
+        }
+
+        get pasajeros(){
+            return this.#pasajeros;
+        }
+        set pasajeros(pasajeros){
+            this.#pasajeros = pasajeros;
+        }
+
+    }
+
+
+
+function excepciónCoche(message){
+			this.message = message;
+			this.name = 'CocheException';
+		}
+
+
+    class Coche extends Vehiculo{
+        #fabricante;
+        #modelo;
+        #marchas;
+        #marchaActual;
+
+        constructor(fabricante,modelo, pasajeros){
+            super(pasajeros);
+            this.#fabricante = fabricante;
+            this.#modelo = modelo;
+            this.#marchas = ["P", 1,2,3,4,5,6,"R"];
+            this.#marchaActual = "P";
+        }
+
+        cambiarMarcha(marchaCorrecta){
+            if(this.#marchas.includes(marchaCorrecta)){
+                this.#marchaActual = marchaCorrecta;
+                return marchaCorrecta;
+            }else{
+                throw new excepciónCoche('Marcha incorrecta');
+            }
+        }
+
+        get fabricante(){
+            return this.#fabricante;
+        }
+        set fabricante(fabricante){
+            	this.#fabricante = fabricante;
+        	}
+
+        get modelo(){
+            return this.#modelo;
+        }
+        set modelo(modelo){
+            this.#modelo = modelo;
+        }
+
+        get marchas(){
+            return this.#marchas;
+        }
+        set marchas(marchas){
+            this.#marchas = marchas;
+        }
+
+        get marchaActual(){
+            return this.#marchaActual;
+        }
+        set marchaActual(marchaActual){
+            this.#marchaActual = marchaActual;
+        }
+
+
+
+        static cochesIguales(Tesla, Mazda){
+
+            if(Tesla.#fabricante ===  Mazda.#fabricante && Tesla.#modelo === Mazda.#modelo){
+                console.log("Los coches son iguales!");
+            }else{
+                console.error("Los coches no son iguales!");
+            }
+
+        }
+        toString(){
+            let res = super.toString();
+            res = `Coche: Fabricante ${this.fabricante} - Modelo: ${this.modelo} - Pasajeros: ${this.pasajeros}`;
+            return res;
+        }
+        
+
+    }
+
+
+    const Tesla = new Coche("Tesla", "ModelS");
+    const Mazda = new Coche("Mazda", "3i");
+    const Audi = new Coche("Audi", "R8", 3);
+
+    Tesla.cambiarMarcha(5);
+    Mazda.cambiarMarcha(3);
+    
+
+    console.log(Tesla.fabricante + " " + Tesla.modelo + " " + Tesla.marchaActual);
+    console.log(Mazda.fabricante + " " + Mazda.modelo + " " + Mazda.marchaActual);
+    console.log("El audi R8 tiene " + Audi.pasajeros + " pasajeros");
+    console.log(Audi.toString());
+
+
+    Coche.cochesIguales(Mazda,Mazda);
+    Coche.cochesIguales(Mazda,Tesla);
+
+</script>
+
+</body>
+</html>
