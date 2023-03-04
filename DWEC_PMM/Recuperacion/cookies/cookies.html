@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Cookies</title>
+</head>
+<body>
+
+    <button type="button" id="verTodas">Ver todas las cookies</button>
+    <button type="button" id="crearCookie">Crear cookie</button>
+    <button type="button" id="checkCookie">Check cookie</button>
+    <button type="button" id="borrarCookies">Borrar cookie</button>
+  
+<script>
+
+    document.getElementById("verTodas").addEventListener("click",verCookies);
+    document.getElementById("crearCookie").addEventListener("click",crearCookie);
+    document.getElementById("checkCookie").addEventListener("click",checkCookie);
+    document.getElementById("borrarCookies").addEventListener("click",deleteCookie);
+
+    //Parte de codigo la cual hace funcionar los botones
+
+    function verCookies(){
+        //alert("Cookies actuales:\n"+document.cookie);
+        const mapCookie = new Map();
+        const cookies = document.cookie.split(";");
+
+        for (const i in cookies) {
+            const key = cookies[i].split("=");
+            mapCookie.set(key[0], key[1]);
+        }
+
+        console.log(mapCookie);
+    }
+
+
+    function crearCookie(){
+        let name = prompt("Introduzca el nombre de la cookie");
+        let value = prompt("Introduzca su valor");
+        let daysToLive = parseInt(prompt("Introduzca el numero de dias para que expire"));
+        setAndEncodeCookie(name,value,daysToLive);
+        verCookies();
+
+
+    }
+
+    function deleteCookie(){
+        let nombre = prompt("Introduzca el nombre de la cookie a borrar");
+        borrarCookie(nombre);
+    }
+    function checkCookie(){
+
+      let nombre = prompt("Introduzca el nombre de la cookie a consultar");
+      alert(getAndDecodeCookie(nombre));
+   }
+
+
+    //Parte de ejecucion de codigo
+
+    function borrarCookie(name){
+
+        setAndEncodeCookie(name,"",0); 
+    }
+ 
+   function setAndEncodeCookie(name, value, daysToLive){
+ 
+       let d = new Date();
+       d.setTime(d.getTime()+(daysToLive*24*60*60*1000));
+        daysToLive = "expires="+d.toUTCString();
+       document.cookie= name+"="+value+";"+daysToLive+";path=/";
+ 
+       let valor = document.cookie[2];
+    encodeURIComponent(valor);
+
+ 
+   }
+   function getAndDecodeCookie(name){
+ 
+      
+    let cname = name +"=";
+    let ca = document.cookie.split(';');
+    for(let i=0; i<ca.length; i++){
+       let c = ca[i];
+       while(c.charAt(0)==' '){
+           c = c.substring(1);
+       }
+       if(c.indexOf(name)==0){
+        cookieDecodificada = c.substring(cname.length,c.length);
+       ccD = decodeURIComponent(cookieDecodificada);
+           return ccD;
+       }
+       
+    }      
+    return "";
+   }
+  
+ 
+</script>
+ 
+</body>
+</html>
+
