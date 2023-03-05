@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="crearCookie()">Crear Cookie</button>
+    <button onclick="verCookie()">Ver Cookie</button>
+    <button onclick="comprobarCookie()">Comprobar Cookie</button>
+    <button onclick="getAndDecodeCookies()">Todas las Cookie</button>
+    <button onclick="deleteCookie()" id="borrarCookies">Borrar cookie</button>
+
+    <script>
+
+        function setAndEncodeCookie(name, value, daysToLive = null) {
+
+            let nameEnconde = encodeURI(name);
+            let valueEncode = encodeURI(value);
+            let segundos = daysToLive * 24 * 60 * 60;
+            document.cookie = `${nameEnconde}=${valueEncode}; max-age=${segundos}`;
+
+        }
+
+        function getAndDecodeCookie(name) {
+            let cookies = document.cookie.split(";");
+            let mostrar = null;
+
+            for (let i in cookies) {
+                const cookiesSplit = cookies[i].split("=");
+                if (cookiesSplit[0].trim() === name) {
+                    mostrar = decodeURI(cookiesSplit[1]);
+                    alert(mostrar);
+                }
+            }
+
+            return mostrar;
+        }
+        function checkCookie(name) {
+            let cookies = document.cookie.split(";");
+            let mostrar = false;
+
+            for (const i in cookies) {
+                const cookiesSplit = cookies[i].split("=");
+                if (cookiesSplit[0].trim() === name) {
+                    mostrar = alert(true);
+                }
+
+            }
+
+            return mostrar;
+        }
+
+        function getAndDecodeCookies() {
+            const mapCookie = new Map();
+            const cookies = document.cookie.split(";");
+
+            for (const i in cookies) {
+                const key = cookies[i].split("=");
+                mapCookie.set(key[0], key[1]);
+            }
+
+            console.log(mapCookie);
+        }
+
+        /////////////////////////////////////////////////////////////////////////
+        function borrarCookie(name) {
+
+            setAndEncodeCookie(name, "", 0);
+        }
+
+        function crearCookie() {
+            const nombre = prompt("Nombre de la cookie: ");
+            const valor = prompt("Valor de la cookie: ");
+            let dias = prompt("Dias de la cookie: ", "0");
+
+            dias = parseInt(dias);
+
+            if (nombre, valor, dias) {
+                setAndEncodeCookie(nombre, valor, dias);
+            } else {
+                crearCookie();
+            }
+        }
+
+        function verCookie() {
+            const nombre = prompt("Nombre de la cookie: ");
+
+            if (nombre) {
+                getAndDecodeCookie(nombre);
+            } else {
+                verCookie();
+            }
+        }
+
+        function comprobarCookie() {
+            const nombre = prompt("Nombre de la cookie: ");
+
+            if (nombre) {
+                checkCookie(nombre);
+            } else {
+                comprobarCookie();
+            }
+        }
+
+        function deleteCookie() {
+            let nombre = prompt("Introduzca el nombre de la cookie a borrar");
+            borrarCookie(nombre);
+        }
+    </script>
+
+
+</body>
+
+</html>
