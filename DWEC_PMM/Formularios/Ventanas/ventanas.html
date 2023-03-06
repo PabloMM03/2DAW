@@ -23,7 +23,7 @@ let ventanaCreada = false;
 
 function abrirVentana(){
     if(!ventanaCreada){
-        nuevaVentana= window.open("https://www.debian.org"," ", "width=100", "height=100");
+        nuevaVentana= window.open(""," ", "width=100 , height=100, resizable");
         ventanaCreada=true;
     }else{
         alert("Ventana ya creada!");
@@ -31,8 +31,8 @@ function abrirVentana(){
 }
 
 function aumentarAncho(){
-    if(ventanaCreada){
-        nuevaVentana = window.resizeBy(250,250);
+    if(nuevaVentana){
+        nuevaVentana.resizeBy(250,250);
         console.log("Ventana redimensionada con exito");
     }else{
         alert("La ventana ya esta redimensionada!");
@@ -41,7 +41,7 @@ function aumentarAncho(){
 
 function fijarAnchoYAlto(){
     if(ventanaCreada){
-        nuevaVentana=window.resizeTo(250,250);
+        nuevaVentana.resizeTo(250,250);
         console.log("Ventana fijada con exito");
     }else{
         alert("La ventana ya tiene un tamaño fijo!");
@@ -50,7 +50,7 @@ function fijarAnchoYAlto(){
 
 function moverVentana250(){
     if(ventanaCreada){
-        nuevaVentana=window.moveBy(250,-250);
+        nuevaVentana.moveBy(250,-250);
         console.log("Ventana movida con exito");
     }else{
         alert("La ventana ya se a movido 250 pixeles!");
@@ -59,7 +59,7 @@ function moverVentana250(){
 
 function moverVentana500(){
     if(ventanaCreada){
-        nuevaVentana= window.moveTo(500,-200);
+        nuevaVentana.moveTo(500,-200);
         console.log("Ventana movida 500px con exito");
     }else{
         alert("La ventana ya se a movido 500 pixeles!");
