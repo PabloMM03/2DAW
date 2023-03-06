@@ -23,7 +23,7 @@ function openWindow() {
     nuevaVentana.document.body.innerText = 'Tamaño 350x350';
     intervalId = setInterval(resizeWindow, 1000);
   } else {
-    alert("Error, la ventana ya está abierta");
+    console.error("Error, la ventana ya está abierta");
   }
 }
 
@@ -55,6 +55,6 @@ function closeWindow()
         nuevaVentana.close()
         nuevaVentana = null;
     } else {
-        alert("Error, la ventana no está abierta");
+       console.error("Error, la ventana no está abierta");
     }
 }
