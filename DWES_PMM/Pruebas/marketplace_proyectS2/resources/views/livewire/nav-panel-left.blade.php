@@ -1,6 +1,6 @@
 
-<div class="fixed top-0 left-0 h-screen w-64 bg-gray-900">
-    <h1 style="color:white" class="h5, text-items:center ml-6 mt-4">Categorías</h1>
+<div class="fixed top-0 left-0 h-screen w-64 bg-black">
+    <h1 style="color:white" class="h5, text-items:center ml-6 mt-4 mb-4">Categorías</h1>
     <ul class="py-4">
 {{--Mostrar Categorias --}}
         @foreach ($categories as $category)
