@@ -15,8 +15,8 @@ function getBasketMarkup(&$carrito, $productos)
   $basket_markup .= '<form action="./index.php" method="post">';
   $basket_markup .= '<div class="cart-inline">';
   $basket_markup .= '<div class="cart-inline-header">';
-  $basket_markup .= '<h5 class="cart-inline-title">In cart:<span> '.$carrito['productos_totales'].'</span> Products</h5>';
-  $basket_markup .= '<h6 class="cart-inline-title">Total price:<span> '.$carrito['precioCarrito'].'</span></h6></div>';
+  $basket_markup .= '<h5 class="cart-inline-title">In cart: '.$carrito['productos_totales'].' Products</h5>';
+  $basket_markup .= '<h6 class="cart-inline-title">Total price: '.$carrito['precioCarrito'].'</h6></div>';
 
 
 

@@ -34,9 +34,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$conn = new mysqli('localhost', 'root', '', 'personas');
 
-$error = $conn->connect_errno;
+ $conexion = new mysqli('localhost', 'root', '', 'personas');
+
+$error = $conexion->connect_errno;
 
 if ($error != 0) {
 ?>
@@ -45,34 +46,52 @@ if ($error != 0) {
 <?php 
      exit();
 }else{
+  //Este código se ejecuta si la conexión a la base de datos ha ido bien.
+  //0.- Inicialización de variables
 
-    $mensaje_error_cliente = '';
+  $mensaje_error_cliente = '';
+  
+  //1.- Recogida y gestión de datos presentes en _POST
 
-if(isset($_POST) && !empty($_POST)){
+  if(isset($_POST)&&!empty($_POST)){
+  //echo '<pre>'.print_r($_POST).'</pre>';
 
-    if(isset($_POST['add_button'])){
+    if(isset($_POST['delete'])){
+      //Aquí gestionamos el eliminar
 
-        insertarDatos($conn);
+      $id = array_keys($_POST['delete']); //Array_keys obtiene un array cuyos valores son las claves del array pasado como parámetro (y sus claves son índices 0, 1, 2...)
+      $id = $id[0];
+      
+      if(!$conexion->query('DELETE FROM personas WHERE id = ' .$id)||($conexion->affected_rows == 0)){
+        $mensaje_error_cliente = 'Se ha jodio el asunto colega';
+      }
 
-    }elseif(isset($_POST['delete'])){
-        $clave = array_keys($_POST['delete']);
-        $clave = $clave[0];
+    }else if(isset($_POST['add_button'])){
+      //Aquí gestionamos añadir
+      //echo '<pre>'.print_r($_POST).'</pre>';
+      
+      insertarDatos($conexion);
 
+      
+        }else if(isset($_POST['update_button'])){
+        //Aquí gestionamos el actualizar
 
-        if(!$conn->query('DELETE FROM personas WHERE id = \''.$clave.'\'')||($conn->affected_rows === 0)){
-            $mensaje_error_cliente = 'Se ha jodio el asunto colega';
-        }
-    }elseif(isset($_POST['update_button'])){
+        $resultado = $conexion->query('SELECT * FROM personas');
+        $i= 0;
 
-        $resultado = $conn->query("SELECT * FROM personas");
-        $i =0;
-
+            // Se recuperan los datos de la tabla y se almacenan en un array
         while($datos = $resultado->fetch_array()){
             $dato[$i] = $datos['nombre'];
             $i++;
         }
+    // Se prepara la consulta de actualización y se vinculan los parámetros
+        $query = 'UPDATE personas SET nombre = ? WHERE id = ?';
+        $upgrade = $conexion->prepare($query);
+        $nombres = $_POST['name'];
+
         $ids = array_keys($_POST['name']);
 
+            // Se recorren los valores enviados por el formulario y se actualizan los registros si es necesario
         foreach($nombres as $nombre){
             for($j = 0; $j<$i; $j++){
             if(($nombre == $nombres[$ids[$j]]) && ($dato[$j]!=$nombre)){
@@ -82,47 +101,40 @@ if(isset($_POST) && !empty($_POST)){
           }
         }
       }
-    }
+     
+    } 
+  }
+  
+  //2.- Generación e impresión del formuilario
+    //Me traigo todos los registros de la tabla departamento
     
-}
-
-
-
-
-
-
-
-$resultado = $conn->query('SELECT * FROM personas');
+    $resultado = $conexion->query('SELECT * FROM personas');
+     
 ?>
-
-
-<div class="mainContaier">
-
-<h1>Administracion de clientes</h1>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-    <div class="addContainer">
-        <input type="submit" name="add_button" value="+"> <input type="text" name="clientes_nombre" placeholder="Introduzca el nombre"> <input type="text" name="clientes_apellidos" placeholder="Introduzca los apellidos">
-    </div>
-
-    <div class="registrosContainer">
-    <?php while($datos = $resultado->fetch_array()){?> 
-        <input type="submit" name="delete[<?php echo $datos['id'];?>]" value="X"><input type="text" value="<?php echo $datos['nombre'];?>" name="name[<?php echo $datos['id'];?>"><br>
-
-        <?php }?>
-    </div>
-
-    <div class="updateContainer">
-        <input type="submit" value="Actualizar" name="update_button"><br>
-    </div>
-</form>
-</div>
-
-<div class="error_message"><p>
+  <div class="mainCointainer"> 
+    <h1>Administracion de clientes</h1>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+       <div class="addContainer">
+         <input type="submit" value="+" name="add_button"> <input type="text" value="" placeholder="Introduzca su nombre" name="clientes_nombre"> 
+       </div>
+       <div class="registrosContainer">
+         <?php while($datos = $resultado->fetch_array()){?> 
+        <input type="submit" value="x" name="delete[<?php echo $datos['id']; ?>]"> <input type="text" value="<?php echo $datos['nombre']; ?>" name="name[<?php echo $datos['id']; ?>]"> <input type="submit" value="<?php echo $datos['id']; ?>" name="name[<?php echo $datos['id']; ?>]"> <br>
+         
+         <?php } ?>
+            
+       </div>
+       <div class="updateContainer">  
+        <input type="submit" value="Actualizar registros" name="update_button"> <br>
+        
+       </div>
+    </form>
+  </div>
+  <div class="error_message"><p>
     <?php echo $mensaje_error_cliente; ?>
   </p></div>
   <?php 
-    $conn->close();
-}?>
-
+    $conexion->close();
+  }?>
 </body>
 </html>

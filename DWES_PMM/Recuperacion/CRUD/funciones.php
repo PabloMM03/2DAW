@@ -52,8 +52,10 @@
 
 
 function insertarDatos($conn){
+        // Se obtiene un nuevo valor para la clave primaria
     $id = getPrimaryKey($conn);
 
+        // Se prepara la consulta INSERT y se vinculan los parámetros
     $query = "INSERT INTO personas(id,nombre) VALUES (?,?)";
 
     $insert = $conn->prepare($query);
@@ -73,5 +75,8 @@ function getPrimaryKey($conn){
     
     return $claveID;
 }
+
+
+
 
 ?>
