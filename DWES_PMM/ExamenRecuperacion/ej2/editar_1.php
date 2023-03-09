@@ -16,6 +16,14 @@
 
 	<!-- Completa aquí el código -->
 
+
+  <form action="editar_2.php" method="post">
+  <label for="id_pelicula">ID de la película a modificar:</label>
+  <input type="number" name="id_pelicula" id="id_pelicula">
+  <input type="submit" value="Enviar">
+</form>
+
+
     <footer><p>Examen de febrero - Desarrollo Web en Entorno Servidor a distancia - 2022-2023.</p></footer>
 
   </body>

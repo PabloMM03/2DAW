@@ -86,3 +86,4 @@ function getFormularioCandidatosMarkup($candidatos) {
   // </form>';
   // return $output;
 // } 
+

@@ -17,6 +17,8 @@
     <?php
 
     require_once('connect_db.php');
+
+    $dbh = conectarBBDD();
     
     $sql = 'SELECT * FROM peliculas';
 
