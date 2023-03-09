@@ -19,18 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $y = $_POST['y'];
 
         // Obtener las coordenadas existentes de la sesión
-        $coordenadas = isset($_SESSION['coordenadas']) ? $_SESSION['coordenadas'] : [];
+        $posiciones = isset($_SESSION['coordenadas']) ? $_SESSION['coordenadas'] : [];
 
         // Verificar si las coordenadas ya existen en la sesión
-        if (in_array("$x-$y", $coordenadas)) {
+        if (in_array("$x-$y", $posiciones)) {
             // Las coordenadas ya existen en la sesión, mostrar mensaje de error
             echo "Error: las coordenadas ya existen en la sesión";
             exit();
         }
 
         // Agregar las nuevas coordenadas al array de coordenadas en la sesión
-        $coordenadas[] = "$x-$y";
-        $_SESSION['coordenadas'] = $coordenadas;
+        $posiciones[] = "$x-$y";
+        $_SESSION['coordenadas'] = $posiciones;
     }
 }
 
